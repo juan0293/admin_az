@@ -28,6 +28,8 @@ namespace admin_az
         public Nullable<System.DateTime> fecha_nacimiento { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public string codigo { get; set; }
+        public string sangre { get; set; }
+        public string cedula { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<cita> citas { get; set; }

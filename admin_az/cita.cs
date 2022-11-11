@@ -30,14 +30,18 @@ namespace admin_az
         public double monto { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<double> resta { get; set; }
+        public string hora { get; set; }
         public string asunto { get; set; }
         public Nullable<double> montopagado { get; set; }
         public Nullable<bool> condicion { get; set; }
-        public string hora { get; set; }
+        public Nullable<int> artista { get; set; }
+        public Nullable<int> oferta { get; set; }
     
+        public virtual artista artista1 { get; set; }
         public virtual cliente cliente { get; set; }
         public virtual estadocita estadocita { get; set; }
         public virtual metodoppago metodoppago { get; set; }
+        public virtual oferta oferta1 { get; set; }
         public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<factura> facturas { get; set; }

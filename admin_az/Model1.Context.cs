@@ -27,6 +27,7 @@ namespace admin_az
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<artista> artistas { get; set; }
         public virtual DbSet<cierre> cierres { get; set; }
         public virtual DbSet<cita> citas { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
@@ -34,16 +35,17 @@ namespace admin_az
         public virtual DbSet<estadocita> estadocitas { get; set; }
         public virtual DbSet<factura> facturas { get; set; }
         public virtual DbSet<metodoppago> metodoppagoes { get; set; }
+        public virtual DbSet<oferta> ofertas { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<usuario> usuarios { get; set; }
-        public virtual DbSet<trabajo> trabajoes { get; set; }
         public virtual DbSet<tipoUsuario> tipoUsuarios { get; set; }
+        public virtual DbSet<trabajo> trabajoes { get; set; }
+        public virtual DbSet<usuario> usuarios { get; set; }
         public virtual DbSet<View_1_usuario> View_1_usuario { get; set; }
-        public virtual DbSet<View_cuadre> View_cuadre { get; set; }
-        public virtual DbSet<View_reimprimir> View_reimprimir { get; set; }
         public virtual DbSet<View_Cliente> View_Cliente { get; set; }
-        public virtual DbSet<View_historial> View_historial { get; set; }
         public virtual DbSet<View_cliente_h> View_cliente_h { get; set; }
+        public virtual DbSet<View_cuadre> View_cuadre { get; set; }
+        public virtual DbSet<View_historial> View_historial { get; set; }
+        public virtual DbSet<View_reimprimir> View_reimprimir { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

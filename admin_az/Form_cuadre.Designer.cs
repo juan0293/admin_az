@@ -450,7 +450,7 @@
             // 
             // picbGuardar
             // 
-            this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
+            //this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
             this.picbGuardar.Location = new System.Drawing.Point(429, 348);
             this.picbGuardar.Name = "picbGuardar";
             this.picbGuardar.Size = new System.Drawing.Size(40, 40);
@@ -473,7 +473,7 @@
             // 
             // picatras
             // 
-            this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
             this.picatras.Location = new System.Drawing.Point(502, 345);
             this.picatras.Name = "picatras";
             this.picatras.Size = new System.Drawing.Size(50, 47);

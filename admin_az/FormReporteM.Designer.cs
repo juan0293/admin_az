@@ -216,7 +216,7 @@
             // 
             // picActualizar
             // 
-            this.picActualizar.Image = global::admin_az.Properties.Resources.search_48px;
+            //this.picActualizar.Image = global::admin_az.Properties.Resources.search_48px;
             this.picActualizar.Location = new System.Drawing.Point(908, 71);
             this.picActualizar.Name = "picActualizar";
             this.picActualizar.Size = new System.Drawing.Size(49, 30);
@@ -239,7 +239,7 @@
             // 
             // picatras
             // 
-            this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
             this.picatras.Location = new System.Drawing.Point(1000, 9);
             this.picatras.Name = "picatras";
             this.picatras.Size = new System.Drawing.Size(50, 43);

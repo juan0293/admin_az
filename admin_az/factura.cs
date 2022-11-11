@@ -22,7 +22,7 @@ namespace admin_az
         public Nullable<int> idmetodo { get; set; }
     
         public virtual cita cita { get; set; }
-        public virtual usuario usuario { get; set; }
         public virtual metodoppago metodoppago { get; set; }
+        public virtual usuario usuario { get; set; }
     }
 }

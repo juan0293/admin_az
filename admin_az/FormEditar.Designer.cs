@@ -98,7 +98,7 @@
             this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox2.Image = global::admin_az.Properties.Resources.shutdown_40px;
+            //this.pictureBox2.Image = global::admin_az.Properties.Resources.shutdown_40px;
             this.pictureBox2.Location = new System.Drawing.Point(918, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox2.Name = "pictureBox2";
@@ -166,7 +166,7 @@
             // 
             // picregresar
             // 
-            this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
             this.picregresar.Location = new System.Drawing.Point(226, 311);
             this.picregresar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picregresar.Name = "picregresar";
@@ -191,7 +191,7 @@
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.BackColor = System.Drawing.Color.Transparent;
             this.btn_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px;
+            //this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px;
             this.btn_close.Location = new System.Drawing.Point(380, 0);
             this.btn_close.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_close.Name = "btn_close";
@@ -274,7 +274,7 @@
             // 
             // picbGuardar
             // 
-            this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
+            //this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
             this.picbGuardar.Location = new System.Drawing.Point(128, 315);
             this.picbGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picbGuardar.Name = "picbGuardar";
@@ -345,7 +345,7 @@
             // 
             // picFinalizar
             // 
-            this.picFinalizar.Image = global::admin_az.Properties.Resources.person_40px;
+            //this.picFinalizar.Image = global::admin_az.Properties.Resources.person_40px;
             this.picFinalizar.Location = new System.Drawing.Point(431, 61);
             this.picFinalizar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picFinalizar.Name = "picFinalizar";
@@ -421,7 +421,7 @@
             // 
             // picatras
             // 
-            this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
             this.picatras.Location = new System.Drawing.Point(474, 615);
             this.picatras.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picatras.Name = "picatras";

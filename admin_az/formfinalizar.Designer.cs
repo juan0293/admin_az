@@ -62,7 +62,7 @@
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.BackColor = System.Drawing.Color.Transparent;
             this.btn_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
+            //this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
             this.btn_close.Location = new System.Drawing.Point(253, 0);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(35, 35);
@@ -95,7 +95,7 @@
             // 
             // picregresar
             // 
-            this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
             this.picregresar.Location = new System.Drawing.Point(149, 200);
             this.picregresar.Name = "picregresar";
             this.picregresar.Size = new System.Drawing.Size(46, 40);
@@ -172,7 +172,7 @@
             // 
             // picbGuardar
             // 
-            this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
+            //this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
             this.picbGuardar.Location = new System.Drawing.Point(83, 200);
             this.picbGuardar.Name = "picbGuardar";
             this.picbGuardar.Size = new System.Drawing.Size(40, 40);

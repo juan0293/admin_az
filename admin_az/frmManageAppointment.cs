@@ -15,8 +15,9 @@ namespace admin_az
         public int AppID = 0;
         public int metodoID = 0;
         public int clienteID = 0;
-        public int idcita;
+        public int idcita, idartista, idoferta;
         public double resultado;
+        public double totalcliente = 0.00;
         public string telefono, codigo, Apellido;
         public frmManageAppointment()
         {
@@ -118,13 +119,13 @@ namespace admin_az
         {
             try
             {
-                double totalcliente = 0.00; totalcliente = dgvdescripcion.Rows.Cast<DataGridViewRow>()
+                 totalcliente = dgvdescripcion.Rows.Cast<DataGridViewRow>()
                       .Sum(t => Convert.ToDouble(t.Cells[1].Value));
                 txtTotal.Text = totalcliente.ToString();
                 Double Tpago2 = 0.00;
                 if (Double.TryParse(txtTotal.Text, out Tpago2))
                     txtTotal.Text = String.Format(System.Globalization.CultureInfo.CurrentCulture, "{0:N2}", Tpago2);
-                paneltotal.Visible = true;
+                panel1_pago.Visible = true;
 
             }
             catch { }
@@ -133,8 +134,8 @@ namespace admin_az
         public void addcliente()
        
         {
-            try
-            {
+            //try
+            //{
                 double montopagado = Convert.ToDouble(txt_pagado.Text);
                 double montoapagar = Convert.ToDouble(txtTotal.Text);
                  resultado = montoapagar - montopagado;
@@ -152,17 +153,20 @@ namespace admin_az
                     ocita.monto =Convert.ToDouble(txtTotal.Text);
                     ocita.fecha = DateTime.Now;
                     ocita.resta = resultado;
+                    ocita.artista = idartista;
+                    ocita.oferta = idoferta;
                     ocita.montopagado = Convert.ToDouble(txt_pagado.Text);
                     ocita.condicion = true;
                     ocita.hora =txt_hora.Text;
 
                     db.citas.Add(ocita);
                     db.SaveChanges();
+                    idcita = ocita.idcita;
                    
                 }
 
-            }
-            catch { MessageBox.Show("Algo salio Mal"); }
+            //}
+            //catch { MessageBox.Show("Algo salio Mal"); }
 
         }
         public void factura()
@@ -199,7 +203,11 @@ namespace admin_az
             //txt_hora.CustomFormat = "MM/dd/yyyy hh:mm:ss";
             //txt_hora.Format = DateTimePickerFormat.Time;
             //txt_hora.ShowUpDown = true;
+          
+            txtasunto.Focus();
             ListarMetodo();
+            cbo_metodo.Text = "Efectivo";
+
 
         }
 
@@ -279,44 +287,21 @@ namespace admin_az
             dgvdescripcion.Rows.Add(txtasunto.Text, costo);
             txtasunto.Clear();
             txtcosto.Clear();
+            txtasunto.Focus();
         }
         private void picAgregar_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtcosto.Text))
-            {
-                MessageBox.Show("El costo del trabajo es requerido.", "Mensaje",MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtasunto.Text))
-            {
-                MessageBox.Show("El asunto del trabajo es requerido.","Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            else
-            {
-                agregar();
-            }
+           
         }
 
         private void picregresar_Click(object sender, EventArgs e)
         {
-            paneltotal.Visible = false;
-            txtTotal.Clear();
-            cbo_metodo.SelectedIndex = -1;
-            txt_pagado.Clear();
+           
         }
 
         private void picsiguiente_Click(object sender, EventArgs e)
         {
-            if (dgvdescripcion.Rows.Count ==0)
-            {
-                MessageBox.Show("No tiene trabajo Agreado  es requerido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-            else
-            {
-                siguiente();
-            }
+            
             
         }
 
@@ -345,23 +330,7 @@ namespace admin_az
 
         private void picbGuardar_Click(object sender, EventArgs e)
         {
-            if(cbo_metodo.Text == "")
-            {
-                MessageBox.Show("Por fovor seleccionar metodo de pago", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                addcliente();
-                ListarIdcita();
-                guardar();
-                addtrabajo();
-                factura();
-                factura();
-                telefono = "";
-                Close();
-
-            }
-           
+          
            
 
            
@@ -370,10 +339,7 @@ namespace admin_az
         private void btn_close_Click(object sender, EventArgs e)
         {
 
-            paneltotal.Visible = false;
-            txtTotal.Clear();
-            cbo_metodo.SelectedIndex = -1;
-            txt_pagado.Clear();
+          
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -381,14 +347,201 @@ namespace admin_az
             Close();
         }
 
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtcosto.Text))
+            {
+                MessageBox.Show("El costo del trabajo es requerido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtasunto.Text))
+            {
+                MessageBox.Show("El asunto del trabajo es requerido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                agregar();
+            }
+        }
+
+        private void btn_continuar_Click(object sender, EventArgs e)
+        {
+            if (dgvdescripcion.Rows.Count == 0)
+            {
+                MessageBox.Show("No tiene trabajo Agreado  es requerido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            else
+            {
+                siguiente();
+            }
+        }
+
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            dgvdescripcion.Rows.Remove(dgvdescripcion.CurrentRow);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            panel1_pago.Visible = false;
+            txtTotal.Clear();
+            cbo_metodo.SelectedIndex = -1;
+            txt_pagado.Clear();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (cbo_metodo.Text == "")
+            {
+                MessageBox.Show("Por fovor seleccionar metodo de pago", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                addcliente();
+               
+                guardar();
+                addtrabajo();
+                factura();
+                factura();
+                telefono = "";
+                Close();
+
+            }
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            panel1_pago.Visible = false;
+            txtTotal.Clear();
+            cbo_metodo.SelectedIndex = -1;
+            txt_pagado.Clear();
+        }
+
         private void picFinalizar_Click(object sender, EventArgs e)
         {
           
         }
 
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListarDescuento();
+        }
+
+        private void cbo_artista_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+            ListarIDartista();
+        }
+
+        public void ListarArtista()
+        {
+            try
+            {
+
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                
+                    artistaBindingSource.DataSource = db.artistas.ToList();
+
+                }
+
+            }
+
+            catch { }
+        }
+
+        private void cbo_artista_DropDown(object sender, EventArgs e)
+        {
+            ListarArtista();
+        }
+
+        private void cbo_oferta_DropDown(object sender, EventArgs e)
+        {
+            Listaroferta();
+        }
+
+        public void Listaroferta()
+        {
+            try
+            {
+
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                    ofertaBindingSource.DataSource = db.ofertas.ToList();
+                 
+
+                }
+
+            }
+
+            catch { }
+        }
+
+        public void ListarIDartista()
+        {
+            try
+            {
+
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                    var lst = db.artistas.ToList().Where(m => m.nombre == cbo_artista.Text);
+                    foreach (var oartista in lst)
+                    {
+                       idartista = oartista.idartista;
+                       
+
+                    }
+
+                }
+
+            }
+
+            catch { }
+        }
+        public void ListarDescuento()
+        {
+            try
+            {
+                double resultado = 0.00;
+                double porcentaje = 0.00;
+                double monto = Convert.ToDouble(txtTotal.Text);
+
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                    var lst = db.ofertas.ToList().Where(m => m.titulo == cbo_oferta.Text);
+                    foreach (var oferta in lst)
+                    {
+                        porcentaje = monto * Convert.ToDouble(oferta.porcentaje) / 100;
+                        resultado = monto - porcentaje;
+                        idoferta = oferta.idoferta;
+                        txtTotal.Text = Convert.ToDecimal(resultado).ToString("#,###,##0.00");
+                        txt_pagado.Text = Convert.ToDecimal(resultado).ToString("#,###,##0.00");
+
+                    }
+
+                }
+
+            }
+
+            catch { }
+        }
+
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            dgvdescripcion.Rows.Remove(dgvdescripcion.CurrentRow);
+           
         }
     }
 }

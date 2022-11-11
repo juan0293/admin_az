@@ -147,7 +147,7 @@
             // 
             // picregresar
             // 
-            this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
             this.picregresar.Location = new System.Drawing.Point(386, 376);
             this.picregresar.Name = "picregresar";
             this.picregresar.Size = new System.Drawing.Size(50, 43);
@@ -187,7 +187,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::admin_az.Properties.Resources.search_48px;
+            //this.pictureBox1.Image = global::admin_az.Properties.Resources.search_48px;
             this.pictureBox1.Location = new System.Drawing.Point(279, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(48, 48);

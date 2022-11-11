@@ -156,7 +156,7 @@ namespace admin_az
             {
                 FlowLayoutPanel fl = new FlowLayoutPanel();
                 fl.Name = $"flDay{i}";
-                fl.Size = new Size(145, 100);
+                fl.Size = new Size(120, 100);
                 fl.BackColor = Color.Black;
                 fl.BorderStyle = BorderStyle.FixedSingle;
                 fl.Cursor = Cursors.Hand;

@@ -133,7 +133,7 @@
             dataGridViewCellStyle13.NullValue = null;
             this.dataGridViewImageColumn1.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewImageColumn1.HeaderText = "Editar";
-            this.dataGridViewImageColumn1.Image = global::admin_az.Properties.Resources.edit_property_16px;
+            //this.dataGridViewImageColumn1.Image = global::admin_az.Properties.Resources.edit_property_16px;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.Width = 50;
@@ -144,7 +144,7 @@
             dataGridViewCellStyle14.NullValue = null;
             this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewImageColumn2.HeaderText = "Eliminar";
-            this.dataGridViewImageColumn2.Image = global::admin_az.Properties.Resources.play_30px;
+            //this.dataGridViewImageColumn2.Image = global::admin_az.Properties.Resources.play_30px;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Width = 150;
             // 
@@ -154,7 +154,7 @@
             dataGridViewCellStyle9.NullValue = null;
             this.editar.DefaultCellStyle = dataGridViewCellStyle9;
             this.editar.HeaderText = "Editar";
-            this.editar.Image = global::admin_az.Properties.Resources.edit_property_16px;
+            //this.editar.Image = global::admin_az.Properties.Resources.edit_property_16px;
             this.editar.Name = "editar";
             this.editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.editar.Width = 50;
@@ -165,13 +165,13 @@
             dataGridViewCellStyle10.NullValue = null;
             this.seleccionar.DefaultCellStyle = dataGridViewCellStyle10;
             this.seleccionar.HeaderText = "Eliminar";
-            this.seleccionar.Image = global::admin_az.Properties.Resources.play_30px;
+            //this.seleccionar.Image = global::admin_az.Properties.Resources.play_30px;
             this.seleccionar.Name = "seleccionar";
             this.seleccionar.Width = 150;
             // 
             // picatras
             // 
-            this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
             this.picatras.Location = new System.Drawing.Point(338, 323);
             this.picatras.Name = "picatras";
             this.picatras.Size = new System.Drawing.Size(50, 43);

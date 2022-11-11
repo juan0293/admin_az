@@ -96,7 +96,7 @@
             // 
             // picregresar
             // 
-            this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
             this.picregresar.Location = new System.Drawing.Point(386, 163);
             this.picregresar.Name = "picregresar";
             this.picregresar.Size = new System.Drawing.Size(50, 43);

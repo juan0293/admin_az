@@ -80,7 +80,7 @@
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.BackColor = System.Drawing.Color.Transparent;
             this.btn_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
+            //this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
             this.btn_close.Location = new System.Drawing.Point(639, 0);
             this.btn_close.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btn_close.Name = "btn_close";
@@ -339,7 +339,7 @@
             // 
             // picfecha
             // 
-            this.picfecha.Image = global::admin_az.Properties.Resources.restart_40px;
+            //this.picfecha.Image = global::admin_az.Properties.Resources.restart_40px;
             this.picfecha.Location = new System.Drawing.Point(572, 267);
             this.picfecha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picfecha.Name = "picfecha";

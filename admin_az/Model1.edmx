@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="softcitaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="artista">
+          <Key>
+            <PropertyRef Name="idartista" />
+          </Key>
+          <Property Name="idartista" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="telefono" Type="varchar" MaxLength="11" />
+          <Property Name="Porcentaje" Type="float" />
+        </EntityType>
         <EntityType Name="cierre">
           <Key>
             <PropertyRef Name="idcierre" />
@@ -34,6 +43,8 @@
           <Property Name="asunto" Type="varchar" MaxLength="30" />
           <Property Name="montopagado" Type="float" />
           <Property Name="condicion" Type="bit" />
+          <Property Name="artista" Type="int" />
+          <Property Name="oferta" Type="int" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -47,6 +58,8 @@
           <Property Name="fecha_nacimiento" Type="date" />
           <Property Name="fecha" Type="date" />
           <Property Name="codigo" Type="varchar" MaxLength="10" />
+          <Property Name="sangre" Type="varchar" MaxLength="5" />
+          <Property Name="cedula" Type="varchar" MaxLength="11" />
         </EntityType>
         <EntityType Name="configuracion">
           <Key>
@@ -79,6 +92,17 @@
           </Key>
           <Property Name="idmetodo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="oferta">
+          <Key>
+            <PropertyRef Name="idoferta" />
+          </Key>
+          <Property Name="idoferta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fechaInicio" Type="date" Nullable="false" />
+          <Property Name="fechaFin" Type="date" />
+          <Property Name="porcentaje" Type="float" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="bit" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -173,10 +197,10 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_cliente_h' no tiene defini
           <Property Name="nombre" Type="varchar" MaxLength="30" />
           <Property Name="apellido" Type="varchar" MaxLength="30" />
           <Property Name="idcita" Type="int" Nullable="false" />
+          <Property Name="hora" Type="varchar" MaxLength="6" />
           <Property Name="idfactura" Type="int" Nullable="false" />
           <Property Name="monto" Type="float" />
           <Property Name="fecha" Type="date" />
-          <Property Name="hora" Type="varchar" MaxLength="6" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'softcita.dbo.View_cuadre' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -209,8 +233,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_historial' no tiene defini
           <Property Name="idcita" Type="int" Nullable="false" />
           <Property Name="monto" Type="float" />
           <Property Name="fecha" Type="date" />
-          <Property Name="idmetodo" Type="int" />
           <Property Name="condicion" Type="bit" />
+          <Property Name="idmetodo" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -248,6 +272,18 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_cita_artista">
+          <End Role="artista" Type="Self.artista" Multiplicity="0..1" />
+          <End Role="cita" Type="Self.cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artista">
+              <PropertyRef Name="idartista" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="artista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_cita_cliente">
           <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
           <End Role="cita" Type="Self.cita" Multiplicity="*" />
@@ -281,6 +317,18 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
             </Principal>
             <Dependent Role="cita">
               <PropertyRef Name="idmetodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cita_oferta">
+          <End Role="oferta" Type="Self.oferta" Multiplicity="0..1" />
+          <End Role="cita" Type="Self.cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oferta">
+              <PropertyRef Name="idoferta" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="oferta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -400,6 +448,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="softcitaModelStoreContainer">
+          <EntitySet Name="artista" EntityType="Self.artista" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cierre" EntityType="Self.cierre" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cita" EntityType="Self.cita" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
@@ -407,6 +456,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySet Name="estadocita" EntityType="Self.estadocita" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="factura" EntityType="Self.factura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="metodoppago" EntityType="Self.metodoppago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oferta" EntityType="Self.oferta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoUsuario" EntityType="Self.tipoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trabajo" EntityType="Self.trabajo" Schema="dbo" store:Type="Tables" />
@@ -450,10 +500,10 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
     [View_cliente_h].[nombre] AS [nombre], 
     [View_cliente_h].[apellido] AS [apellido], 
     [View_cliente_h].[idcita] AS [idcita], 
+    [View_cliente_h].[hora] AS [hora], 
     [View_cliente_h].[idfactura] AS [idfactura], 
     [View_cliente_h].[monto] AS [monto], 
-    [View_cliente_h].[fecha] AS [fecha], 
-    [View_cliente_h].[hora] AS [hora]
+    [View_cliente_h].[fecha] AS [fecha]
     FROM [dbo].[View_cliente_h] AS [View_cliente_h]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="View_cuadre" EntityType="Self.View_cuadre" store:Type="Views" store:Schema="dbo">
@@ -476,8 +526,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
     [View_historial].[idcita] AS [idcita], 
     [View_historial].[monto] AS [monto], 
     [View_historial].[fecha] AS [fecha], 
-    [View_historial].[idmetodo] AS [idmetodo], 
-    [View_historial].[condicion] AS [condicion]
+    [View_historial].[condicion] AS [condicion], 
+    [View_historial].[idmetodo] AS [idmetodo]
     FROM [dbo].[View_historial] AS [View_historial]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="View_reimprimir" EntityType="Self.View_reimprimir" store:Type="Views" store:Schema="dbo">
@@ -501,6 +551,10 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
             <End Role="usuario" EntitySet="usuario" />
             <End Role="cierre" EntitySet="cierre" />
           </AssociationSet>
+          <AssociationSet Name="FK_cita_artista" Association="Self.FK_cita_artista">
+            <End Role="artista" EntitySet="artista" />
+            <End Role="cita" EntitySet="cita" />
+          </AssociationSet>
           <AssociationSet Name="FK_cita_cliente" Association="Self.FK_cita_cliente">
             <End Role="cliente" EntitySet="cliente" />
             <End Role="cita" EntitySet="cita" />
@@ -511,6 +565,10 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           </AssociationSet>
           <AssociationSet Name="FK_cita_metodoppago" Association="Self.FK_cita_metodoppago">
             <End Role="metodoppago" EntitySet="metodoppago" />
+            <End Role="cita" EntitySet="cita" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cita_oferta" Association="Self.FK_cita_oferta">
+            <End Role="oferta" EntitySet="oferta" />
             <End Role="cita" EntitySet="cita" />
           </AssociationSet>
           <AssociationSet Name="FK_cita_usuario" Association="Self.FK_cita_usuario">
@@ -546,275 +604,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="softcitaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="cierre">
-          <Key>
-            <PropertyRef Name="idcierre" />
-          </Key>
-          <Property Name="idcierre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idusuario" Type="Int32" />
-          <Property Name="efectivo" Type="Double" />
-          <Property Name="deposito" Type="Double" />
-          <Property Name="tarjeta" Type="Double" />
-          <Property Name="total" Type="Double" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_cierre_usuario" FromRole="cierre" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="cita">
-          <Key>
-            <PropertyRef Name="idcita" />
-          </Key>
-          <Property Name="idcita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idcliente" Type="Int32" />
-          <Property Name="idestado" Type="Int32" />
-          <Property Name="iduser" Type="Int32" />
-          <Property Name="idmetodo" Type="Int32" />
-          <Property Name="fechaCita" Type="DateTime" Precision="3" />
-          <Property Name="monto" Type="Double" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="resta" Type="Double" />
-          <NavigationProperty Name="cliente" Relationship="Self.FK_cita_cliente" FromRole="cita" ToRole="cliente" />
-          <NavigationProperty Name="estadocita" Relationship="Self.FK_cita_estadocita" FromRole="cita" ToRole="estadocita" />
-          <NavigationProperty Name="metodoppago" Relationship="Self.FK_cita_metodoppago" FromRole="cita" ToRole="metodoppago" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_cita_usuario" FromRole="cita" ToRole="usuario" />
-          <NavigationProperty Name="facturas" Relationship="Self.FK_factura_cita" FromRole="cita" ToRole="factura" />
-          <Property Name="asunto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="trabajoes" Relationship="softcitaModel.FK_trabajo_cita" FromRole="cita" ToRole="trabajo" />
-          <Property Name="montopagado" Type="Double" />
-          <Property Name="condicion" Type="Boolean" />
-          <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="cliente">
-          <Key>
-            <PropertyRef Name="idcliente" />
-          </Key>
-          <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
-          <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="citas" Relationship="Self.FK_cita_cliente" FromRole="cliente" ToRole="cita" />
-          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="configuracion">
-          <Key>
-            <PropertyRef Name="idconfi" />
-          </Key>
-          <Property Name="idconfi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="iduser" Type="Int32" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_configuracion_usuario" FromRole="configuracion" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="estadocita">
-          <Key>
-            <PropertyRef Name="idestado" />
-          </Key>
-          <Property Name="idestado" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="citas" Relationship="Self.FK_cita_estadocita" FromRole="estadocita" ToRole="cita" />
-        </EntityType>
-        <EntityType Name="factura">
-          <Key>
-            <PropertyRef Name="idfactura" />
-          </Key>
-          <Property Name="idfactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idusuer" Type="Int32" Nullable="false" />
-          <Property Name="idcita" Type="Int32" />
-          <Property Name="monto" Type="Double" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="cita" Relationship="Self.FK_factura_cita" FromRole="factura" ToRole="cita" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_factura_usuario" FromRole="factura" ToRole="usuario" />
-          <Property Name="idmetodo" Type="Int32" />
-          <NavigationProperty Name="metodoppago" Relationship="softcitaModel.FK_factura_metodoppago" FromRole="factura" ToRole="metodoppago" />
-        </EntityType>
-        <EntityType Name="metodoppago">
-          <Key>
-            <PropertyRef Name="idmetodo" />
-          </Key>
-          <Property Name="idmetodo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="citas" Relationship="Self.FK_cita_metodoppago" FromRole="metodoppago" ToRole="cita" />
-          <NavigationProperty Name="facturas" Relationship="softcitaModel.FK_factura_metodoppago" FromRole="metodoppago" ToRole="factura" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="usuario">
-          <Key>
-            <PropertyRef Name="iduser" />
-          </Key>
-          <Property Name="iduser" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="cierres" Relationship="Self.FK_cierre_usuario" FromRole="usuario" ToRole="cierre" />
-          <NavigationProperty Name="citas" Relationship="Self.FK_cita_usuario" FromRole="usuario" ToRole="cita" />
-          <NavigationProperty Name="configuracions" Relationship="Self.FK_configuracion_usuario" FromRole="usuario" ToRole="configuracion" />
-          <NavigationProperty Name="facturas" Relationship="Self.FK_factura_usuario" FromRole="usuario" ToRole="factura" />
-          <Property Name="idtipo" Type="Int32" />
-          <NavigationProperty Name="tipoUsuario" Relationship="softcitaModel.FK_usuario_tipoUsuario" FromRole="usuario" ToRole="tipoUsuario" />
-          <Property Name="estado" Type="Boolean" />
-        </EntityType>
-        <Association Name="FK_cierre_usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="cierre" Type="Self.cierre" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="iduser" />
-            </Principal>
-            <Dependent Role="cierre">
-              <PropertyRef Name="idusuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cita_cliente">
-          <End Role="cliente" Type="Self.cliente" Multiplicity="0..1" />
-          <End Role="cita" Type="Self.cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cliente">
-              <PropertyRef Name="idcliente" />
-            </Principal>
-            <Dependent Role="cita">
-              <PropertyRef Name="idcliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cita_estadocita">
-          <End Role="estadocita" Type="Self.estadocita" Multiplicity="0..1" />
-          <End Role="cita" Type="Self.cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="estadocita">
-              <PropertyRef Name="idestado" />
-            </Principal>
-            <Dependent Role="cita">
-              <PropertyRef Name="idestado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cita_metodoppago">
-          <End Role="metodoppago" Type="Self.metodoppago" Multiplicity="0..1" />
-          <End Role="cita" Type="Self.cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="metodoppago">
-              <PropertyRef Name="idmetodo" />
-            </Principal>
-            <Dependent Role="cita">
-              <PropertyRef Name="idmetodo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_cita_usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="cita" Type="Self.cita" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="iduser" />
-            </Principal>
-            <Dependent Role="cita">
-              <PropertyRef Name="iduser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_factura_cita">
-          <End Role="cita" Type="Self.cita" Multiplicity="0..1" />
-          <End Role="factura" Type="Self.factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cita">
-              <PropertyRef Name="idcita" />
-            </Principal>
-            <Dependent Role="factura">
-              <PropertyRef Name="idcita" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_configuracion_usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="configuracion" Type="Self.configuracion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="iduser" />
-            </Principal>
-            <Dependent Role="configuracion">
-              <PropertyRef Name="iduser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_factura_usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-          <End Role="factura" Type="Self.factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="iduser" />
-            </Principal>
-            <Dependent Role="factura">
-              <PropertyRef Name="idusuer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="softcitaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="cierres" EntityType="Self.cierre" />
-          <EntitySet Name="citas" EntityType="Self.cita" />
-          <EntitySet Name="clientes" EntityType="Self.cliente" />
-          <EntitySet Name="configuracions" EntityType="Self.configuracion" />
-          <EntitySet Name="estadocitas" EntityType="Self.estadocita" />
-          <EntitySet Name="facturas" EntityType="Self.factura" />
-          <EntitySet Name="metodoppagoes" EntityType="Self.metodoppago" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="usuarios" EntityType="Self.usuario" />
-          <AssociationSet Name="FK_cierre_usuario" Association="Self.FK_cierre_usuario">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="cierre" EntitySet="cierres" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cita_cliente" Association="Self.FK_cita_cliente">
-            <End Role="cliente" EntitySet="clientes" />
-            <End Role="cita" EntitySet="citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cita_estadocita" Association="Self.FK_cita_estadocita">
-            <End Role="estadocita" EntitySet="estadocitas" />
-            <End Role="cita" EntitySet="citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cita_metodoppago" Association="Self.FK_cita_metodoppago">
-            <End Role="metodoppago" EntitySet="metodoppagoes" />
-            <End Role="cita" EntitySet="citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_cita_usuario" Association="Self.FK_cita_usuario">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="cita" EntitySet="citas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_factura_cita" Association="Self.FK_factura_cita">
-            <End Role="cita" EntitySet="citas" />
-            <End Role="factura" EntitySet="facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_configuracion_usuario" Association="Self.FK_configuracion_usuario">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="configuracion" EntitySet="configuracions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_factura_usuario" Association="Self.FK_factura_usuario">
-            <End Role="usuario" EntitySet="usuarios" />
-            <End Role="factura" EntitySet="facturas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_factura_metodoppago" Association="softcitaModel.FK_factura_metodoppago">
-            <End Role="metodoppago" EntitySet="metodoppagoes" />
-            <End Role="factura" EntitySet="facturas" />
-          </AssociationSet>
-          <EntitySet Name="trabajoes" EntityType="softcitaModel.trabajo" />
-          <AssociationSet Name="FK_trabajo_cita" Association="softcitaModel.FK_trabajo_cita">
-            <End Role="cita" EntitySet="citas" />
-            <End Role="trabajo" EntitySet="trabajoes" />
-          </AssociationSet>
-          <EntitySet Name="tipoUsuarios" EntityType="softcitaModel.tipoUsuario" />
-          <AssociationSet Name="FK_usuario_tipoUsuario" Association="softcitaModel.FK_usuario_tipoUsuario">
-            <End Role="tipoUsuario" EntitySet="tipoUsuarios" />
-            <End Role="usuario" EntitySet="usuarios" />
-          </AssociationSet>
-          <EntitySet Name="View_1_usuario" EntityType="softcitaModel.View_1_usuario" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -845,46 +635,217 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <EntitySet Name="View_cuadre" EntityType="softcitaModel.View_cuadre" />
-          <EntitySet Name="View_reimprimir" EntityType="softcitaModel.View_reimprimir" />
+          <EntitySet Name="artistas" EntityType="softcitaModel.artista" />
+          <EntitySet Name="cierres" EntityType="softcitaModel.cierre" />
+          <EntitySet Name="citas" EntityType="softcitaModel.cita" />
+          <EntitySet Name="clientes" EntityType="softcitaModel.cliente" />
+          <EntitySet Name="configuracions" EntityType="softcitaModel.configuracion" />
+          <EntitySet Name="estadocitas" EntityType="softcitaModel.estadocita" />
+          <EntitySet Name="facturas" EntityType="softcitaModel.factura" />
+          <EntitySet Name="metodoppagoes" EntityType="softcitaModel.metodoppago" />
+          <EntitySet Name="ofertas" EntityType="softcitaModel.oferta" />
+          <EntitySet Name="sysdiagrams" EntityType="softcitaModel.sysdiagram" />
+          <EntitySet Name="tipoUsuarios" EntityType="softcitaModel.tipoUsuario" />
+          <EntitySet Name="trabajoes" EntityType="softcitaModel.trabajo" />
+          <EntitySet Name="usuarios" EntityType="softcitaModel.usuario" />
+          <EntitySet Name="View_1_usuario" EntityType="softcitaModel.View_1_usuario" />
           <EntitySet Name="View_Cliente" EntityType="softcitaModel.View_Cliente" />
-          <EntitySet Name="View_historial" EntityType="softcitaModel.View_historial" />
           <EntitySet Name="View_cliente_h" EntityType="softcitaModel.View_cliente_h" />
-        </EntityContainer>
-        <Association Name="FK_factura_metodoppago">
-          <End Type="softcitaModel.metodoppago" Role="metodoppago" Multiplicity="0..1" />
-          <End Type="softcitaModel.factura" Role="factura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="metodoppago">
-              <PropertyRef Name="idmetodo" />
-            </Principal>
-            <Dependent Role="factura">
-              <PropertyRef Name="idmetodo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="trabajo">
+          <EntitySet Name="View_cuadre" EntityType="softcitaModel.View_cuadre" />
+          <EntitySet Name="View_historial" EntityType="softcitaModel.View_historial" />
+          <EntitySet Name="View_reimprimir" EntityType="softcitaModel.View_reimprimir" />
+          <AssociationSet Name="FK_cita_artista" Association="softcitaModel.FK_cita_artista">
+            <End Role="artista" EntitySet="artistas" />
+            <End Role="cita" EntitySet="citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cierre_usuario" Association="softcitaModel.FK_cierre_usuario">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="cierre" EntitySet="cierres" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cita_cliente" Association="softcitaModel.FK_cita_cliente">
+            <End Role="cliente" EntitySet="clientes" />
+            <End Role="cita" EntitySet="citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cita_estadocita" Association="softcitaModel.FK_cita_estadocita">
+            <End Role="estadocita" EntitySet="estadocitas" />
+            <End Role="cita" EntitySet="citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cita_metodoppago" Association="softcitaModel.FK_cita_metodoppago">
+            <End Role="metodoppago" EntitySet="metodoppagoes" />
+            <End Role="cita" EntitySet="citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cita_oferta" Association="softcitaModel.FK_cita_oferta">
+            <End Role="oferta" EntitySet="ofertas" />
+            <End Role="cita" EntitySet="citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_cita_usuario" Association="softcitaModel.FK_cita_usuario">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="cita" EntitySet="citas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_factura_cita" Association="softcitaModel.FK_factura_cita">
+            <End Role="cita" EntitySet="citas" />
+            <End Role="factura" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_trabajo_cita" Association="softcitaModel.FK_trabajo_cita">
+            <End Role="cita" EntitySet="citas" />
+            <End Role="trabajo" EntitySet="trabajoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_configuracion_usuario" Association="softcitaModel.FK_configuracion_usuario">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="configuracion" EntitySet="configuracions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_factura_metodoppago" Association="softcitaModel.FK_factura_metodoppago">
+            <End Role="metodoppago" EntitySet="metodoppagoes" />
+            <End Role="factura" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_factura_usuario" Association="softcitaModel.FK_factura_usuario">
+            <End Role="usuario" EntitySet="usuarios" />
+            <End Role="factura" EntitySet="facturas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_usuario_tipoUsuario" Association="softcitaModel.FK_usuario_tipoUsuario">
+            <End Role="tipoUsuario" EntitySet="tipoUsuarios" />
+            <End Role="usuario" EntitySet="usuarios" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="artista">
           <Key>
-            <PropertyRef Name="idtrabajo" />
+            <PropertyRef Name="idartista" />
           </Key>
-          <Property Name="idtrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idcita" Type="Int32" />
-          <Property Name="asunto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="cita" Relationship="softcitaModel.FK_trabajo_cita" FromRole="trabajo" ToRole="cita" />
-          <Property Name="monto" Type="Double" />
+          <Property Name="idartista" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Porcentaje" Type="Double" />
+          <NavigationProperty Name="citas" Relationship="softcitaModel.FK_cita_artista" FromRole="artista" ToRole="cita" />
         </EntityType>
-        <Association Name="FK_trabajo_cita">
-          <End Type="softcitaModel.cita" Role="cita" Multiplicity="0..1" />
-          <End Type="softcitaModel.trabajo" Role="trabajo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cita">
-              <PropertyRef Name="idcita" />
-            </Principal>
-            <Dependent Role="trabajo">
-              <PropertyRef Name="idcita" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="cierre">
+          <Key>
+            <PropertyRef Name="idcierre" />
+          </Key>
+          <Property Name="idcierre" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idusuario" Type="Int32" />
+          <Property Name="efectivo" Type="Double" />
+          <Property Name="deposito" Type="Double" />
+          <Property Name="tarjeta" Type="Double" />
+          <Property Name="total" Type="Double" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="usuario" Relationship="softcitaModel.FK_cierre_usuario" FromRole="cierre" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="cita">
+          <Key>
+            <PropertyRef Name="idcita" />
+          </Key>
+          <Property Name="idcita" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcliente" Type="Int32" />
+          <Property Name="idestado" Type="Int32" />
+          <Property Name="iduser" Type="Int32" />
+          <Property Name="idmetodo" Type="Int32" />
+          <Property Name="fechaCita" Type="DateTime" Precision="3" />
+          <Property Name="monto" Type="Double" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="resta" Type="Double" />
+          <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="asunto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="montopagado" Type="Double" />
+          <Property Name="condicion" Type="Boolean" />
+          <Property Name="artista" Type="Int32" />
+          <Property Name="oferta" Type="Int32" />
+          <NavigationProperty Name="artista1" Relationship="softcitaModel.FK_cita_artista" FromRole="cita" ToRole="artista" />
+          <NavigationProperty Name="cliente" Relationship="softcitaModel.FK_cita_cliente" FromRole="cita" ToRole="cliente" />
+          <NavigationProperty Name="estadocita" Relationship="softcitaModel.FK_cita_estadocita" FromRole="cita" ToRole="estadocita" />
+          <NavigationProperty Name="metodoppago" Relationship="softcitaModel.FK_cita_metodoppago" FromRole="cita" ToRole="metodoppago" />
+          <NavigationProperty Name="oferta1" Relationship="softcitaModel.FK_cita_oferta" FromRole="cita" ToRole="oferta" />
+          <NavigationProperty Name="usuario" Relationship="softcitaModel.FK_cita_usuario" FromRole="cita" ToRole="usuario" />
+          <NavigationProperty Name="facturas" Relationship="softcitaModel.FK_factura_cita" FromRole="cita" ToRole="factura" />
+          <NavigationProperty Name="trabajoes" Relationship="softcitaModel.FK_trabajo_cita" FromRole="cita" ToRole="trabajo" />
+        </EntityType>
+        <EntityType Name="cliente">
+          <Key>
+            <PropertyRef Name="idcliente" />
+          </Key>
+          <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="correo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="codigo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sangre" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="citas" Relationship="softcitaModel.FK_cita_cliente" FromRole="cliente" ToRole="cita" />
+        </EntityType>
+        <EntityType Name="configuracion">
+          <Key>
+            <PropertyRef Name="idconfi" />
+          </Key>
+          <Property Name="idconfi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iduser" Type="Int32" />
+          <NavigationProperty Name="usuario" Relationship="softcitaModel.FK_configuracion_usuario" FromRole="configuracion" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="estadocita">
+          <Key>
+            <PropertyRef Name="idestado" />
+          </Key>
+          <Property Name="idestado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="citas" Relationship="softcitaModel.FK_cita_estadocita" FromRole="estadocita" ToRole="cita" />
+        </EntityType>
+        <EntityType Name="factura">
+          <Key>
+            <PropertyRef Name="idfactura" />
+          </Key>
+          <Property Name="idfactura" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idusuer" Type="Int32" Nullable="false" />
+          <Property Name="idcita" Type="Int32" />
+          <Property Name="monto" Type="Double" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="idmetodo" Type="Int32" />
+          <NavigationProperty Name="cita" Relationship="softcitaModel.FK_factura_cita" FromRole="factura" ToRole="cita" />
+          <NavigationProperty Name="metodoppago" Relationship="softcitaModel.FK_factura_metodoppago" FromRole="factura" ToRole="metodoppago" />
+          <NavigationProperty Name="usuario" Relationship="softcitaModel.FK_factura_usuario" FromRole="factura" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="metodoppago">
+          <Key>
+            <PropertyRef Name="idmetodo" />
+          </Key>
+          <Property Name="idmetodo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="citas" Relationship="softcitaModel.FK_cita_metodoppago" FromRole="metodoppago" ToRole="cita" />
+          <NavigationProperty Name="facturas" Relationship="softcitaModel.FK_factura_metodoppago" FromRole="metodoppago" ToRole="factura" />
+        </EntityType>
+        <EntityType Name="oferta">
+          <Key>
+            <PropertyRef Name="idoferta" />
+          </Key>
+          <Property Name="idoferta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Precision="0" />
+          <Property Name="porcentaje" Type="Double" />
+          <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="citas" Relationship="softcitaModel.FK_cita_oferta" FromRole="oferta" ToRole="cita" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="tipoUsuario">
           <Key>
             <PropertyRef Name="idtipo" />
@@ -893,18 +854,32 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="usuarios" Relationship="softcitaModel.FK_usuario_tipoUsuario" FromRole="tipoUsuario" ToRole="usuario" />
         </EntityType>
-        <Association Name="FK_usuario_tipoUsuario">
-          <End Type="softcitaModel.tipoUsuario" Role="tipoUsuario" Multiplicity="0..1" />
-          <End Type="softcitaModel.usuario" Role="usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tipoUsuario">
-              <PropertyRef Name="idtipo" />
-            </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="idtipo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="trabajo">
+          <Key>
+            <PropertyRef Name="idtrabajo" />
+          </Key>
+          <Property Name="idtrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcita" Type="Int32" />
+          <Property Name="asunto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="monto" Type="Double" />
+          <NavigationProperty Name="cita" Relationship="softcitaModel.FK_trabajo_cita" FromRole="trabajo" ToRole="cita" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="iduser" />
+          </Key>
+          <Property Name="iduser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="clave" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="idtipo" Type="Int32" />
+          <Property Name="estado" Type="Boolean" />
+          <NavigationProperty Name="cierres" Relationship="softcitaModel.FK_cierre_usuario" FromRole="usuario" ToRole="cierre" />
+          <NavigationProperty Name="citas" Relationship="softcitaModel.FK_cita_usuario" FromRole="usuario" ToRole="cita" />
+          <NavigationProperty Name="configuracions" Relationship="softcitaModel.FK_configuracion_usuario" FromRole="usuario" ToRole="configuracion" />
+          <NavigationProperty Name="facturas" Relationship="softcitaModel.FK_factura_usuario" FromRole="usuario" ToRole="factura" />
+          <NavigationProperty Name="tipoUsuario" Relationship="softcitaModel.FK_usuario_tipoUsuario" FromRole="usuario" ToRole="tipoUsuario" />
+        </EntityType>
         <EntityType Name="View_1_usuario">
           <Key>
             <PropertyRef Name="idtipo" />
@@ -917,53 +892,6 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="idtipo" Type="Int32" Nullable="false" />
           <Property Name="iduser" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="Boolean" />
-        </EntityType>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <EntityType Name="View_cuadre">
-          <Key>
-            <PropertyRef Name="idcita" />
-            <PropertyRef Name="idfactura" />
-            <PropertyRef Name="idusuer" />
-          </Key>
-          <Property Name="idcita" Type="Int32" Nullable="false" />
-          <Property Name="idestado" Type="Int32" />
-          <Property Name="idfactura" Type="Int32" Nullable="false" />
-          <Property Name="idusuer" Type="Int32" Nullable="false" />
-          <Property Name="monto" Type="Double" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="idmetodo" Type="Int32" />
-        </EntityType>
-        <EntityType Name="View_reimprimir">
-          <Key>
-            <PropertyRef Name="idcita" />
-            <PropertyRef Name="idmetodo" />
-            <PropertyRef Name="iduser" />
-            <PropertyRef Name="monto" />
-            <PropertyRef Name="idcliente" />
-          </Key>
-          <Property Name="idcita" Type="Int32" Nullable="false" />
-          <Property Name="idmetodo" Type="Int32" Nullable="false" />
-          <Property Name="iduser" Type="Int32" Nullable="false" />
-          <Property Name="fechaCita" Type="DateTime" Precision="3" />
-          <Property Name="monto" Type="Double" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
-          <Property Name="resta" Type="Double" />
-          <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="idcliente" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="metodoP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="nombreU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="montopagado" Type="Double" />
         </EntityType>
         <EntityType Name="View_Cliente">
           <Key>
@@ -992,6 +920,35 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="metodo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="condicion" Type="Boolean" />
         </EntityType>
+        <EntityType Name="View_cliente_h">
+          <Key>
+            <PropertyRef Name="idcliente" />
+            <PropertyRef Name="idcita" />
+            <PropertyRef Name="idfactura" />
+          </Key>
+          <Property Name="idcliente" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="idcita" Type="Int32" Nullable="false" />
+          <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="idfactura" Type="Int32" Nullable="false" />
+          <Property Name="monto" Type="Double" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="View_cuadre">
+          <Key>
+            <PropertyRef Name="idcita" />
+            <PropertyRef Name="idfactura" />
+            <PropertyRef Name="idusuer" />
+          </Key>
+          <Property Name="idcita" Type="Int32" Nullable="false" />
+          <Property Name="idestado" Type="Int32" />
+          <Property Name="idfactura" Type="Int32" Nullable="false" />
+          <Property Name="idusuer" Type="Int32" Nullable="false" />
+          <Property Name="monto" Type="Double" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="idmetodo" Type="Int32" />
+        </EntityType>
         <EntityType Name="View_historial">
           <Key>
             <PropertyRef Name="idcliente" />
@@ -1008,163 +965,190 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="condicion" Type="Boolean" />
           <Property Name="idmetodo" Type="Int32" />
         </EntityType>
-        <EntityType Name="View_cliente_h">
+        <EntityType Name="View_reimprimir">
           <Key>
-            <PropertyRef Name="idcliente" />
             <PropertyRef Name="idcita" />
-            <PropertyRef Name="idfactura" />
+            <PropertyRef Name="idmetodo" />
+            <PropertyRef Name="iduser" />
+            <PropertyRef Name="monto" />
+            <PropertyRef Name="idcliente" />
           </Key>
+          <Property Name="idcita" Type="Int32" Nullable="false" />
+          <Property Name="idmetodo" Type="Int32" Nullable="false" />
+          <Property Name="iduser" Type="Int32" Nullable="false" />
+          <Property Name="fechaCita" Type="DateTime" Precision="3" />
+          <Property Name="monto" Type="Double" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="resta" Type="Double" />
+          <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="idcliente" Type="Int32" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="idcita" Type="Int32" Nullable="false" />
-          <Property Name="idfactura" Type="Int32" Nullable="false" />
-          <Property Name="monto" Type="Double" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="metodoP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="nombreU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="montopagado" Type="Double" />
         </EntityType>
-      </Schema>
+        <Association Name="FK_cita_artista">
+          <End Type="softcitaModel.artista" Role="artista" Multiplicity="0..1" />
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="artista">
+              <PropertyRef Name="idartista" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="artista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cierre_usuario">
+          <End Type="softcitaModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="softcitaModel.cierre" Role="cierre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="iduser" />
+            </Principal>
+            <Dependent Role="cierre">
+              <PropertyRef Name="idusuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cita_cliente">
+          <End Type="softcitaModel.cliente" Role="cliente" Multiplicity="0..1" />
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cliente">
+              <PropertyRef Name="idcliente" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="idcliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cita_estadocita">
+          <End Type="softcitaModel.estadocita" Role="estadocita" Multiplicity="0..1" />
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="estadocita">
+              <PropertyRef Name="idestado" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="idestado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cita_metodoppago">
+          <End Type="softcitaModel.metodoppago" Role="metodoppago" Multiplicity="0..1" />
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="metodoppago">
+              <PropertyRef Name="idmetodo" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="idmetodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cita_oferta">
+          <End Type="softcitaModel.oferta" Role="oferta" Multiplicity="0..1" />
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oferta">
+              <PropertyRef Name="idoferta" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="oferta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_cita_usuario">
+          <End Type="softcitaModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="iduser" />
+            </Principal>
+            <Dependent Role="cita">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_factura_cita">
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="0..1" />
+          <End Type="softcitaModel.factura" Role="factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cita">
+              <PropertyRef Name="idcita" />
+            </Principal>
+            <Dependent Role="factura">
+              <PropertyRef Name="idcita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_trabajo_cita">
+          <End Type="softcitaModel.cita" Role="cita" Multiplicity="0..1" />
+          <End Type="softcitaModel.trabajo" Role="trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cita">
+              <PropertyRef Name="idcita" />
+            </Principal>
+            <Dependent Role="trabajo">
+              <PropertyRef Name="idcita" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_configuracion_usuario">
+          <End Type="softcitaModel.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="softcitaModel.configuracion" Role="configuracion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="iduser" />
+            </Principal>
+            <Dependent Role="configuracion">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_factura_metodoppago">
+          <End Type="softcitaModel.metodoppago" Role="metodoppago" Multiplicity="0..1" />
+          <End Type="softcitaModel.factura" Role="factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="metodoppago">
+              <PropertyRef Name="idmetodo" />
+            </Principal>
+            <Dependent Role="factura">
+              <PropertyRef Name="idmetodo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_factura_usuario">
+          <End Type="softcitaModel.usuario" Role="usuario" Multiplicity="1" />
+          <End Type="softcitaModel.factura" Role="factura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="iduser" />
+            </Principal>
+            <Dependent Role="factura">
+              <PropertyRef Name="idusuer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_usuario_tipoUsuario">
+          <End Type="softcitaModel.tipoUsuario" Role="tipoUsuario" Multiplicity="0..1" />
+          <End Type="softcitaModel.usuario" Role="usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoUsuario">
+              <PropertyRef Name="idtipo" />
+            </Principal>
+            <Dependent Role="usuario">
+              <PropertyRef Name="idtipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="softcitaModelStoreContainer" CdmEntityContainer="softcitaEntities">
-          <EntitySetMapping Name="cierres">
-            <EntityTypeMapping TypeName="softcitaModel.cierre">
-              <MappingFragment StoreEntitySet="cierre">
-                <ScalarProperty Name="idcierre" ColumnName="idcierre" />
-                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-                <ScalarProperty Name="efectivo" ColumnName="efectivo" />
-                <ScalarProperty Name="deposito" ColumnName="deposito" />
-                <ScalarProperty Name="tarjeta" ColumnName="tarjeta" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="citas">
-            <EntityTypeMapping TypeName="softcitaModel.cita">
-              <MappingFragment StoreEntitySet="cita">
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="condicion" ColumnName="condicion" />
-                <ScalarProperty Name="montopagado" ColumnName="montopagado" />
-                <ScalarProperty Name="asunto" ColumnName="asunto" />
-                <ScalarProperty Name="idcita" ColumnName="idcita" />
-                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
-                <ScalarProperty Name="idestado" ColumnName="idestado" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
-                <ScalarProperty Name="fechaCita" ColumnName="fechaCita" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="resta" ColumnName="resta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="clientes">
-            <EntityTypeMapping TypeName="softcitaModel.cliente">
-              <MappingFragment StoreEntitySet="cliente">
-                <ScalarProperty Name="codigo" ColumnName="codigo" />
-                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="apellido" ColumnName="apellido" />
-                <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="correo" ColumnName="correo" />
-                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="configuracions">
-            <EntityTypeMapping TypeName="softcitaModel.configuracion">
-              <MappingFragment StoreEntitySet="configuracion">
-                <ScalarProperty Name="idconfi" ColumnName="idconfi" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="estadocitas">
-            <EntityTypeMapping TypeName="softcitaModel.estadocita">
-              <MappingFragment StoreEntitySet="estadocita">
-                <ScalarProperty Name="idestado" ColumnName="idestado" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="facturas">
-            <EntityTypeMapping TypeName="softcitaModel.factura">
-              <MappingFragment StoreEntitySet="factura">
-                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
-                <ScalarProperty Name="idfactura" ColumnName="idfactura" />
-                <ScalarProperty Name="idusuer" ColumnName="idusuer" />
-                <ScalarProperty Name="idcita" ColumnName="idcita" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="metodoppagoes">
-            <EntityTypeMapping TypeName="softcitaModel.metodoppago">
-              <MappingFragment StoreEntitySet="metodoppago">
-                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="softcitaModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="usuarios">
-            <EntityTypeMapping TypeName="softcitaModel.usuario">
-              <MappingFragment StoreEntitySet="usuario">
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="usuario1" ColumnName="usuario" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="trabajoes">
-            <EntityTypeMapping TypeName="softcitaModel.trabajo">
-              <MappingFragment StoreEntitySet="trabajo">
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="asunto" ColumnName="asunto" />
-                <ScalarProperty Name="idcita" ColumnName="idcita" />
-                <ScalarProperty Name="idtrabajo" ColumnName="idtrabajo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tipoUsuarios">
-            <EntityTypeMapping TypeName="softcitaModel.tipoUsuario">
-              <MappingFragment StoreEntitySet="tipoUsuario">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="View_1_usuario">
-            <EntityTypeMapping TypeName="softcitaModel.View_1_usuario">
-              <MappingFragment StoreEntitySet="View_1_usuario">
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-                <ScalarProperty Name="clave" ColumnName="clave" />
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="softcitaModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="softcitaModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="softcitaModel.Store.sp_dropdiagram" />
@@ -1189,35 +1173,165 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="softcitaModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="softcitaModel.Store.sp_upgraddiagrams" />
-          <EntitySetMapping Name="View_cuadre">
-            <EntityTypeMapping TypeName="softcitaModel.View_cuadre">
-              <MappingFragment StoreEntitySet="View_cuadre">
-                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="idusuer" ColumnName="idusuer" />
-                <ScalarProperty Name="idfactura" ColumnName="idfactura" />
-                <ScalarProperty Name="idestado" ColumnName="idestado" />
-                <ScalarProperty Name="idcita" ColumnName="idcita" />
+          <EntitySetMapping Name="artistas">
+            <EntityTypeMapping TypeName="softcitaModel.artista">
+              <MappingFragment StoreEntitySet="artista">
+                <ScalarProperty Name="Porcentaje" ColumnName="Porcentaje" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idartista" ColumnName="idartista" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="View_reimprimir">
-            <EntityTypeMapping TypeName="softcitaModel.View_reimprimir">
-              <MappingFragment StoreEntitySet="View_reimprimir">
+          <EntitySetMapping Name="cierres">
+            <EntityTypeMapping TypeName="softcitaModel.cierre">
+              <MappingFragment StoreEntitySet="cierre">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="tarjeta" ColumnName="tarjeta" />
+                <ScalarProperty Name="deposito" ColumnName="deposito" />
+                <ScalarProperty Name="efectivo" ColumnName="efectivo" />
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="idcierre" ColumnName="idcierre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="citas">
+            <EntityTypeMapping TypeName="softcitaModel.cita">
+              <MappingFragment StoreEntitySet="cita">
+                <ScalarProperty Name="oferta" ColumnName="oferta" />
+                <ScalarProperty Name="artista" ColumnName="artista" />
+                <ScalarProperty Name="condicion" ColumnName="condicion" />
                 <ScalarProperty Name="montopagado" ColumnName="montopagado" />
-                <ScalarProperty Name="nombreU" ColumnName="nombreU" />
-                <ScalarProperty Name="metodoP" ColumnName="metodoP" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="asunto" ColumnName="asunto" />
                 <ScalarProperty Name="hora" ColumnName="hora" />
                 <ScalarProperty Name="resta" ColumnName="resta" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="fechaCita" ColumnName="fechaCita" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
                 <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="idestado" ColumnName="idestado" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
                 <ScalarProperty Name="idcita" ColumnName="idcita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes">
+            <EntityTypeMapping TypeName="softcitaModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="sangre" ColumnName="sangre" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="configuracions">
+            <EntityTypeMapping TypeName="softcitaModel.configuracion">
+              <MappingFragment StoreEntitySet="configuracion">
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="idconfi" ColumnName="idconfi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="estadocitas">
+            <EntityTypeMapping TypeName="softcitaModel.estadocita">
+              <MappingFragment StoreEntitySet="estadocita">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idestado" ColumnName="idestado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="facturas">
+            <EntityTypeMapping TypeName="softcitaModel.factura">
+              <MappingFragment StoreEntitySet="factura">
+                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="idcita" ColumnName="idcita" />
+                <ScalarProperty Name="idusuer" ColumnName="idusuer" />
+                <ScalarProperty Name="idfactura" ColumnName="idfactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="metodoppagoes">
+            <EntityTypeMapping TypeName="softcitaModel.metodoppago">
+              <MappingFragment StoreEntitySet="metodoppago">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ofertas">
+            <EntityTypeMapping TypeName="softcitaModel.oferta">
+              <MappingFragment StoreEntitySet="oferta">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="porcentaje" ColumnName="porcentaje" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="idoferta" ColumnName="idoferta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="softcitaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoUsuarios">
+            <EntityTypeMapping TypeName="softcitaModel.tipoUsuario">
+              <MappingFragment StoreEntitySet="tipoUsuario">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trabajoes">
+            <EntityTypeMapping TypeName="softcitaModel.trabajo">
+              <MappingFragment StoreEntitySet="trabajo">
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="asunto" ColumnName="asunto" />
+                <ScalarProperty Name="idcita" ColumnName="idcita" />
+                <ScalarProperty Name="idtrabajo" ColumnName="idtrabajo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="softcitaModel.usuario">
+              <MappingFragment StoreEntitySet="usuario">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="usuario1" ColumnName="usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_1_usuario">
+            <EntityTypeMapping TypeName="softcitaModel.View_1_usuario">
+              <MappingFragment StoreEntitySet="View_1_usuario">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="idtipo" ColumnName="idtipo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1245,6 +1359,33 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="View_cliente_h">
+            <EntityTypeMapping TypeName="softcitaModel.View_cliente_h">
+              <MappingFragment StoreEntitySet="View_cliente_h">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="idfactura" ColumnName="idfactura" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="idcita" ColumnName="idcita" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_cuadre">
+            <EntityTypeMapping TypeName="softcitaModel.View_cuadre">
+              <MappingFragment StoreEntitySet="View_cuadre">
+                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="idusuer" ColumnName="idusuer" />
+                <ScalarProperty Name="idfactura" ColumnName="idfactura" />
+                <ScalarProperty Name="idestado" ColumnName="idestado" />
+                <ScalarProperty Name="idcita" ColumnName="idcita" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="View_historial">
             <EntityTypeMapping TypeName="softcitaModel.View_historial">
               <MappingFragment StoreEntitySet="View_historial">
@@ -1260,21 +1401,26 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="View_cliente_h">
-            <EntityTypeMapping TypeName="softcitaModel.View_cliente_h">
-              <MappingFragment StoreEntitySet="View_cliente_h">
-                <ScalarProperty Name="hora" ColumnName="hora" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-                <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="idfactura" ColumnName="idfactura" />
-                <ScalarProperty Name="idcita" ColumnName="idcita" />
-                <ScalarProperty Name="apellido" ColumnName="apellido" />
+          <EntitySetMapping Name="View_reimprimir">
+            <EntityTypeMapping TypeName="softcitaModel.View_reimprimir">
+              <MappingFragment StoreEntitySet="View_reimprimir">
+                <ScalarProperty Name="montopagado" ColumnName="montopagado" />
+                <ScalarProperty Name="nombreU" ColumnName="nombreU" />
+                <ScalarProperty Name="metodoP" ColumnName="metodoP" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="hora" ColumnName="hora" />
+                <ScalarProperty Name="resta" ColumnName="resta" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="fechaCita" ColumnName="fechaCita" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="idmetodo" ColumnName="idmetodo" />
+                <ScalarProperty Name="idcita" ColumnName="idcita" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

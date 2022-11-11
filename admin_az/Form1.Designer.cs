@@ -118,7 +118,7 @@
             this.btn_espandir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_espandir.BackColor = System.Drawing.Color.White;
             this.btn_espandir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_espandir.Image = global::admin_az.Properties.Resources.full_screen_64px;
+            //this.btn_espandir.Image = global::admin_az.Properties.Resources.full_screen_64px;
             this.btn_espandir.Location = new System.Drawing.Point(1212, 9);
             this.btn_espandir.Name = "btn_espandir";
             this.btn_espandir.Size = new System.Drawing.Size(35, 35);
@@ -132,7 +132,7 @@
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.BackColor = System.Drawing.Color.Transparent;
             this.btn_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px;
+            //this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px;
             this.btn_close.Location = new System.Drawing.Point(1253, 9);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(35, 35);
@@ -162,7 +162,7 @@
             // 
             this.toolStripMenuItem31.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem31.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.toolStripMenuItem31.Image = global::admin_az.Properties.Resources.home_40px;
+            //this.toolStripMenuItem31.Image = global::admin_az.Properties.Resources.home_40px;
             this.toolStripMenuItem31.Name = "toolStripMenuItem31";
             this.toolStripMenuItem31.Size = new System.Drawing.Size(133, 44);
             this.toolStripMenuItem31.Text = "    Inicio";
@@ -177,7 +177,7 @@
             this.toolStripMenuItem34});
             this.toolStripMenuItem32.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem32.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.toolStripMenuItem32.Image = global::admin_az.Properties.Resources.person_40px;
+            //this.toolStripMenuItem32.Image = global::admin_az.Properties.Resources.person_40px;
             this.toolStripMenuItem32.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripMenuItem32.Name = "toolStripMenuItem32";
             this.toolStripMenuItem32.Size = new System.Drawing.Size(128, 44);
@@ -209,7 +209,7 @@
             this.buscarCitaToolStripMenuItem});
             this.toolStripMenuItem40.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem40.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.toolStripMenuItem40.Image = global::admin_az.Properties.Resources.calendar_plus_40px;
+            //this.toolStripMenuItem40.Image = global::admin_az.Properties.Resources.calendar_plus_40px;
             this.toolStripMenuItem40.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripMenuItem40.Name = "toolStripMenuItem40";
             this.toolStripMenuItem40.Size = new System.Drawing.Size(133, 44);
@@ -240,7 +240,7 @@
             this.reimprimirCitaToolStripMenuItem});
             this.toolStripMenuItem41.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.toolStripMenuItem41.Image = global::admin_az.Properties.Resources.investment_portfolio_40px;
+            //this.toolStripMenuItem41.Image = global::admin_az.Properties.Resources.investment_portfolio_40px;
             this.toolStripMenuItem41.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.toolStripMenuItem41.Name = "toolStripMenuItem41";
             this.toolStripMenuItem41.Size = new System.Drawing.Size(138, 44);
@@ -289,7 +289,7 @@
             this.toolStripMenuItem54});
             this.tosajuste.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tosajuste.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.tosajuste.Image = global::admin_az.Properties.Resources.settings_40px1;
+            //this.tosajuste.Image = global::admin_az.Properties.Resources.settings_40px1;
             this.tosajuste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.tosajuste.Name = "tosajuste";
             this.tosajuste.Size = new System.Drawing.Size(139, 44);
@@ -319,7 +319,7 @@
             // 
             this.toolStripMenuItem60.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripMenuItem60.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.toolStripMenuItem60.Image = global::admin_az.Properties.Resources.shutdown_40px1;
+            //this.toolStripMenuItem60.Image = global::admin_az.Properties.Resources.shutdown_40px1;
             this.toolStripMenuItem60.Name = "toolStripMenuItem60";
             this.toolStripMenuItem60.Size = new System.Drawing.Size(102, 44);
             this.toolStripMenuItem60.Text = "Salir";

@@ -18,9 +18,9 @@ namespace admin_az
         public string nombre { get; set; }
         public string apellido { get; set; }
         public int idcita { get; set; }
+        public string hora { get; set; }
         public int idfactura { get; set; }
         public Nullable<double> monto { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
-        public string hora { get; set; }
     }
 }

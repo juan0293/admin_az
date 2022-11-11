@@ -182,7 +182,7 @@
             // 
             // picatras
             // 
-            this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
+            //this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
             this.picatras.Location = new System.Drawing.Point(357, 183);
             this.picatras.Name = "picatras";
             this.picatras.Size = new System.Drawing.Size(50, 43);
@@ -192,7 +192,7 @@
             // 
             // picbLimpiar
             // 
-            this.picbLimpiar.Image = global::admin_az.Properties.Resources.broom_40px;
+            //this.picbLimpiar.Image = global::admin_az.Properties.Resources.broom_40px;
             this.picbLimpiar.Location = new System.Drawing.Point(270, 183);
             this.picbLimpiar.Name = "picbLimpiar";
             this.picbLimpiar.Size = new System.Drawing.Size(63, 43);
@@ -202,7 +202,7 @@
             // 
             // picbGuardar
             // 
-            this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
+            //this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
             this.picbGuardar.Location = new System.Drawing.Point(183, 183);
             this.picbGuardar.Name = "picbGuardar";
             this.picbGuardar.Size = new System.Drawing.Size(40, 40);
@@ -215,7 +215,7 @@
             // 
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
+            //this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
             this.btn_close.Location = new System.Drawing.Point(581, -1);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(35, 35);

@@ -12,7 +12,8 @@ namespace admin_az
 {
     public partial class Form_newcliente : Form
     {
-        
+        Panel panelcontrol = Global.Panel1;
+
         public Form_newcliente()
         {
             InitializeComponent();
@@ -76,22 +77,27 @@ namespace admin_az
                     ocliente.apellido = txtapellido.Text;
                     ocliente.telefono = txt_telefono1.Text;
                     ocliente.correo = txtcorreo.Text;
+                    ocliente.cedula = txt_cedula.Text;
+                    ocliente.sangre = cbo_tipo_sangre.Text;
                     ocliente.fecha_nacimiento = Convert.ToDateTime(dtpfecha_nacimiento.Text);   
                     ocliente.fecha = DateTime.Now;
                     ocliente.codigo = txt_codigo.Text;
 
                     db.clientes.Add(ocliente);
                     db.SaveChanges();
-                    listarIDCliente();
+                    //listarIDCliente();
                     if  (MessageBox.Show("Datos Almacenados, Desea crear una a este cliente?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
+                        panelcontrol.Controls.Clear();
                         frmManageAppointment cita = new frmManageAppointment();
                         cita.txt_codigo.Text = txt_codigo.Text;
-                        cita.txtnombre.Text = txtnombre.Text;
+                        cita.txtnombre.Text = txtnombre.Text + " " + txtapellido.Text;
                         cita.txtapellido.Text = txt_apellido.Text;
-                        cita.clienteID = idcliente;
-                        cita.ShowDialog();
-                      
+                        cita.clienteID = ocliente.idcliente; 
+                        cita.TopLevel = false;
+                        panelcontrol.Controls.Add(cita);
+                        cita.Show();
+                     
                     }
                     else
                     {
@@ -136,6 +142,8 @@ namespace admin_az
                         ocliente.nombre = txtnombre.Text;
                         ocliente.apellido = txtapellido.Text;
                         ocliente.telefono =txt_telefono1.Text;
+                        ocliente.cedula = txt_cedula.Text;
+                        ocliente.sangre = cbo_tipo_sangre.Text;
                         ocliente.correo = txtcorreo.Text;
                         ocliente.fecha_nacimiento = Convert.ToDateTime(dtpfecha_nacimiento.Text);
                         ocliente.codigo = txt_codigo.Text;
@@ -189,11 +197,23 @@ namespace admin_az
             {
 
                 addcliente();
-                Close();
+               
             }
 
         }
-        
+        private Form activeForm = null;
+        public void openChildForm(Form childForm)
+        {
+            if (activeForm != null) activeForm.Close();
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelcontrol.Controls.Add(childForm);
+            panelcontrol.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+        }
         private void Form_gasto_Load(object sender, EventArgs e)
         {
          
@@ -254,7 +274,7 @@ namespace admin_az
         }
         private void picbLimpiar_Click(object sender, EventArgs e)
         {
-            limpiar();
+          
         }
         private void cbo_itebis_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -269,22 +289,37 @@ namespace admin_az
             }
         }
 
+        private void lbProducto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            if (codCliente == null)
+            {
+
+                guardar();
+
+            }
+            else
+            {
+                updatecliente();
+            }
+
+        }
+
         private void btn_close_Click(object sender, EventArgs e)
         {
            
         }   
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            if(codCliente == null)
-            {
-
-                guardar();
-               
-            }
-            else
-            {
-                updatecliente();
-            }
            
          
           

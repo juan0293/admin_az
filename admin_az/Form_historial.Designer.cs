@@ -118,7 +118,7 @@
             // btn_close
             // 
             this.btn_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
+            //this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
             this.btn_close.Location = new System.Drawing.Point(572, 0);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(35, 35);

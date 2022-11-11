@@ -16,7 +16,7 @@ namespace admin_az
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new formlogin());
+            Application.Run(new Form_new_menu());
         }
     }
 }

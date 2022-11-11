@@ -9,6 +9,7 @@ namespace admin_az
     public  class Global
     {
        public static  string idusuario, nombre,tipoUsuario;
-        
+        public static System.Windows.Forms.Panel Panel1;
+
     }
 }

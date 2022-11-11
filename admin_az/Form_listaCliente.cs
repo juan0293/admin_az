@@ -30,15 +30,31 @@ namespace admin_az
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
-
-                    clienteBindingSource.DataSource = db.clientes.ToList();
+                   
+                     //clienteBindingSource.Clear();
+                    clienteBindingSource.DataSource = db.clientes.ToList().OrderByDescending(f=> f.idcliente);
 
                 }
             }
             catch { }
         }
-      
-       
+
+        public void listarload()
+        {
+            try
+            {
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                    clienteBindingSource.Clear();
+                    clienteBindingSource.DataSource = db.clientes.ToList().OrderByDescending(f=> f.idcliente).Take(20);
+
+                }
+            }
+            catch { }
+        }
+
+
         public void listarBuscarnombre()
         {
             try
@@ -46,8 +62,12 @@ namespace admin_az
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
+                    var lst = from m in db.clientes
+                              where m.nombre.Contains(txtBuscar.Text) || m.apellido.Contains(txtBuscar.Text) || m.cedula.Contains(txtBuscar.Text) || m.sangre.Contains(txtBuscar.Text)
+                              select m;
+                    clienteBindingSource.Clear();
+                    clienteBindingSource.DataSource = lst.ToList();
 
-                    clienteBindingSource.DataSource = db.clientes.ToList().Where(c => c.nombre == txtBuscar.Text);
 
                 }
             }
@@ -78,7 +98,7 @@ namespace admin_az
 
         private void Form_equipo_Load(object sender, EventArgs e)
         {
-            resfrescar();
+            listarload();
 
         }
 
@@ -193,26 +213,69 @@ namespace admin_az
 
         private void picActualizar_Click(object sender, EventArgs e)
         {
+            //if (txtBuscar.Text =="*")
+            //{
+            //    listarload();
+            //}
+            //else 
+            //{
+            //    listarBuscarnombre();
+            //}
             resfrescar();
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
 
-            if (rdb_nombre.Checked == true && rdbCodigo.Checked == false)
-            {
-                listarBuscarnombre();
-            }
-            else if (rdb_nombre.Checked == false && rdbCodigo.Checked == true)
-            {
-                listarBuscarcodigo();
-            }
-            else
-            {
-                MessageBox.Show("Por favor selecionar la opcion de busquedad");
-            }
+            //if (rdb_nombre.Checked == true && rdbCodigo.Checked == false)
+            //{
+            //    listarBuscarnombre();
+            //}
+            //else if (rdb_nombre.Checked == false && rdbCodigo.Checked == true)
+            //{
+            //    listarBuscarcodigo();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Por favor selecionar la opcion de busquedad");
+            //}
 
 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form_listaCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                try
+                {
+
+                    //if (txtBuscar.Text == "**")
+
+                    //{
+                    //    MessageBox.Show("**");
+                    //    resfrescar();
+                    //}
+                    if (txtBuscar.Text == "*")
+                    {
+                        
+                        listarload();
+                    }
+                    else
+                    {
+
+                        listarBuscarnombre();
+                    }
+
+
+                }
+                catch { }
+            }
         }
     }
 }

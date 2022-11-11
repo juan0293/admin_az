@@ -41,7 +41,7 @@ namespace admin_az
                 else
                 {
 
-                    var menu = new Form1();
+                    var menu = new Form_new_menu();
                     menu.Show();
                     this.Hide();
                 }
@@ -66,7 +66,7 @@ namespace admin_az
 
         private void picentrar_Click(object sender, EventArgs e)
         {
-            user();
+           
         }
 
         private void formlogin_KeyDown(object sender, KeyEventArgs e)
@@ -75,6 +75,16 @@ namespace admin_az
             {
                 user();
             }
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            user();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
