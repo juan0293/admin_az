@@ -361,6 +361,7 @@
             this.button2.Text = "Reimprimir cita";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -379,6 +380,7 @@
             this.button1.Text = "Buscar cita";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button6
             // 
@@ -394,9 +396,10 @@
             this.button6.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(178, 49);
             this.button6.TabIndex = 2;
-            this.button6.Text = "Lista de cliente";
+            this.button6.Text = "Lista de citas";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
@@ -434,6 +437,7 @@
             this.btn_agendar_cita.Text = "Agendar cita";
             this.btn_agendar_cita.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_agendar_cita.UseVisualStyleBackColor = true;
+            this.btn_agendar_cita.Click += new System.EventHandler(this.btn_agendar_cita_Click);
             // 
             // btn_agenda
             // 

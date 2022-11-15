@@ -12,6 +12,7 @@ namespace admin_az
 {
     public partial class Form_listaCliente : Form
     {
+        Panel panelcontrol = Global.Panel1;
         public Form_listaCliente()
         {
             InitializeComponent();
@@ -168,10 +169,15 @@ namespace admin_az
 
 
                         Form_historial ajustar = new Form_historial();
-                       
-                        ajustar.clienteid = Convert.ToInt32(row.Cells[8].Value);
-                        ajustar.lbcliente.Text = row.Cells[3].Value.ToString() + " " + row.Cells[4].Value.ToString();
-                        ajustar.ShowDialog();
+                        int clienteID  = Convert.ToInt32(row.Cells[8].Value);
+                        string clientes = row.Cells[3].Value.ToString() + " " + row.Cells[4].Value.ToString();
+                        ajustar.clienteid = clienteID;
+                        ajustar.lbcliente.Text = clientes;
+                        panelcontrol.Controls.Clear();
+                        ajustar.TopLevel = false;
+                        panelcontrol.Controls.Add(ajustar);
+                        ajustar.Show();
+                     
                       
 
                     }
@@ -181,17 +187,32 @@ namespace admin_az
                 {
                     foreach (DataGridViewRow row in dgvproducto.SelectedRows)
                     {
-
-
+                     
                         Form_newcliente ajustar = new Form_newcliente();
-                        ajustar.codCliente = row.Cells[8].Value.ToString();
-                        ajustar.txt_codigo.Text = row.Cells[2].Value.ToString();
-                        ajustar.txtnombre.Text = row.Cells[3].Value.ToString();
-                        ajustar.txtapellido.Text = row.Cells[4].Value.ToString();
-                        ajustar.txt_telefono1.Text = row.Cells[5].Value.ToString();
-                        ajustar.txtcorreo.Text = row.Cells[6].Value.ToString();
-                        ajustar.dtpfecha_nacimiento.Text = row.Cells[7].Value.ToString();
-                        ajustar.ShowDialog();
+                        string codCliente = row.Cells[8].Value.ToString();
+                        string codigo = row.Cells[2].Value.ToString();
+                        string nombre = row.Cells[3].Value.ToString();
+                        string apellido = row.Cells[4].Value.ToString();
+                        string telefono = row.Cells[5].Value.ToString();
+                        string correo = row.Cells[6].Value.ToString();
+                        string fechanac = row.Cells[7].Value.ToString();
+                        string cedula = row.Cells[9].Value.ToString();
+                        string sangre = row.Cells[10].Value.ToString();
+
+                        //'''''''''''''''''''''''''''''''''''''''''''''''''''''
+                        ajustar.codCliente = codCliente;
+                        ajustar.txt_codigo.Text = codigo;
+                        ajustar.txtnombre.Text = nombre;
+                        ajustar.txtapellido.Text = apellido;
+                        ajustar.txt_telefono1.Text = telefono;
+                        ajustar.txtcorreo.Text = correo;
+                        ajustar.dtpfecha_nacimiento.Text = fechanac;
+                        ajustar.txt_cedula.Text = cedula;
+                        ajustar.cbo_tipo_sangre.Text = sangre;
+                        panelcontrol.Controls.Clear();
+                        ajustar.TopLevel = false;
+                        panelcontrol.Controls.Add(ajustar);
+                        ajustar.Show();
 
 
                     }
@@ -276,6 +297,42 @@ namespace admin_az
                 }
                 catch { }
             }
+        }
+
+        private void btn_agendar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                foreach (DataGridViewRow row in dgvproducto.SelectedRows)
+                {
+                  
+                    int idcliente = Convert.ToInt32(row.Cells[8].Value);
+                    string nombre = row.Cells[3].Value.ToString() + " " + row.Cells[4].Value.ToString();
+                    string codigo = row.Cells[2].Value.ToString();
+                    panelcontrol.Controls.Clear();
+                   frmManageAppointment cita = new frmManageAppointment();
+                    cita.txt_codigo.Text = codigo;
+                    cita.txtnombre.Text = nombre;
+                    cita.clienteID = idcliente;
+                    cita.TopLevel = false;
+                    panelcontrol.Controls.Add(cita);
+                    cita.Show();
+                
+            }
+
+            }
+            catch { }
+        }
+
+        private void btn_nuevo_Click(object sender, EventArgs e)
+        {
+            panelcontrol.Controls.Clear();
+            Form_newcliente cita = new Form_newcliente();
+            cita.TopLevel = false;
+            panelcontrol.Controls.Add(cita);
+            cita.Show();
         }
     }
 }

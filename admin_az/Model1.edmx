@@ -35,16 +35,17 @@
           <Property Name="idestado" Type="int" />
           <Property Name="iduser" Type="int" />
           <Property Name="idmetodo" Type="int" />
-          <Property Name="fechaCita" Type="datetime" />
+          <Property Name="fechaCita" Type="date" />
           <Property Name="monto" Type="float" Nullable="false" />
-          <Property Name="fecha" Type="datetime" />
+          <Property Name="fecha" Type="date" />
           <Property Name="resta" Type="float" />
           <Property Name="hora" Type="varchar" MaxLength="6" />
-          <Property Name="asunto" Type="varchar" MaxLength="30" />
+          <Property Name="asunto" Type="varchar" MaxLength="100" />
           <Property Name="montopagado" Type="float" />
           <Property Name="condicion" Type="bit" />
           <Property Name="artista" Type="int" />
           <Property Name="oferta" Type="int" />
+          <Property Name="tiempo_estimado" Type="varchar" MaxLength="6" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -184,6 +185,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_Cliente' no tiene definida
           <Property Name="Expr1" Type="int" Nullable="false" />
           <Property Name="metodo" Type="varchar" MaxLength="30" />
           <Property Name="condicion" Type="bit" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="montopagado" Type="float" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'softcita.dbo.View_cliente_h' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -249,9 +252,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="idcita" Type="int" Nullable="false" />
           <Property Name="idmetodo" Type="int" Nullable="false" />
           <Property Name="iduser" Type="int" Nullable="false" />
-          <Property Name="fechaCita" Type="datetime" />
+          <Property Name="fechaCita" Type="date" />
           <Property Name="monto" Type="float" Nullable="false" />
-          <Property Name="fecha" Type="datetime" />
+          <Property Name="fecha" Type="date" />
           <Property Name="resta" Type="float" />
           <Property Name="hora" Type="varchar" MaxLength="6" />
           <Property Name="idcliente" Type="int" Nullable="false" />
@@ -259,6 +262,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="metodoP" Type="varchar" MaxLength="30" />
           <Property Name="nombreU" Type="varchar" MaxLength="30" />
           <Property Name="montopagado" Type="float" />
+          <Property Name="tiempo_estimado" Type="varchar" MaxLength="6" />
+          <Property Name="apellido" Type="varchar" MaxLength="30" />
+          <Property Name="telefono" Type="varchar" MaxLength="11" />
         </EntityType>
         <Association Name="FK_cierre_usuario">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
@@ -491,7 +497,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
     [View_Cliente].[codigo] AS [codigo], 
     [View_Cliente].[Expr1] AS [Expr1], 
     [View_Cliente].[metodo] AS [metodo], 
-    [View_Cliente].[condicion] AS [condicion]
+    [View_Cliente].[condicion] AS [condicion], 
+    [View_Cliente].[fecha] AS [fecha], 
+    [View_Cliente].[montopagado] AS [montopagado]
     FROM [dbo].[View_Cliente] AS [View_Cliente]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="View_cliente_h" EntityType="Self.View_cliente_h" store:Type="Views" store:Schema="dbo">
@@ -544,7 +552,10 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
     [View_reimprimir].[nombre] AS [nombre], 
     [View_reimprimir].[metodoP] AS [metodoP], 
     [View_reimprimir].[nombreU] AS [nombreU], 
-    [View_reimprimir].[montopagado] AS [montopagado]
+    [View_reimprimir].[montopagado] AS [montopagado], 
+    [View_reimprimir].[tiempo_estimado] AS [tiempo_estimado], 
+    [View_reimprimir].[apellido] AS [apellido], 
+    [View_reimprimir].[telefono] AS [telefono]
     FROM [dbo].[View_reimprimir] AS [View_reimprimir]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_cierre_usuario" Association="Self.FK_cierre_usuario">
@@ -750,16 +761,17 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="idestado" Type="Int32" />
           <Property Name="iduser" Type="Int32" />
           <Property Name="idmetodo" Type="Int32" />
-          <Property Name="fechaCita" Type="DateTime" Precision="3" />
+          <Property Name="fechaCita" Type="DateTime" Precision="0" />
           <Property Name="monto" Type="Double" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="resta" Type="Double" />
           <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="asunto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="asunto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="montopagado" Type="Double" />
           <Property Name="condicion" Type="Boolean" />
           <Property Name="artista" Type="Int32" />
           <Property Name="oferta" Type="Int32" />
+          <Property Name="tiempo_estimado" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="artista1" Relationship="softcitaModel.FK_cita_artista" FromRole="cita" ToRole="artista" />
           <NavigationProperty Name="cliente" Relationship="softcitaModel.FK_cita_cliente" FromRole="cita" ToRole="cliente" />
           <NavigationProperty Name="estadocita" Relationship="softcitaModel.FK_cita_estadocita" FromRole="cita" ToRole="estadocita" />
@@ -919,6 +931,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="Expr1" Type="Int32" Nullable="false" />
           <Property Name="metodo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="condicion" Type="Boolean" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="montopagado" Type="Double" />
         </EntityType>
         <EntityType Name="View_cliente_h">
           <Key>
@@ -976,9 +990,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="idcita" Type="Int32" Nullable="false" />
           <Property Name="idmetodo" Type="Int32" Nullable="false" />
           <Property Name="iduser" Type="Int32" Nullable="false" />
-          <Property Name="fechaCita" Type="DateTime" Precision="3" />
+          <Property Name="fechaCita" Type="DateTime" Precision="0" />
           <Property Name="monto" Type="Double" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="resta" Type="Double" />
           <Property Name="hora" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="idcliente" Type="Int32" Nullable="false" />
@@ -986,6 +1000,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="metodoP" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="nombreU" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="montopagado" Type="Double" />
+          <Property Name="tiempo_estimado" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_cita_artista">
           <End Type="softcitaModel.artista" Role="artista" Multiplicity="0..1" />
@@ -1199,6 +1216,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySetMapping Name="citas">
             <EntityTypeMapping TypeName="softcitaModel.cita">
               <MappingFragment StoreEntitySet="cita">
+                <ScalarProperty Name="tiempo_estimado" ColumnName="tiempo_estimado" />
                 <ScalarProperty Name="oferta" ColumnName="oferta" />
                 <ScalarProperty Name="artista" ColumnName="artista" />
                 <ScalarProperty Name="condicion" ColumnName="condicion" />
@@ -1338,6 +1356,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySetMapping Name="View_Cliente">
             <EntityTypeMapping TypeName="softcitaModel.View_Cliente">
               <MappingFragment StoreEntitySet="View_Cliente">
+                <ScalarProperty Name="montopagado" ColumnName="montopagado" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="condicion" ColumnName="condicion" />
                 <ScalarProperty Name="metodo" ColumnName="metodo" />
                 <ScalarProperty Name="Expr1" ColumnName="Expr1" />
@@ -1404,6 +1424,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySetMapping Name="View_reimprimir">
             <EntityTypeMapping TypeName="softcitaModel.View_reimprimir">
               <MappingFragment StoreEntitySet="View_reimprimir">
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="tiempo_estimado" ColumnName="tiempo_estimado" />
                 <ScalarProperty Name="montopagado" ColumnName="montopagado" />
                 <ScalarProperty Name="nombreU" ColumnName="nombreU" />
                 <ScalarProperty Name="metodoP" ColumnName="metodoP" />

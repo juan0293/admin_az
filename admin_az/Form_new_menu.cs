@@ -110,5 +110,44 @@ namespace admin_az
             open.Show();
           
         }
+
+        private void btn_agendar_cita_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_listaCliente open = new Form_listaCliente();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_vista_cita open = new Form_vista_cita();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            panelChildForm.Controls.Clear();
+            FormDetalleCita open = new FormDetalleCita();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+          
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            FormcCitaR open = new FormcCitaR();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+            
+        }
     }
 }

@@ -36,6 +36,7 @@ namespace admin_az
         public Nullable<bool> condicion { get; set; }
         public Nullable<int> artista { get; set; }
         public Nullable<int> oferta { get; set; }
+        public string tiempo_estimado { get; set; }
     
         public virtual artista artista1 { get; set; }
         public virtual cliente cliente { get; set; }

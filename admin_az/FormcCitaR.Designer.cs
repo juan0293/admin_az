@@ -36,19 +36,21 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvproducto = new System.Windows.Forms.DataGridView();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.picregresar = new System.Windows.Forms.PictureBox();
-            this.picbGuardar = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtcita = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvtrabajo = new System.Windows.Forms.DataGridView();
+            this.btn_save = new System.Windows.Forms.Button();
+            this.btn_cerrar = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.piclogo = new System.Windows.Forms.PictureBox();
+            this.picBarcode = new System.Windows.Forms.PictureBox();
             this.asuntoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.montoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idcitaDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idtrabajoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.trabajoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewreimprimirBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idcitaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,12 +62,15 @@
             this.idclienteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metodoPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.viewreimprimirBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreU = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tiempo_estimado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproducto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picregresar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbGuardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvtrabajo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.piclogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trabajoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewreimprimirBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -77,10 +82,10 @@
             this.dgvproducto.BackgroundColor = System.Drawing.Color.White;
             this.dgvproducto.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(174)))), ((int)(((byte)(179)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(174)))), ((int)(((byte)(179)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvproducto.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
@@ -96,7 +101,11 @@
             this.nombreUDataGridViewTextBoxColumn,
             this.idclienteDataGridViewTextBoxColumn,
             this.horaDataGridViewTextBoxColumn,
-            this.metodoPDataGridViewTextBoxColumn});
+            this.metodoPDataGridViewTextBoxColumn,
+            this.apellido,
+            this.telefono,
+            this.nombreU,
+            this.tiempo_estimado});
             this.dgvproducto.DataSource = this.viewreimprimirBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
@@ -120,57 +129,14 @@
             this.dgvproducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvproducto.RowHeadersVisible = false;
             this.dgvproducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvproducto.Size = new System.Drawing.Size(769, 303);
+            this.dgvproducto.Size = new System.Drawing.Size(949, 665);
             this.dgvproducto.TabIndex = 43;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.DimGray;
-            this.label13.Location = new System.Drawing.Point(382, 422);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(78, 19);
-            this.label13.TabIndex = 132;
-            this.label13.Text = "Regresar:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.DimGray;
-            this.label7.Location = new System.Drawing.Point(301, 422);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 19);
-            this.label7.TabIndex = 131;
-            this.label7.Text = "Imprimir:";
-            // 
-            // picregresar
-            // 
-            //this.picregresar.Image = global::admin_az.Properties.Resources.return_48px;
-            this.picregresar.Location = new System.Drawing.Point(386, 376);
-            this.picregresar.Name = "picregresar";
-            this.picregresar.Size = new System.Drawing.Size(50, 43);
-            this.picregresar.TabIndex = 130;
-            this.picregresar.TabStop = false;
-            this.picregresar.Click += new System.EventHandler(this.picregresar_Click);
-            // 
-            // picbGuardar
-            // 
-            this.picbGuardar.Image = ((System.Drawing.Image)(resources.GetObject("picbGuardar.Image")));
-            this.picbGuardar.Location = new System.Drawing.Point(320, 379);
-            this.picbGuardar.Name = "picbGuardar";
-            this.picbGuardar.Size = new System.Drawing.Size(40, 40);
-            this.picbGuardar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picbGuardar.TabIndex = 129;
-            this.picbGuardar.TabStop = false;
-            this.picbGuardar.Click += new System.EventHandler(this.picbGuardar_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.DimGray;
+            this.label3.ForeColor = System.Drawing.Color.Silver;
             this.label3.Location = new System.Drawing.Point(12, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 22);
@@ -180,18 +146,17 @@
             // txtcita
             // 
             this.txtcita.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcita.Location = new System.Drawing.Point(79, 26);
+            this.txtcita.Location = new System.Drawing.Point(87, 26);
             this.txtcita.Name = "txtcita";
-            this.txtcita.Size = new System.Drawing.Size(194, 30);
+            this.txtcita.Size = new System.Drawing.Size(273, 30);
             this.txtcita.TabIndex = 135;
             // 
             // pictureBox1
             // 
-            //this.pictureBox1.Image = global::admin_az.Properties.Resources.search_48px;
-            this.pictureBox1.Location = new System.Drawing.Point(279, 13);
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(366, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(48, 48);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.Size = new System.Drawing.Size(44, 35);
             this.pictureBox1.TabIndex = 136;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
@@ -207,12 +172,70 @@
             this.idcitaDataGridViewTextBoxColumn1,
             this.idtrabajoDataGridViewTextBoxColumn});
             this.dgvtrabajo.DataSource = this.trabajoBindingSource;
-            this.dgvtrabajo.Location = new System.Drawing.Point(174, 777);
+            this.dgvtrabajo.Location = new System.Drawing.Point(179, 738);
             this.dgvtrabajo.Name = "dgvtrabajo";
             this.dgvtrabajo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvtrabajo.Size = new System.Drawing.Size(447, 150);
             this.dgvtrabajo.TabIndex = 137;
             this.dgvtrabajo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvtrabajo_CellContentClick);
+            // 
+            // btn_save
+            // 
+            this.btn_save.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_save.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save.ForeColor = System.Drawing.Color.Silver;
+            this.btn_save.Image = ((System.Drawing.Image)(resources.GetObject("btn_save.Image")));
+            this.btn_save.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_save.Location = new System.Drawing.Point(437, 12);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(167, 41);
+            this.btn_save.TabIndex = 138;
+            this.btn_save.Text = "Imprimir";
+            this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            // btn_cerrar
+            // 
+            this.btn_cerrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_cerrar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_cerrar.ForeColor = System.Drawing.Color.Silver;
+            this.btn_cerrar.Image = ((System.Drawing.Image)(resources.GetObject("btn_cerrar.Image")));
+            this.btn_cerrar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_cerrar.Location = new System.Drawing.Point(610, 12);
+            this.btn_cerrar.Name = "btn_cerrar";
+            this.btn_cerrar.Size = new System.Drawing.Size(167, 41);
+            this.btn_cerrar.TabIndex = 139;
+            this.btn_cerrar.Text = "Cerrar";
+            this.btn_cerrar.UseVisualStyleBackColor = true;
+            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
+            // 
+            // piclogo
+            // 
+            this.piclogo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.piclogo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.piclogo.Image = ((System.Drawing.Image)(resources.GetObject("piclogo.Image")));
+            this.piclogo.Location = new System.Drawing.Point(482, 172);
+            this.piclogo.Name = "piclogo";
+            this.piclogo.Size = new System.Drawing.Size(122, 133);
+            this.piclogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.piclogo.TabIndex = 142;
+            this.piclogo.TabStop = false;
+            this.piclogo.Visible = false;
+            // 
+            // picBarcode
+            // 
+            this.picBarcode.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.picBarcode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBarcode.Image = ((System.Drawing.Image)(resources.GetObject("picBarcode.Image")));
+            this.picBarcode.Location = new System.Drawing.Point(610, 172);
+            this.picBarcode.Name = "picBarcode";
+            this.picBarcode.Size = new System.Drawing.Size(122, 133);
+            this.picBarcode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBarcode.TabIndex = 143;
+            this.picBarcode.TabStop = false;
+            this.picBarcode.Visible = false;
             // 
             // asuntoDataGridViewTextBoxColumn
             // 
@@ -241,6 +264,10 @@
             // trabajoBindingSource
             // 
             this.trabajoBindingSource.DataSource = typeof(admin_az.trabajo);
+            // 
+            // viewreimprimirBindingSource
+            // 
+            this.viewreimprimirBindingSource.DataSource = typeof(admin_az.View_reimprimir);
             // 
             // idcitaDataGridViewTextBoxColumn
             // 
@@ -326,34 +353,58 @@
             this.metodoPDataGridViewTextBoxColumn.Name = "metodoPDataGridViewTextBoxColumn";
             this.metodoPDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // viewreimprimirBindingSource
+            // apellido
             // 
-            this.viewreimprimirBindingSource.DataSource = typeof(admin_az.View_reimprimir);
+            this.apellido.DataPropertyName = "apellido";
+            this.apellido.HeaderText = "apellido";
+            this.apellido.Name = "apellido";
+            this.apellido.ReadOnly = true;
+            // 
+            // telefono
+            // 
+            this.telefono.DataPropertyName = "telefono";
+            this.telefono.HeaderText = "telefono";
+            this.telefono.Name = "telefono";
+            this.telefono.ReadOnly = true;
+            // 
+            // nombreU
+            // 
+            this.nombreU.DataPropertyName = "nombreU";
+            this.nombreU.HeaderText = "nombreU";
+            this.nombreU.Name = "nombreU";
+            this.nombreU.ReadOnly = true;
+            // 
+            // tiempo_estimado
+            // 
+            this.tiempo_estimado.DataPropertyName = "tiempo_estimado";
+            this.tiempo_estimado.HeaderText = "tiempo_estimado";
+            this.tiempo_estimado.Name = "tiempo_estimado";
+            this.tiempo_estimado.ReadOnly = true;
             // 
             // FormcCitaR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(793, 788);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            this.ClientSize = new System.Drawing.Size(960, 788);
+            this.Controls.Add(this.picBarcode);
+            this.Controls.Add(this.piclogo);
+            this.Controls.Add(this.btn_cerrar);
+            this.Controls.Add(this.btn_save);
             this.Controls.Add(this.dgvtrabajo);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtcita);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.picregresar);
-            this.Controls.Add(this.picbGuardar);
             this.Controls.Add(this.dgvproducto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormcCitaR";
             this.Text = "FormcCitaR";
             this.Load += new System.EventHandler(this.FormcCitaR_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvproducto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picregresar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvtrabajo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.piclogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBarcode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trabajoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewreimprimirBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -364,16 +415,21 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvproducto;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.PictureBox picregresar;
-        private System.Windows.Forms.PictureBox picbGuardar;
         private System.Windows.Forms.BindingSource viewreimprimirBindingSource;
         internal System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtcita;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dgvtrabajo;
         private System.Windows.Forms.BindingSource trabajoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn asuntoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn montoDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idcitaDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idtrabajoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btn_save;
+        private System.Windows.Forms.Button btn_cerrar;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PictureBox piclogo;
+        private System.Windows.Forms.PictureBox picBarcode;
         private System.Windows.Forms.DataGridViewTextBoxColumn idcitaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaDataGridViewTextBoxColumn;
@@ -385,9 +441,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idclienteDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn horaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn metodoPDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn asuntoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn montoDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idcitaDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idtrabajoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreU;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tiempo_estimado;
     }
 }

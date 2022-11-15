@@ -368,11 +368,11 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.DateTimePicker dtpfecha_nacimiento;
         public System.Windows.Forms.TextBox txt_telefono1;
-        private System.Windows.Forms.ComboBox cbo_tipo_sangre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.TextBox txt_cedula;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_limpiar;
+        public System.Windows.Forms.ComboBox cbo_tipo_sangre;
     }
 }

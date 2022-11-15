@@ -184,9 +184,10 @@ namespace admin_az
         }
         private void picbGuardar_Click(object sender, EventArgs e)
         {
-               updatetrabajo();
-                updatecita();
-                 factura();
+
+            updatetrabajo();
+            updatecita();
+            factura();
         }
 
         private void picsiguiente_Click(object sender, EventArgs e)
@@ -196,7 +197,7 @@ namespace admin_az
 
         private void picregresar_Click(object sender, EventArgs e)
         {
-            Close();
+          
         }
 
         private void cbo_metodo_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,9 +215,38 @@ namespace admin_az
 
         }
 
-        private void btn_close_Click(object sender, EventArgs e)
+        private void picFinalizar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+
+            updatetrabajo();
+            updatecita();
+            factura();
+        }
+
+        private void btn_limpiar_Click(object sender, EventArgs e)
+        {
+            paneltotal.Visible = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            siguiente();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void FormEditar_Load(object sender, EventArgs e)

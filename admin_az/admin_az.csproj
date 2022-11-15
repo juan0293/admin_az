@@ -325,6 +325,18 @@
     <Compile Include="Form_new_menu.Designer.cs">
       <DependentUpon>Form_new_menu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_pago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_pago.Designer.cs">
+      <DependentUpon>Form_pago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_vista_cita.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_vista_cita.Designer.cs">
+      <DependentUpon>Form_vista_cita.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmManageAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -472,6 +484,12 @@
     <EmbeddedResource Include="Form_new_menu.resx">
       <DependentUpon>Form_new_menu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_pago.resx">
+      <DependentUpon>Form_pago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_vista_cita.resx">
+      <DependentUpon>Form_vista_cita.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmManageAppointment.resx">
       <DependentUpon>frmManageAppointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -526,6 +544,7 @@
     </Compile>
     <None Include="trabajo.datasource" />
     <None Include="View_1_usuario.datasource" />
+    <None Include="View_Cliente.datasource" />
     <None Include="View_cliente_h.datasource" />
     <None Include="View_historial.datasource" />
     <None Include="View_reimprimir.datasource" />
@@ -552,6 +571,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\close_32px.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -605,9 +625,7 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

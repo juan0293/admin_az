@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -159,12 +160,117 @@ namespace admin_az
 
         private void picbGuardar_Click(object sender, EventArgs e)
         {
-            factura();
-            Close();
+           
             
         }
 
         private void picregresar_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            imprimirfactura();
+            Close();
+        }
+        public void imprimirfactura()
+        {
+            printDocument1 = new PrintDocument();
+            PrinterSettings ps = new PrinterSettings();
+            printDocument1.PrinterSettings = ps;
+            printDocument1.PrintPage += Imprimir;
+            printDocument1.Print();
+        }
+
+        private void Imprimir(object sender, PrintPageEventArgs e)
+        {
+
+            try
+            {
+                foreach (DataGridViewRow row in dgvproducto.SelectedRows)
+                {
+
+                    Font font_6 = new Font("Arial", 6, FontStyle.Regular, GraphicsUnit.Point);
+                    Font font_8 = new Font("Arial", 8, FontStyle.Regular, GraphicsUnit.Point);
+                    Font font_16 = new Font("Arial", 16, FontStyle.Regular, GraphicsUnit.Point);
+                    Font font_10 = new Font("Arial", 10, FontStyle.Regular, GraphicsUnit.Point);
+                    Font font_28 = new Font("Arial", 11, FontStyle.Bold, GraphicsUnit.Point);
+
+                    int y = 20;
+
+
+                    string itb = "ITBIS";
+                    string subtotal = "MONTO BRUTO";
+                    string oferta = "DESCUENTO";
+                    string total = "TOTAL A PAGAR RD$";
+                    string efectivo = "EFECTIVO";
+                    string tarjeta = "TARJETA";
+                    string cambio = "RESTANTE";
+                    string pagado = "PAGADO";
+                    string ley = "10% LEY";
+                    string descuento = "DESCUENTO";
+                    string empresa = "             VARGAS TATTO";
+                    string direccion = "Calle 12 Julio #27 Bonao, Rep. Dom.";
+                    string telefono1 = "829-644-2592";
+                    string rnc = "40225197439";
+
+
+                    e.Graphics.DrawImage(piclogo.Image, new RectangleF(45, 0, 200, 110));
+                    e.Graphics.DrawString(empresa.ToUpper(), font_28, Brushes.Black, new RectangleF(2, y += 100, 300, 0));
+                    e.Graphics.DrawString(direccion.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 30, 300, 50));
+                    e.Graphics.DrawString("TELEFONO: " + telefono1, font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("RNC: " + rnc.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("FECHA: "+ Convert.ToDateTime(row.Cells[2].Value).ToShortDateString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("CAJERO:" + row.Cells[13].Value.ToString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    // e.Graphics.DrawString("MESA: #" + global.numeromesag, font_10, Brushes.Black, new RectangleF(10, y += 15, 300, 50));
+
+                    e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("FACTURA PARA CONSUMIDOR FINAL", font_28, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("CLIENTE: " + row.Cells[1].Value.ToString() + " " + row.Cells[11].Value.ToString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("TELEFONO: " + row.Cells[12].Value.ToString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("FECHA/CITA: " + Convert.ToDateTime(row.Cells[3].Value).ToShortDateString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("HORA: " + row.Cells[9].Value.ToString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("TIEMPO ESTIMADO: " + row.Cells[14].Value.ToString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("DESCRIPCION                    VALOR  ", font_10, Brushes.Black, new RectangleF(2, y += 20, 300, 50));
+                    e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 12, 300, 50));
+                    for (int i = 0; i < dgvproducto.Rows.Count - 0; i++)
+                    {
+                        e.Graphics.DrawString(dgvtrabajo.Rows[i].Cells[0].Value.ToString().ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                        e.Graphics.DrawString("1" + "   x   " + Convert.ToDecimal(dgvtrabajo.Rows[i].Cells[1].Value).ToString("#,##0.00").PadRight(30) + Convert.ToDecimal(dgvtrabajo.Rows[i].Cells[1].Value).ToString("#,##0.00"), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+
+                    }
+                    e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 12, 300, 50));
+                    e.Graphics.DrawString(subtotal.PadRight(27) + (Convert.ToDouble(row.Cells[5].Value)).ToString("#,##0.00").PadLeft(20), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+
+                    //if (porcentaje > 0)
+                    //{
+                    //e.Graphics.DrawString(descuento.PadRight(28) + Convert.ToDecimal(porcentaje).ToString("#,##0.00").PadLeft(20), font_10, Brushes.Black, new RectangleF(2, y += 18, 300, 50));
+                    //}
+                    e.Graphics.DrawString(total.PadRight(17) + Convert.ToDecimal(row.Cells[5].Value).ToString("#,##0.00").PadLeft(20), font_28, Brushes.Black, new RectangleF(2, y += 15, 400, 50));
+                    e.Graphics.DrawString("METODO " + row.Cells[10].Value.ToString(), font_10, Brushes.Black, new RectangleF(2, y += 18, 300, 50));
+                    e.Graphics.DrawString(pagado.PadRight(33) + Convert.ToDecimal(row.Cells[0].Value).ToString("#,##0.00").PadLeft(20), font_10, Brushes.Black, new RectangleF(2, y += 18, 300, 50));
+
+                    e.Graphics.DrawString(cambio.PadRight(33) + Convert.ToDecimal(row.Cells[0].Value).ToString("#,##0.00").PadLeft(20), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("FACTURA: 000" + (row.Cells[0].Value.ToString()), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    //e.Graphics.DrawString("GRACIAS POR SU VISITA", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("ESCANEA EL CODIGO Y SIGUENOS!", font_10, Brushes.Black, new RectangleF(2, y += 30, 300, 50));
+                    e.Graphics.DrawImage(picBarcode.Image, new RectangleF(45, 600, 200, 110));
+                    e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 12, 300, 50));
+                    // e.Graphics.DrawString("FACTURADO EN PESOS DOMINICANOS", font_6, Brushes.Black, new RectangleF(80, y += 7, 300, 50));
+                    //e.Graphics.DrawString("             WWW.ERMSOFTS.COM     ", font_10, Brushes.Black, new RectangleF(2, y += 100, 300, 50));
+                    e.Graphics.DrawString("", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString(".", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    }
+                }
+            catch
+            {
+
+            }
+        }
+        private void btn_cerrar_Click(object sender, EventArgs e)
         {
             Close();
         }

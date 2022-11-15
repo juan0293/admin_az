@@ -27,5 +27,8 @@ namespace admin_az
         public string metodoP { get; set; }
         public string nombreU { get; set; }
         public Nullable<double> montopagado { get; set; }
+        public string tiempo_estimado { get; set; }
+        public string apellido { get; set; }
+        public string telefono { get; set; }
     }
 }

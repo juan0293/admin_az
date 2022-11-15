@@ -104,23 +104,7 @@ namespace admin_az
         }
         private void picAnular_Click(object sender, EventArgs e)
         {
-            if (lbestado.Text == "Anulada")
-            {
-                MessageBox.Show("Ya la cita ha sido anulada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            else
-            {
-
-                if (MessageBox.Show("Seguro de Anular Cita?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.Yes) 
-                {
-                    updateestado();
-                }
-                else
-                {
-
-                }
-            }
+          
        
         }
         public void updatefecha()
@@ -179,14 +163,7 @@ namespace admin_az
         }    
         private void picfecha_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Seguro de mover la Cita?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                updatefecha();
-            }
-            else
-            {
-
-            }
+          
         }
         public void finalizar()
         {
@@ -223,8 +200,8 @@ namespace admin_az
                         detalle.idcita = ocita.idcita;
                         detalle.idcliente = ocita.idcliente;
                         detalle.txt_codigo.Text = ocita.idcita.ToString();
-                        detalle.txtnombre.Text = ocita.nombre;
-                        detalle.txtapellido.Text = ocita.apellido;
+                        detalle.txtnombre.Text = ocita.nombre + " "+ ocita.apellido; ;
+                        //detalle.txtapellido.Text = ocita.apellido;
                         detalle.txt_hora.Text = ocita.hora;
                        
                         detalle.dtpDate.Text = ocita.fechaCita.ToString();
@@ -236,6 +213,105 @@ namespace admin_az
                 }
             }
             catch { }
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            if (lbestado.Text == "Finalizada")
+            {
+                if (MessageBox.Show("Ya la cita ha sido Finalizada, desea Reimprimir?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    reimprimir();
+                    Close();
+
+                }
+                else
+                {
+                }
+            }
+
+            else if (lbestado.Text == "Anulada")
+            {
+                MessageBox.Show("Imposible finalizar cita, Porque ha sido anulada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                finalizar();
+                Close();
+
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+
+                    int appID = Convert.ToInt32(txt_codigo.Text);
+                    var lst = db.View_Cliente.Where(f => f.idcita == appID);
+
+
+                    foreach (var ocita in lst)
+
+                    {
+                        FormEditar detalle = new FormEditar();
+                        detalle.idcita = ocita.idcita;
+                        detalle.idcliente = ocita.idcliente;
+                        detalle.txt_codigo.Text = ocita.idcita.ToString();
+                        detalle.txtnombre.Text = ocita.nombre + " " + ocita.apellido; ;
+                        detalle.txtapellido.Text = ocita.apellido;
+                        detalle.txt_hora.Text = ocita.hora;
+
+                        detalle.dtpDate.Text = ocita.fechaCita.ToString();
+
+                        detalle.ShowDialog();
+                        Close();
+                    }
+
+                }
+            }
+            catch { }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (lbestado.Text == "Anulada")
+            {
+                MessageBox.Show("Ya la cita ha sido anulada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            else
+            {
+
+                if (MessageBox.Show("Seguro de Anular Cita?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    updateestado();
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro de mover la Cita?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                updatefecha();
+            }
+            else
+            {
+
+            }
         }
 
         public void reimprimir()
@@ -279,29 +355,7 @@ namespace admin_az
         }
         private void picFinalizar_Click(object sender, EventArgs e)
         {
-            if (lbestado.Text == "Finalizada")
-            {
-                if (MessageBox.Show("Ya la cita ha sido Finalizada, desea Reimprimir?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    reimprimir();
-                    Close();
-                    
-                }
-                else
-                {
-                }
-            }
-
-           else if (lbestado.Text == "Anulada")
-            {
-                MessageBox.Show("Imposible finalizar cita, Porque ha sido anulada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                finalizar();
-                Close();
-               
-            }
+           
         }
 
         private void FormDetalleCita_Load(object sender, EventArgs e)

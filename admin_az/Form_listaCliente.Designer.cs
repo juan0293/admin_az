@@ -59,6 +59,9 @@
             this.rdbCodigo = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_agendar = new System.Windows.Forms.Button();
+            this.btn_nuevo = new System.Windows.Forms.Button();
+            this.btn_nueva_factura = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvproducto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_close)).BeginInit();
@@ -118,7 +121,7 @@
             this.dgvproducto.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvproducto.RowHeadersVisible = false;
             this.dgvproducto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvproducto.Size = new System.Drawing.Size(1210, 532);
+            this.dgvproducto.Size = new System.Drawing.Size(1196, 532);
             this.dgvproducto.TabIndex = 42;
             this.dgvproducto.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproducto_CellContentClick);
             this.dgvproducto.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvproducto_CellEndEdit);
@@ -247,7 +250,7 @@
             // picActualizar
             // 
             this.picActualizar.Image = ((System.Drawing.Image)(resources.GetObject("picActualizar.Image")));
-            this.picActualizar.Location = new System.Drawing.Point(491, 52);
+            this.picActualizar.Location = new System.Drawing.Point(386, 52);
             this.picActualizar.Name = "picActualizar";
             this.picActualizar.Size = new System.Drawing.Size(49, 30);
             this.picActualizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -260,7 +263,7 @@
             this.txtBuscar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.Location = new System.Drawing.Point(68, 56);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(417, 26);
+            this.txtBuscar.Size = new System.Drawing.Size(312, 26);
             this.txtBuscar.TabIndex = 43;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown);
@@ -318,12 +321,63 @@
             this.label2.TabIndex = 48;
             this.label2.Text = "Lista de Clientes";
             // 
+            // btn_agendar
+            // 
+            this.btn_agendar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_agendar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_agendar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_agendar.ForeColor = System.Drawing.Color.Silver;
+            this.btn_agendar.Image = ((System.Drawing.Image)(resources.GetObject("btn_agendar.Image")));
+            this.btn_agendar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_agendar.Location = new System.Drawing.Point(443, 46);
+            this.btn_agendar.Name = "btn_agendar";
+            this.btn_agendar.Size = new System.Drawing.Size(144, 40);
+            this.btn_agendar.TabIndex = 138;
+            this.btn_agendar.Text = "Agendar";
+            this.btn_agendar.UseVisualStyleBackColor = true;
+            this.btn_agendar.Click += new System.EventHandler(this.btn_agendar_Click);
+            // 
+            // btn_nuevo
+            // 
+            this.btn_nuevo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_nuevo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_nuevo.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_nuevo.ForeColor = System.Drawing.Color.Silver;
+            this.btn_nuevo.Image = ((System.Drawing.Image)(resources.GetObject("btn_nuevo.Image")));
+            this.btn_nuevo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_nuevo.Location = new System.Drawing.Point(590, 46);
+            this.btn_nuevo.Name = "btn_nuevo";
+            this.btn_nuevo.Size = new System.Drawing.Size(155, 40);
+            this.btn_nuevo.TabIndex = 139;
+            this.btn_nuevo.Text = "     Nuevo Cliente";
+            this.btn_nuevo.UseVisualStyleBackColor = true;
+            this.btn_nuevo.Click += new System.EventHandler(this.btn_nuevo_Click);
+            // 
+            // btn_nueva_factura
+            // 
+            this.btn_nueva_factura.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_nueva_factura.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_nueva_factura.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_nueva_factura.ForeColor = System.Drawing.Color.Silver;
+            this.btn_nueva_factura.Image = ((System.Drawing.Image)(resources.GetObject("btn_nueva_factura.Image")));
+            this.btn_nueva_factura.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_nueva_factura.Location = new System.Drawing.Point(751, 46);
+            this.btn_nueva_factura.Name = "btn_nueva_factura";
+            this.btn_nueva_factura.Size = new System.Drawing.Size(155, 40);
+            this.btn_nueva_factura.TabIndex = 140;
+            this.btn_nueva_factura.Text = "Facturar";
+            this.btn_nueva_factura.UseVisualStyleBackColor = true;
+            this.btn_nueva_factura.Visible = false;
+            // 
             // Form_listaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(1209, 675);
+            this.Controls.Add(this.btn_nueva_factura);
+            this.Controls.Add(this.btn_nuevo);
+            this.Controls.Add(this.btn_agendar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rdbCodigo);
@@ -383,5 +437,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cedula;
         private System.Windows.Forms.DataGridViewTextBoxColumn sangre;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_agendar;
+        private System.Windows.Forms.Button btn_nuevo;
+        private System.Windows.Forms.Button btn_nueva_factura;
     }
 }

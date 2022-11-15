@@ -32,5 +32,7 @@ namespace admin_az
         public int Expr1 { get; set; }
         public string metodo { get; set; }
         public Nullable<bool> condicion { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<double> montopagado { get; set; }
     }
 }
