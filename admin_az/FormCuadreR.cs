@@ -229,7 +229,12 @@ namespace admin_az
 
         private void picregresar_Click(object sender, EventArgs e)
         {
-            Close();
+            Panel panelcontrol = Global.Panel1;
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            open.TopLevel = false;
+            panelcontrol.Controls.Add(open);
+            open.Show();
         }
 
         private void FormCuadreR_Load(object sender, EventArgs e)

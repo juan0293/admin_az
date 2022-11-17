@@ -33,21 +33,14 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txt_apellido = new System.Windows.Forms.Label();
             this.txtusuario = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
             this.lbusuario = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.detalle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.cbo_tipo = new System.Windows.Forms.ComboBox();
-            this.picatras = new System.Windows.Forms.PictureBox();
-            this.picbLimpiar = new System.Windows.Forms.PictureBox();
-            this.picbGuardar = new System.Windows.Forms.PictureBox();
             this.btn_close = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picatras)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbLimpiar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbGuardar)).BeginInit();
+            this.btn_grande = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.btn_close)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +57,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.DimGray;
+            this.label10.ForeColor = System.Drawing.Color.Silver;
             this.label10.Location = new System.Drawing.Point(317, 113);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(127, 19);
@@ -75,7 +68,7 @@
             // 
             this.txt_apellido.AutoSize = true;
             this.txt_apellido.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_apellido.ForeColor = System.Drawing.Color.DimGray;
+            this.txt_apellido.ForeColor = System.Drawing.Color.Silver;
             this.txt_apellido.Location = new System.Drawing.Point(317, 62);
             this.txt_apellido.Name = "txt_apellido";
             this.txt_apellido.Size = new System.Drawing.Size(67, 19);
@@ -91,58 +84,22 @@
             this.txtusuario.Size = new System.Drawing.Size(233, 26);
             this.txtusuario.TabIndex = 1;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.Transparent;
-            this.label11.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label11.Location = new System.Drawing.Point(357, 229);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(53, 22);
-            this.label11.TabIndex = 93;
-            this.label11.Text = "Atras";
-            // 
             // lbusuario
             // 
             this.lbusuario.AutoSize = true;
             this.lbusuario.Font = new System.Drawing.Font("Cambria", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbusuario.ForeColor = System.Drawing.Color.DimGray;
+            this.lbusuario.ForeColor = System.Drawing.Color.Silver;
             this.lbusuario.Location = new System.Drawing.Point(198, 31);
             this.lbusuario.Name = "lbusuario";
             this.lbusuario.Size = new System.Drawing.Size(200, 32);
             this.lbusuario.TabIndex = 91;
             this.lbusuario.Text = "Nuevo Usuario:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label9.Location = new System.Drawing.Point(270, 229);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(63, 22);
-            this.label9.TabIndex = 90;
-            this.label9.Text = "Nuevo";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(170, 229);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 22);
-            this.label2.TabIndex = 89;
-            this.label2.Text = "Guardar";
-            // 
             // detalle
             // 
             this.detalle.AutoSize = true;
             this.detalle.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detalle.ForeColor = System.Drawing.Color.DimGray;
+            this.detalle.ForeColor = System.Drawing.Color.Silver;
             this.detalle.Location = new System.Drawing.Point(70, 113);
             this.detalle.Name = "detalle";
             this.detalle.Size = new System.Drawing.Size(88, 19);
@@ -153,7 +110,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.DimGray;
+            this.label1.ForeColor = System.Drawing.Color.Silver;
             this.label1.Location = new System.Drawing.Point(66, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 19);
@@ -180,68 +137,64 @@
             this.cbo_tipo.TabIndex = 3;
             this.cbo_tipo.SelectedIndexChanged += new System.EventHandler(this.cbo_tipo_SelectedIndexChanged);
             // 
-            // picatras
-            // 
-            //this.picatras.Image = global::admin_az.Properties.Resources.return_48px;
-            this.picatras.Location = new System.Drawing.Point(357, 183);
-            this.picatras.Name = "picatras";
-            this.picatras.Size = new System.Drawing.Size(50, 43);
-            this.picatras.TabIndex = 92;
-            this.picatras.TabStop = false;
-            this.picatras.Click += new System.EventHandler(this.picatras_Click);
-            // 
-            // picbLimpiar
-            // 
-            //this.picbLimpiar.Image = global::admin_az.Properties.Resources.broom_40px;
-            this.picbLimpiar.Location = new System.Drawing.Point(270, 183);
-            this.picbLimpiar.Name = "picbLimpiar";
-            this.picbLimpiar.Size = new System.Drawing.Size(63, 43);
-            this.picbLimpiar.TabIndex = 88;
-            this.picbLimpiar.TabStop = false;
-            this.picbLimpiar.Click += new System.EventHandler(this.picbLimpiar_Click);
-            // 
-            // picbGuardar
-            // 
-            //this.picbGuardar.Image = global::admin_az.Properties.Resources.save_40px;
-            this.picbGuardar.Location = new System.Drawing.Point(183, 183);
-            this.picbGuardar.Name = "picbGuardar";
-            this.picbGuardar.Size = new System.Drawing.Size(40, 40);
-            this.picbGuardar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picbGuardar.TabIndex = 87;
-            this.picbGuardar.TabStop = false;
-            this.picbGuardar.Click += new System.EventHandler(this.picbGuardar_Click);
-            // 
             // btn_close
             // 
             this.btn_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            //this.btn_close.Image = global::admin_az.Properties.Resources.shutdown_40px1;
-            this.btn_close.Location = new System.Drawing.Point(581, -1);
+            this.btn_close.Image = ((System.Drawing.Image)(resources.GetObject("btn_close.Image")));
+            this.btn_close.Location = new System.Drawing.Point(0, -3);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(35, 35);
-            this.btn_close.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btn_close.TabIndex = 17;
             this.btn_close.TabStop = false;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // btn_grande
+            // 
+            this.btn_grande.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_grande.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_grande.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_grande.ForeColor = System.Drawing.Color.Silver;
+            this.btn_grande.Image = ((System.Drawing.Image)(resources.GetObject("btn_grande.Image")));
+            this.btn_grande.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_grande.Location = new System.Drawing.Point(155, 186);
+            this.btn_grande.Name = "btn_grande";
+            this.btn_grande.Size = new System.Drawing.Size(131, 40);
+            this.btn_grande.TabIndex = 151;
+            this.btn_grande.Text = "   Guardar";
+            this.btn_grande.UseVisualStyleBackColor = true;
+            this.btn_grande.Click += new System.EventHandler(this.btn_grande_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Silver;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(304, 186);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 40);
+            this.button1.TabIndex = 152;
+            this.button1.Text = "   Limpiar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form_addusuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(246)))), ((int)(((byte)(248)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(617, 296);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_grande);
             this.Controls.Add(this.cbo_tipo);
             this.Controls.Add(this.txt_password);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txt_apellido);
             this.Controls.Add(this.txtusuario);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.picatras);
             this.Controls.Add(this.lbusuario);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.picbLimpiar);
-            this.Controls.Add(this.picbGuardar);
             this.Controls.Add(this.detalle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtnombre);
@@ -253,9 +206,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Usuario";
             this.Load += new System.EventHandler(this.Form_tipo_servicio_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.picatras)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbLimpiar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picbGuardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn_close)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -268,16 +218,12 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label txt_apellido;
         public System.Windows.Forms.TextBox txtusuario;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.PictureBox picatras;
         private System.Windows.Forms.Label lbusuario;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox picbLimpiar;
-        private System.Windows.Forms.PictureBox picbGuardar;
         private System.Windows.Forms.Label detalle;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtnombre;
         private System.Windows.Forms.ComboBox cbo_tipo;
+        private System.Windows.Forms.Button btn_grande;
+        private System.Windows.Forms.Button button1;
     }
 }

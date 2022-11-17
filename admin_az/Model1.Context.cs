@@ -46,6 +46,7 @@ namespace admin_az
         public virtual DbSet<View_cuadre> View_cuadre { get; set; }
         public virtual DbSet<View_historial> View_historial { get; set; }
         public virtual DbSet<View_reimprimir> View_reimprimir { get; set; }
+        public virtual DbSet<cuentaCXC> cuentaCXCs { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

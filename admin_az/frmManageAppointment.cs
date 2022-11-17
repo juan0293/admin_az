@@ -477,7 +477,12 @@ namespace admin_az
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            Close();
+            Panel panelcontrol = Global.Panel1;
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            open.TopLevel = false;
+            panelcontrol.Controls.Add(open);
+            open.Show(); Close();
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -601,6 +606,27 @@ namespace admin_az
             Listaroferta();
         }
 
+        private void frmManageAppointment_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                if (string.IsNullOrWhiteSpace(txtcosto.Text))
+                {
+                    MessageBox.Show("El costo del trabajo es requerido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtasunto.Text))
+                {
+                    MessageBox.Show("El asunto del trabajo es requerido.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else
+                {
+                    agregar();
+                }
+            }
+        }
+
         public void Listaroferta()
         {
             try
@@ -609,7 +635,7 @@ namespace admin_az
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
-                    ofertaBindingSource.DataSource = db.ofertas.ToList();
+                    ofertaBindingSource.DataSource = db.ofertas.ToList().Where(e=> e.estado == true);
                  
 
                 }
@@ -651,7 +677,7 @@ namespace admin_az
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
-                    var lst = db.ofertas.ToList().Where(m => m.titulo == cbo_oferta.Text);
+                    var lst = db.ofertas.ToList().Where(m => m.titulo == cbo_oferta.Text && m.estado ==true);
                     foreach (var oferta in lst)
                     {
                         porcentaje = monto * Convert.ToDouble(oferta.porcentaje) / 100;

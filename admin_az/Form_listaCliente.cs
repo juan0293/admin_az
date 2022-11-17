@@ -21,7 +21,12 @@ namespace admin_az
         public int idcategoria;
         private void btn_close_Click(object sender, EventArgs e)
         {
-            this.Close();
+           
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            open.TopLevel = false;
+            panelcontrol.Controls.Add(open);
+            open.Show();
         }
 
         public void resfrescar()

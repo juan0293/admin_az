@@ -177,7 +177,12 @@ namespace admin_az
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Panel panelcontrol = Global.Panel1;
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            open.TopLevel = false;
+            panelcontrol.Controls.Add(open);
+            open.Show();
         }
 
         private void cbo_tipo_SelectedIndexChanged(object sender, EventArgs e)
@@ -186,6 +191,21 @@ namespace admin_az
         }
 
         private void picbGuardar_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void picatras_Click(object sender, EventArgs e)
+            
+        {
+            this.Close();
+        }
+
+        private void picbLimpiar_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_grande_Click(object sender, EventArgs e)
         {
             if (coduser == 0)
             {
@@ -199,14 +219,9 @@ namespace admin_az
             }
         }
 
-        private void picatras_Click(object sender, EventArgs e)
-            
+        private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
-        }
 
-        private void picbLimpiar_Click(object sender, EventArgs e)
-        {
             txtnombre.Clear();
             txtusuario.Clear();
             txt_password.Clear();

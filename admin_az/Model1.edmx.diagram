@@ -37,6 +37,7 @@
         <AssociationConnector Association="softcitaModel.FK_factura_metodoppago" />
         <AssociationConnector Association="softcitaModel.FK_factura_usuario" />
         <AssociationConnector Association="softcitaModel.FK_usuario_tipoUsuario" />
+        <EntityTypeShape EntityType="softcitaModel.cuentaCXC" Width="1.5" PointX="10.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

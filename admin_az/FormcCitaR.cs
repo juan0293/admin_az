@@ -272,7 +272,12 @@ namespace admin_az
         }
         private void btn_cerrar_Click(object sender, EventArgs e)
         {
-            Close();
+            Panel panelcontrol = Global.Panel1;
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            open.TopLevel = false;
+            panelcontrol.Controls.Add(open);
+            open.Show();
         }
     }
 }

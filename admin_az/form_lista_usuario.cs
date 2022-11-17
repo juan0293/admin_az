@@ -39,7 +39,11 @@ namespace admin_az
 
         private void picatras_Click(object sender, EventArgs e)
         {
-            Close();
+            Panel panelcontrol = Global.Panel1;
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            panelcontrol.Controls.Add(open);
+            open.Show();
         }
 
         public void eliminarsuario()

@@ -224,7 +224,12 @@ namespace admin_az
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+            Panel panelcontrol = Global.Panel1;
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            open.TopLevel = false;
+            panelcontrol.Controls.Add(open);
+            open.Show();
         }
 
         private void picatras_Click(object sender, EventArgs e)

@@ -321,7 +321,9 @@ namespace admin_az
                     int idcliente = Convert.ToInt32(row.Cells[10].Value);
                     string nombre = row.Cells[1].Value.ToString();
                     string codigo = row.Cells[3].Value.ToString();
-                    panelcontrol.Controls.Clear();
+
+             
+                    panelcontrol.Controls.Clear(); 
                     frmManageAppointment cita = new frmManageAppointment();
                     cita.txt_codigo.Text = codigo;
                     cita.txtnombre.Text = nombre;

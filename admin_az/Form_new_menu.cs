@@ -51,6 +51,7 @@ namespace admin_az
         }
         private void Form_new_menu_Load(object sender, EventArgs e)
         {
+            acceso();
             Global.Panel1 = panelChildForm;
 
             panelChildForm.Controls.Clear();
@@ -58,6 +59,7 @@ namespace admin_az
             open.TopLevel = false;
             panelChildForm.Controls.Add(open);
             open.Show();
+
         }
 
         private void btnMedia_Click(object sender, EventArgs e)
@@ -87,6 +89,7 @@ namespace admin_az
             //..
             //your codes
             //..
+          
             Form_Agenda abrir = new Form_Agenda();
             abrir.Show();
             hideSubMenu();
@@ -148,6 +151,88 @@ namespace admin_az
             panelChildForm.Controls.Add(open);
             open.Show();
             
+        }
+
+        private void btn_finanza_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            FormReporteM open = new FormReporteM();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            form_listaUsuario open = new form_listaUsuario();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_addusuario open = new Form_addusuario();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+            
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_Reporte_pago open = new Form_Reporte_pago();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_porcentaje open = new Form_porcentaje();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_cuadre open = new Form_cuadre();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+           FormcCitaR open = new FormcCitaR();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void btn_cxc_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_cxc open = new Form_cxc();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+        public void acceso()
+        {
+            if (Global.tipoUsuario == "2")
+            {
+               btnajustes.Enabled = false;
+                btnreport.Enabled = false;
+            }
         }
     }
 }

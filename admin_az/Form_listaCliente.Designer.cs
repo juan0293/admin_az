@@ -111,6 +111,7 @@
             this.dgvproducto.EnableHeadersVisualStyles = false;
             this.dgvproducto.Location = new System.Drawing.Point(1, 88);
             this.dgvproducto.Name = "dgvproducto";
+            this.dgvproducto.ReadOnly = true;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -135,6 +136,7 @@
             this.editar.HeaderText = "Editar";
             this.editar.Image = ((System.Drawing.Image)(resources.GetObject("editar.Image")));
             this.editar.Name = "editar";
+            this.editar.ReadOnly = true;
             this.editar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.editar.Width = 50;
             // 
@@ -146,18 +148,21 @@
             this.seleccionar.HeaderText = "Historial";
             this.seleccionar.Image = ((System.Drawing.Image)(resources.GetObject("seleccionar.Image")));
             this.seleccionar.Name = "seleccionar";
+            this.seleccionar.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "codigo";
             this.dataGridViewTextBoxColumn2.HeaderText = "Codigo";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "nombre";
             this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Width = 200;
             // 
             // apellidoDataGridViewTextBoxColumn
@@ -165,6 +170,7 @@
             this.apellidoDataGridViewTextBoxColumn.DataPropertyName = "apellido";
             this.apellidoDataGridViewTextBoxColumn.HeaderText = "Apellido";
             this.apellidoDataGridViewTextBoxColumn.Name = "apellidoDataGridViewTextBoxColumn";
+            this.apellidoDataGridViewTextBoxColumn.ReadOnly = true;
             this.apellidoDataGridViewTextBoxColumn.Width = 200;
             // 
             // telefonoDataGridViewTextBoxColumn
@@ -172,6 +178,7 @@
             this.telefonoDataGridViewTextBoxColumn.DataPropertyName = "telefono";
             this.telefonoDataGridViewTextBoxColumn.HeaderText = "Telefono";
             this.telefonoDataGridViewTextBoxColumn.Name = "telefonoDataGridViewTextBoxColumn";
+            this.telefonoDataGridViewTextBoxColumn.ReadOnly = true;
             this.telefonoDataGridViewTextBoxColumn.Width = 150;
             // 
             // correoDataGridViewTextBoxColumn
@@ -179,6 +186,7 @@
             this.correoDataGridViewTextBoxColumn.DataPropertyName = "correo";
             this.correoDataGridViewTextBoxColumn.HeaderText = "Correo";
             this.correoDataGridViewTextBoxColumn.Name = "correoDataGridViewTextBoxColumn";
+            this.correoDataGridViewTextBoxColumn.ReadOnly = true;
             this.correoDataGridViewTextBoxColumn.Width = 200;
             // 
             // fechanacimientoDataGridViewTextBoxColumn
@@ -189,6 +197,7 @@
             this.fechanacimientoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.fechanacimientoDataGridViewTextBoxColumn.HeaderText = "Fecha de Nac";
             this.fechanacimientoDataGridViewTextBoxColumn.Name = "fechanacimientoDataGridViewTextBoxColumn";
+            this.fechanacimientoDataGridViewTextBoxColumn.ReadOnly = true;
             this.fechanacimientoDataGridViewTextBoxColumn.Width = 200;
             // 
             // idclienteDataGridViewTextBoxColumn
@@ -196,18 +205,21 @@
             this.idclienteDataGridViewTextBoxColumn.DataPropertyName = "idcliente";
             this.idclienteDataGridViewTextBoxColumn.HeaderText = "ID";
             this.idclienteDataGridViewTextBoxColumn.Name = "idclienteDataGridViewTextBoxColumn";
+            this.idclienteDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // cedula
             // 
             this.cedula.DataPropertyName = "cedula";
             this.cedula.HeaderText = "Cedula";
             this.cedula.Name = "cedula";
+            this.cedula.ReadOnly = true;
             // 
             // sangre
             // 
             this.sangre.DataPropertyName = "sangre";
             this.sangre.HeaderText = "Sangre";
             this.sangre.Name = "sangre";
+            this.sangre.ReadOnly = true;
             // 
             // clienteBindingSource
             // 

@@ -186,6 +186,9 @@
     <Compile Include="configuracion.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="cuentaCXC.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos.cs" />
     <Compile Include="estadocita.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -283,6 +286,12 @@
     <Compile Include="Form_cuadre.Designer.cs">
       <DependentUpon>Form_cuadre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_cxc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_cxc.Designer.cs">
+      <DependentUpon>Form_cxc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_historial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +328,12 @@
     <Compile Include="Form_addusuario.Designer.cs">
       <DependentUpon>Form_addusuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_new_cxccs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_new_cxccs.Designer.cs">
+      <DependentUpon>Form_new_cxccs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_new_menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,6 +345,18 @@
     </Compile>
     <Compile Include="Form_pago.Designer.cs">
       <DependentUpon>Form_pago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_porcentaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_porcentaje.Designer.cs">
+      <DependentUpon>Form_porcentaje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Reporte_pago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Reporte_pago.Designer.cs">
+      <DependentUpon>Form_Reporte_pago.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_vista_cita.cs">
       <SubType>Form</SubType>
@@ -463,6 +490,9 @@
     <EmbeddedResource Include="Form_cuadre.resx">
       <DependentUpon>Form_cuadre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_cxc.resx">
+      <DependentUpon>Form_cxc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_historial.resx">
       <DependentUpon>Form_historial.cs</DependentUpon>
     </EmbeddedResource>
@@ -481,11 +511,20 @@
     <EmbeddedResource Include="Form_addusuario.resx">
       <DependentUpon>Form_addusuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_new_cxccs.resx">
+      <DependentUpon>Form_new_cxccs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_new_menu.resx">
       <DependentUpon>Form_new_menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_pago.resx">
       <DependentUpon>Form_pago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_porcentaje.resx">
+      <DependentUpon>Form_porcentaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Reporte_pago.resx">
+      <DependentUpon>Form_Reporte_pago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_vista_cita.resx">
       <DependentUpon>Form_vista_cita.cs</DependentUpon>
@@ -517,6 +556,7 @@
     <None Include="admin_az_ClaveTemporal.pfx" />
     <None Include="artista.datasource" />
     <None Include="cliente.datasource" />
+    <None Include="cuentaCXC.datasource" />
     <None Include="Datos.datasource" />
     <None Include="factura.datasource" />
     <None Include="juan881_60%40live.com.pfx" />

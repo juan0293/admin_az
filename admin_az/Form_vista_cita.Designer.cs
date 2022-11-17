@@ -75,9 +75,7 @@
             this.dgv_citas.AllowUserToAddRows = false;
             this.dgv_citas.AllowUserToOrderColumns = true;
             this.dgv_citas.AllowUserToResizeRows = false;
-            this.dgv_citas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv_citas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgv_citas.BackgroundColor = System.Drawing.Color.White;
             this.dgv_citas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv_citas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -125,7 +123,7 @@
             this.dgv_citas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgv_citas.RowHeadersVisible = false;
             this.dgv_citas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_citas.Size = new System.Drawing.Size(1306, 460);
+            this.dgv_citas.Size = new System.Drawing.Size(833, 354);
             this.dgv_citas.TabIndex = 50;
             this.dgv_citas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_citas_CellContentClick);
             this.dgv_citas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_citas_CellFormatting);
@@ -388,7 +386,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Silver;
-            this.label2.Location = new System.Drawing.Point(584, 0);
+            this.label2.Location = new System.Drawing.Point(525, 35);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(292, 42);
             this.label2.TabIndex = 152;
@@ -402,7 +400,7 @@
             this.btn_estado.ForeColor = System.Drawing.Color.Silver;
             this.btn_estado.Image = ((System.Drawing.Image)(resources.GetObject("btn_estado.Image")));
             this.btn_estado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_estado.Location = new System.Drawing.Point(452, 90);
+            this.btn_estado.Location = new System.Drawing.Point(414, 90);
             this.btn_estado.Name = "btn_estado";
             this.btn_estado.Size = new System.Drawing.Size(173, 51);
             this.btn_estado.TabIndex = 151;
@@ -418,9 +416,9 @@
             this.button1.ForeColor = System.Drawing.Color.Silver;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(631, 90);
+            this.button1.Location = new System.Drawing.Point(593, 90);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 51);
+            this.button1.Size = new System.Drawing.Size(138, 51);
             this.button1.TabIndex = 149;
             this.button1.Text = "   Anular";
             this.button1.UseVisualStyleBackColor = true;
@@ -436,7 +434,7 @@
             this.btn_facturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_facturar.Location = new System.Drawing.Point(270, 90);
             this.btn_facturar.Name = "btn_facturar";
-            this.btn_facturar.Size = new System.Drawing.Size(176, 51);
+            this.btn_facturar.Size = new System.Drawing.Size(138, 51);
             this.btn_facturar.TabIndex = 148;
             this.btn_facturar.Text = "   Facturar";
             this.btn_facturar.UseVisualStyleBackColor = true;

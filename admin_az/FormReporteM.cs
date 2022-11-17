@@ -12,7 +12,7 @@ namespace admin_az
 {
     public partial class FormReporteM : Form
     {
-        public int idcliente;
+        public int idcliente, metodoID;
         public double efectivo, deposito, tarjeta;
         public FormReporteM()
         {
@@ -39,6 +39,48 @@ namespace admin_az
             catch { }
 
         }
+        public void ListarMetodo()
+        {
+            try
+            {
+
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                    var lst = db.metodoppagoes.ToList();
+                    foreach (var ometodo in lst)
+                    {
+                        cbo_metodo.Items.Add(ometodo.nombre);
+
+                    }
+
+                }
+
+            }
+
+            catch { }
+        }
+        public void ListarIDMetodo()
+        {
+            try
+            {
+
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                    var lst = db.metodoppagoes.ToList().Where(m => m.nombre == cbo_metodo.Text);
+                    foreach (var ometodo in lst)
+                    {
+                        metodoID = ometodo.idmetodo;
+
+                    }
+
+                }
+
+            }
+
+            catch { }
+        }
         public void listarreporte()
         {
             try
@@ -50,14 +92,32 @@ namespace admin_az
 
                 {
 
-                   viewhistorialBindingSource.DataSource = db.View_historial.ToList().Where(f => f.fecha >= startDate && f.fecha <= endDate && f.condicion ==true);
+                   viewhistorialBindingSource.DataSource = db.View_historial.ToList().Where(f => f.fecha >= startDate && f.fecha <= endDate && f.condicion ==true && f.idmetodo ==metodoID);
                     metodoppagoBindingSource.DataSource = db.metodoppagoes.ToList();
                   
                 }
             }
             catch { }
         }
-     
+        public void listarGeneral()
+        {
+            try
+            {
+
+                DateTime startDate = Convert.ToDateTime(dtpDateinicio.Text);
+                DateTime endDate = Convert.ToDateTime(dtpDatefin.Text);
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+
+                    viewhistorialBindingSource.DataSource = db.View_historial.ToList().Where(f => f.fecha >= startDate && f.fecha <= endDate && f.condicion == true);
+                    metodoppagoBindingSource.DataSource = db.metodoppagoes.ToList();
+
+                }
+            }
+            catch { }
+        }
+
         public void listaridcliente()
         {
             try
@@ -247,6 +307,7 @@ namespace admin_az
             txt_deposito.Text = deposito.ToString();
             txt_tarjetas.Text = tarjeta.ToString();
         }
+
         private void FormReporteM_Load(object sender, EventArgs e)
         {
             if (idcliente > 0)
@@ -254,7 +315,10 @@ namespace admin_az
                 listaridcliente();
                 contarcita();
             }
+
+            ListarMetodo();
         }
+       
         public void operacion()
         {
             deposito = 0;
@@ -270,22 +334,58 @@ namespace admin_az
 
         private void picActualizar_Click(object sender, EventArgs e)
         {
-            listarreporte();
+            if(cbo_metodo.Text =="")
+            {
+                MessageBox.Show("Por favor seleccionar una opcion", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+            if(cbo_metodo.Text == "General")
+            {
+                listarGeneral();
+            }
+            else
+            {
+                listarreporte();
+            }
+           
             operacion();
 
+            }
         }
 
         private void picatras_Click(object sender, EventArgs e)
         {
-            Close();
+            Panel panelcontrol = Global.Panel1;
+            panelcontrol.Controls.Clear();
+            Form_home open = new Form_home();
+            open.TopLevel = false;
+            panelcontrol.Controls.Add(open);
+            open.Show();
         }
 
         private void picbGuardar_Click(object sender, EventArgs e)
         {
-             imprimir_reporte();
+          
         }
 
         private void picpequena_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void cbo_metodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ListarIDMetodo();
+        }
+
+        private void btn_grande_Click(object sender, EventArgs e)
+        {
+            imprimir_reporte();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             imprimir_reportepequeno();
         }

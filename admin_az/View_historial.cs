@@ -23,5 +23,6 @@ namespace admin_az
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<bool> condicion { get; set; }
         public Nullable<int> idmetodo { get; set; }
+        public Nullable<int> artista { get; set; }
     }
 }
