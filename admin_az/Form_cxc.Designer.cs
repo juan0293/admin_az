@@ -72,7 +72,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Silver;
-            this.label5.Location = new System.Drawing.Point(285, 3);
+            this.label5.Location = new System.Drawing.Point(311, 3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(155, 29);
             this.label5.TabIndex = 154;
@@ -83,7 +83,7 @@
             this.dtp_fecha_inicio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtp_fecha_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_inicio.Location = new System.Drawing.Point(290, 35);
+            this.dtp_fecha_inicio.Location = new System.Drawing.Point(316, 35);
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
             this.dtp_fecha_inicio.Size = new System.Drawing.Size(236, 49);
             this.dtp_fecha_inicio.TabIndex = 153;
@@ -120,7 +120,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(527, 3);
+            this.label7.Location = new System.Drawing.Point(553, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(155, 29);
             this.label7.TabIndex = 156;
@@ -131,7 +131,7 @@
             this.dtp_fecha_fin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtp_fecha_fin.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_fin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_fin.Location = new System.Drawing.Point(532, 35);
+            this.dtp_fecha_fin.Location = new System.Drawing.Point(558, 35);
             this.dtp_fecha_fin.Name = "dtp_fecha_fin";
             this.dtp_fecha_fin.Size = new System.Drawing.Size(219, 49);
             this.dtp_fecha_fin.TabIndex = 155;
@@ -145,7 +145,7 @@
             this.btn_estado.ForeColor = System.Drawing.Color.Silver;
             this.btn_estado.Image = ((System.Drawing.Image)(resources.GetObject("btn_estado.Image")));
             this.btn_estado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_estado.Location = new System.Drawing.Point(434, 90);
+            this.btn_estado.Location = new System.Drawing.Point(461, 90);
             this.btn_estado.Name = "btn_estado";
             this.btn_estado.Size = new System.Drawing.Size(138, 51);
             this.btn_estado.TabIndex = 151;
@@ -161,7 +161,7 @@
             this.button1.ForeColor = System.Drawing.Color.Silver;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(578, 90);
+            this.button1.Location = new System.Drawing.Point(605, 90);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(173, 51);
             this.button1.TabIndex = 149;
@@ -177,7 +177,7 @@
             this.btn_facturar.ForeColor = System.Drawing.Color.Silver;
             this.btn_facturar.Image = ((System.Drawing.Image)(resources.GetObject("btn_facturar.Image")));
             this.btn_facturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_facturar.Location = new System.Drawing.Point(290, 90);
+            this.btn_facturar.Location = new System.Drawing.Point(317, 90);
             this.btn_facturar.Name = "btn_facturar";
             this.btn_facturar.Size = new System.Drawing.Size(138, 51);
             this.btn_facturar.TabIndex = 148;

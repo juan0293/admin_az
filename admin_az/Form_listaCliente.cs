@@ -37,7 +37,7 @@ namespace admin_az
 
                 {
                    
-                     //clienteBindingSource.Clear();
+                    clienteBindingSource.Clear();
                     clienteBindingSource.DataSource = db.clientes.ToList().OrderByDescending(f=> f.idcliente);
 
                 }

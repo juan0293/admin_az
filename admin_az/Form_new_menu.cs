@@ -202,17 +202,12 @@ namespace admin_az
 
         private void button8_Click(object sender, EventArgs e)
         {
-            panelChildForm.Controls.Clear();
-            Form_cuadre open = new Form_cuadre();
-            open.TopLevel = false;
-            panelChildForm.Controls.Add(open);
-            open.Show();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             panelChildForm.Controls.Clear();
-           FormcCitaR open = new FormcCitaR();
+            FormCuadreR open = new FormCuadreR();
             open.TopLevel = false;
             panelChildForm.Controls.Add(open);
             open.Show();
@@ -233,6 +228,33 @@ namespace admin_az
                btnajustes.Enabled = false;
                 btnreport.Enabled = false;
             }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_Artista open = new Form_Artista();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void btn_cxc_Click_1(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_cxc open = new Form_cxc();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void button8_Click_1(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_cuadre open = new Form_cuadre();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
         }
     }
 }

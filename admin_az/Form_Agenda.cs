@@ -27,6 +27,7 @@ namespace admin_az
                 {
                     frmManageAppointment withBlock =new  frmManageAppointment();
                     withBlock.AppID = 0;
+                    withBlock.opcion = "1";
                     //withBlock.txtName.Text = "";
                     //withBlock.txtAddress.Text = "";
                     //withBlock.txtComment.Text = "";

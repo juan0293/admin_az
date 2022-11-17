@@ -280,6 +280,12 @@
     <Compile Include="Form_Agenda.Designer.cs">
       <DependentUpon>Form_Agenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Artista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Artista.Designer.cs">
+      <DependentUpon>Form_Artista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_cuadre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -486,6 +492,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Agenda.resx">
       <DependentUpon>Form_Agenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Artista.resx">
+      <DependentUpon>Form_Artista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_cuadre.resx">
       <DependentUpon>Form_cuadre.cs</DependentUpon>

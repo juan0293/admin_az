@@ -14,6 +14,7 @@ namespace admin_az
 {
     public partial class frmManageAppointment : Form
     {
+        public string opcion;
         Panel panelcontrol = Global.Panel1;
         public int AppID = 0;
         public int metodoID = 0;
@@ -321,6 +322,7 @@ namespace admin_az
         }
         private void frmManageAppointment_Load(object sender, EventArgs e)
         {
+           
             //txt_hora.Format = DateTimePickerFormat.Custom;
             //txt_hora.CustomFormat = "MM/dd/yyyy hh:mm:ss";
             //txt_hora.Format = DateTimePickerFormat.Time;
@@ -631,18 +633,21 @@ namespace admin_az
         {
             try
             {
-
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
-                    ofertaBindingSource.DataSource = db.ofertas.ToList().Where(e=> e.estado == true);
-                 
+                    var lst = db.ofertas.ToList().Where(m => m.estado == true);
+                    foreach (var oferta in lst)
+                    {
+                        cbo_oferta.Items.Add(oferta.titulo);
 
+
+                    }
                 }
-
             }
-
             catch { }
+
+        
         }
 
         public void ListarIDartista()

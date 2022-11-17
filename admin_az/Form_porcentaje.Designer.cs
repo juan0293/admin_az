@@ -48,13 +48,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btn_finalizar = new System.Windows.Forms.Button();
             this.dgvreporte = new System.Windows.Forms.DataGridView();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idofertaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tituloDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaInicioDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaFinDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentajeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ofertaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -167,6 +167,7 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.btn_finalizar);
             this.panel2.Controls.Add(this.btn_save);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.dtpfecha_vencimiento);
@@ -198,7 +199,6 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.btn_finalizar);
             this.panel3.Controls.Add(this.dgvreporte);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 200);
@@ -215,9 +215,9 @@
             this.btn_finalizar.ForeColor = System.Drawing.Color.Silver;
             this.btn_finalizar.Image = ((System.Drawing.Image)(resources.GetObject("btn_finalizar.Image")));
             this.btn_finalizar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_finalizar.Location = new System.Drawing.Point(251, 291);
+            this.btn_finalizar.Location = new System.Drawing.Point(425, 87);
             this.btn_finalizar.Name = "btn_finalizar";
-            this.btn_finalizar.Size = new System.Drawing.Size(167, 51);
+            this.btn_finalizar.Size = new System.Drawing.Size(167, 40);
             this.btn_finalizar.TabIndex = 133;
             this.btn_finalizar.Text = "Finalizar";
             this.btn_finalizar.UseVisualStyleBackColor = true;
@@ -273,11 +273,6 @@
             this.dgvreporte.TabIndex = 99;
             this.dgvreporte.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvreporte_CellFormatting);
             // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Name = "Estado";
-            // 
             // idofertaDataGridViewTextBoxColumn
             // 
             this.idofertaDataGridViewTextBoxColumn.DataPropertyName = "idoferta";
@@ -321,6 +316,11 @@
             this.estadoDataGridViewTextBoxColumn.HeaderText = "Estado";
             this.estadoDataGridViewTextBoxColumn.Name = "estadoDataGridViewTextBoxColumn";
             this.estadoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
             // 
             // ofertaBindingSource
             // 
