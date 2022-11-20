@@ -26,14 +26,14 @@ namespace admin_az
             try
             {
 
-                DateTime startDate = Convert.ToDateTime(dtp_fecha_inicio.Text);
-                DateTime endDate = Convert.ToDateTime(dtp_fecha_fin.Text);
+                //DateTime startDate = Convert.ToDateTime(dtp_fecha_inicio.Text);
+                //DateTime endDate = Convert.ToDateTime(dtp_fecha_fin.Text);
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
 
                     cuentaCXCBindingSource.Clear();
-                    cuentaCXCBindingSource.DataSource = db.cuentaCXCs.ToList().Where(f => f.fecha >= startDate && f.fecha <= endDate );
+                    cuentaCXCBindingSource.DataSource = db.cuentaCXCs.ToList();
 
                 }
 
@@ -77,7 +77,6 @@ namespace admin_az
             }
             catch { }
         }
-
         public void anular()
         {
             try
@@ -137,12 +136,12 @@ namespace admin_az
         }
         private void Form_cxc_Load(object sender, EventArgs e)
         {
-            dtp_fecha_inicio.Select();
-            DateTime date = DateTime.Now;
-            DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
-            DateTime oUltimoDiaDelMes = oPrimerDiaDelMes.AddMonths(1).AddDays(-1);
-            dtp_fecha_inicio.Value = oPrimerDiaDelMes;
-            dtp_fecha_fin.Value = oUltimoDiaDelMes;
+            //dtp_fecha_inicio.Select();
+            //DateTime date = DateTime.Now;
+            //DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
+            //DateTime oUltimoDiaDelMes = oPrimerDiaDelMes.AddMonths(1).AddDays(-1);
+            //dtp_fecha_inicio.Value = oPrimerDiaDelMes;
+            //dtp_fecha_fin.Value = oUltimoDiaDelMes;
             cargarDatos();
         }
         public void cargarDatos()
@@ -160,10 +159,10 @@ namespace admin_az
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
-                    DateTime startDate = Convert.ToDateTime(dtp_fecha_inicio.Text);
-                    DateTime endDate = Convert.ToDateTime(dtp_fecha_fin.Text);
+                    //DateTime startDate = Convert.ToDateTime(dtp_fecha_inicio.Text);
+                    //DateTime endDate = Convert.ToDateTime(dtp_fecha_fin.Text);
                    
-                    var lst = db.cuentaCXCs.Where(f => f.fecha >= startDate && f.fecha <= endDate && f.estado ==true).Sum(s => s.monto);
+                    var lst = db.cuentaCXCs.Where(f =>  f.estado ==true).Sum(s => s.monto);
 
                     lb_pendientes.Text = Convert.ToDecimal(lst).ToString("#,##0.00");
                 }
@@ -180,10 +179,10 @@ namespace admin_az
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
-                    DateTime startDate = Convert.ToDateTime(dtp_fecha_inicio.Text);
-                    DateTime endDate = Convert.ToDateTime(dtp_fecha_fin.Text);
+                    //DateTime startDate = Convert.ToDateTime(dtp_fecha_inicio.Text);
+                    //DateTime endDate = Convert.ToDateTime(dtp_fecha_fin.Text);
 
-                    var lst = db.cuentaCXCs.Where(f => f.fecha >= startDate && f.fecha <= endDate && f.estado == false).Sum(s => s.monto);
+                    var lst = db.cuentaCXCs.Where(f =>  f.estado == false).Sum(s => s.monto);
 
                     lb_finalizada.Text = Convert.ToDecimal(lst).ToString("#,##0.00");
                 }
@@ -194,12 +193,41 @@ namespace admin_az
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            anular();
+            if (MessageBox.Show("Por favor confirme antes de continuar" + "\n" + "Quieres continuar ?", "            SEGURO QUE DESEA ANULAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            {
+                anular();
+                cargarDatos();
+            }
+
+            else
+
+            {
+                //do something if NO
+            }
+          
+           
         }
 
         private void btn_estado_Click(object sender, EventArgs e)
         {
-            pagar();
+            try
+            {
+                foreach (DataGridViewRow row in dgv_citas.SelectedRows)
+                {
+                    Form_add_pago_cxc open = new Form_add_pago_cxc();
+
+                    open.txtTotal.Text = Convert.ToDecimal(row.Cells[4].Value).ToString("#,##0.00");
+                    open.opcion = "2";
+                    open.idcuentacxp = Convert.ToInt32(row.Cells[0].Value);
+                    open.cliente = row.Cells[1].Value.ToString();
+                    open.pasado += Formadd_pasado;
+                    open.ShowDialog();
+
+                }
+
+            }
+            catch { }
         }
 
         private void dtp_fecha_fin_ValueChanged(object sender, EventArgs e)
@@ -218,6 +246,19 @@ namespace admin_az
             Form_new_cxccs formadd = new Form_new_cxccs();
             formadd.pasado += Formadd_pasado;
             formadd.ShowDialog();
+        }
+
+        private void btn_historial_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dgv_citas.SelectedRows)
+            {
+                Form_historial_pago open = new Form_historial_pago();
+                open.idcxp = Convert.ToInt32(row.Cells[0].Value);
+              
+                open.ShowDialog();
+
+            }
+         
         }
     }
 }

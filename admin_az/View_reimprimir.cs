@@ -30,5 +30,7 @@ namespace admin_az
         public string tiempo_estimado { get; set; }
         public string apellido { get; set; }
         public string telefono { get; set; }
+        public string nombreArtista { get; set; }
+        public Nullable<double> descuento { get; set; }
     }
 }

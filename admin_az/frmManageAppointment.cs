@@ -17,7 +17,9 @@ namespace admin_az
         public string opcion;
         Panel panelcontrol = Global.Panel1;
         public int AppID = 0;
+        public double descuento = 0.00;
         public int metodoID = 0;
+        
         public int clienteID = 0;
         public int idcita, idartista, idoferta;
         double porcentaje = 0.00;
@@ -167,9 +169,12 @@ namespace admin_az
                     ocita.iduser = Convert.ToInt32(Global.idusuario);
                     ocita.idmetodo= metodoID;
                     ocita.asunto = txtasunto.Text;
+                    ocita.cantidad_sesion = Convert.ToInt16(cbo_sesiones.Text);
                     ocita.fechaCita = Convert.ToDateTime(dtpDate.Text);
                     ocita.monto =Convert.ToDouble(txtTotal.Text);
                     ocita.fecha = DateTime.Now;
+                    ocita.descuento = descuento;
+                    ocita.nombreArtista = cbo_artista.Text;
                     ocita.resta = resultado;
                         if(cbo_artista.Text !="")
                     {
@@ -265,8 +270,8 @@ namespace admin_az
                 string rnc = "40225197439";
 
 
-                e.Graphics.DrawImage(piclogo.Image, new RectangleF(45, 0, 200, 110));
-                e.Graphics.DrawString(empresa.ToUpper(), font_28, Brushes.Black, new RectangleF(2, y += 100, 300, 0));
+                e.Graphics.DrawImage(piclogo.Image, new RectangleF(45, 0, 150, 150));
+                e.Graphics.DrawString(empresa.ToUpper(), font_28, Brushes.Black, new RectangleF(2, y += 120, 300, 0));
                 e.Graphics.DrawString(direccion.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 30, 300, 50));
                 e.Graphics.DrawString("TELEFONO: " + telefono1, font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                 e.Graphics.DrawString("RNC: " + rnc.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
@@ -277,10 +282,12 @@ namespace admin_az
                     e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                     e.Graphics.DrawString("FACTURA PARA CONSUMIDOR FINAL", font_28, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                     e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
-                    e.Graphics.DrawString("CLIENTE: " + txtnombre.Text.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("Artista: " + cbo_artista.Text.ToUpper(), font_28, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("CLIENTE: " + txtnombre.Text.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 20, 300, 50));
                     e.Graphics.DrawString("TELEFONO: " + telefono, font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                     e.Graphics.DrawString("FECHA/CITA: " +Convert.ToDateTime(dtpDate.Text).ToShortDateString(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                     e.Graphics.DrawString("HORA: " + txt_hora.Text.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                    e.Graphics.DrawString("#SESIONES: " + cbo_sesiones.Text, font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                 e.Graphics.DrawString("TIEMPO ESTIMADO: " + txt_estimado.Text.ToUpper(), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                 e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                 e.Graphics.DrawString("DESCRIPCION                    VALOR  ", font_10, Brushes.Black, new RectangleF(2, y += 20, 300, 50));
@@ -306,11 +313,13 @@ namespace admin_az
                 e.Graphics.DrawString("FACTURA: 000" + (idcita), font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                 //e.Graphics.DrawString("GRACIAS POR SU VISITA", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
                 e.Graphics.DrawString("ESCANEA EL CODIGO Y SIGUENOS!", font_10, Brushes.Black, new RectangleF(2, y += 30, 300, 50));
-                e.Graphics.DrawImage(picBarcode.Image, new RectangleF(45, 600, 200, 110));
+                e.Graphics.DrawImage(picBarcode.Image, new RectangleF(45, 700, 150, 150));
                 e.Graphics.DrawString("----------------------------------------------------------------------------", font_8, Brushes.Black, new RectangleF(2, y += 12, 300, 50));
                 // e.Graphics.DrawString("FACTURADO EN PESOS DOMINICANOS", font_6, Brushes.Black, new RectangleF(80, y += 7, 300, 50));
                 //e.Graphics.DrawString("             WWW.ERMSOFTS.COM     ", font_10, Brushes.Black, new RectangleF(2, y += 100, 300, 50));
                 e.Graphics.DrawString("", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                e.Graphics.DrawString("", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
+                e.Graphics.DrawString("", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50)); 
                 e.Graphics.DrawString(".", font_10, Brushes.Black, new RectangleF(2, y += 15, 300, 50));
 
 
@@ -329,6 +338,7 @@ namespace admin_az
             //txt_hora.ShowUpDown = true;
             //MessageBox.Show(clienteID.ToString());
             txtasunto.Focus();
+            cbo_sesiones.Text = "1";
             ListarMetodo();
             cbo_metodo.Text = "Efectivo";
 
@@ -375,6 +385,25 @@ namespace admin_az
                     db.SaveChanges();
 
                     
+
+                }
+            }
+            catch { }
+        }
+        public void addsesiones()
+        {
+            try
+            {
+                using (softcitaEntities db = new softcitaEntities())
+                {
+
+                    sesion osesion = new sesion();
+                    osesion.idcita = idcita;
+                    osesion.cantidad =1;
+                    db.sesions.Add(osesion);
+                    db.SaveChanges();
+
+
 
                 }
             }
@@ -535,7 +564,27 @@ namespace admin_az
             cbo_metodo.SelectedIndex = -1;
             txt_pagado.Clear();
         }
+        public void addcxc()
+        {
+            try
+            {
+                using (softcitaEntities db = new softcitaEntities())
+                {
 
+                    Cuentacxp ocxp = new Cuentacxp();
+                    ocxp.cliente = txtnombre.Text;
+                    ocxp.fecha = DateTime.Now;
+                    ocxp.monto = resultado;
+                    ocxp.idiente = clienteID;
+                    ocxp.idcita = idcita;
+                    ocxp.estado = true;
+                    db.Cuentacxps.Add(ocxp);
+                    db.SaveChanges();
+                }
+            }
+            catch { }
+        }
+       
         private void button2_Click(object sender, EventArgs e)
         {
             if (cbo_metodo.Text == "")
@@ -545,10 +594,15 @@ namespace admin_az
             else
             {
                 addcliente();
-               
                 guardar();
+                addsesiones();
                 addtrabajo();
-                telefono = "";
+                if(resultado >0)
+                {
+                    addcxc();
+                }
+                resultado = 0;
+                telefono = ""; 
                 porcentaje = 0;
               
 
@@ -561,6 +615,8 @@ namespace admin_az
             panel1_pago.Visible = false;
             txtTotal.Clear();
             cbo_metodo.SelectedIndex = -1;
+            cbo_oferta.SelectedIndex = -1;
+            cbo_artista.SelectedIndex = -1;
             txt_pagado.Clear();
         }
 
@@ -600,11 +656,14 @@ namespace admin_az
 
         private void cbo_artista_DropDown(object sender, EventArgs e)
         {
+          
             ListarArtista();
         }
 
         private void cbo_oferta_DropDown(object sender, EventArgs e)
         {
+            txt_pagado.Text = "0.00";
+            siguiente();
             Listaroferta();
         }
 
@@ -633,6 +692,7 @@ namespace admin_az
         {
             try
             {
+                cbo_oferta.Items.Clear();
                 using (softcitaEntities db = new softcitaEntities())
 
                 {
@@ -674,6 +734,7 @@ namespace admin_az
         }
         public void ListarDescuento()
         {
+            resultado = 0.00;
             try
             {
                 double resultado = 0.00;
@@ -687,6 +748,7 @@ namespace admin_az
                     {
                         porcentaje = monto * Convert.ToDouble(oferta.porcentaje) / 100;
                         resultado = monto - porcentaje;
+                        descuento = porcentaje;
                         idoferta = oferta.idoferta;
                         txtTotal.Text = Convert.ToDecimal(resultado).ToString("#,###,##0.00");
                         txt_pagado.Text = Convert.ToDecimal(resultado).ToString("#,###,##0.00");

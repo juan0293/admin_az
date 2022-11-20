@@ -37,6 +37,9 @@ namespace admin_az
         public Nullable<int> artista { get; set; }
         public Nullable<int> oferta { get; set; }
         public string tiempo_estimado { get; set; }
+        public string nombreArtista { get; set; }
+        public Nullable<double> descuento { get; set; }
+        public Nullable<int> cantidad_sesion { get; set; }
     
         public virtual artista artista1 { get; set; }
         public virtual cliente cliente { get; set; }

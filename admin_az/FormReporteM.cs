@@ -310,6 +310,12 @@ namespace admin_az
 
         private void FormReporteM_Load(object sender, EventArgs e)
         {
+            dtpDateinicio.Select();
+            DateTime date = DateTime.Now;
+            DateTime oPrimerDiaDelMes = new DateTime(date.Year, date.Month, 1);
+            DateTime oUltimoDiaDelMes = oPrimerDiaDelMes.AddMonths(1).AddDays(-1);
+            dtpDateinicio.Value = oPrimerDiaDelMes;
+            dtpDatefin.Value = oUltimoDiaDelMes;
             if (idcliente > 0)
             {
                 listaridcliente();

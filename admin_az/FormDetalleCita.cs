@@ -244,12 +244,12 @@ namespace admin_az
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Panel panelcontrol = Global.Panel1;
-            panelcontrol.Controls.Clear();
-            Form_home open = new Form_home();
-            open.TopLevel = false;
-            panelcontrol.Controls.Add(open);
-            open.Show();
+            //Panel panelcontrol = Global.Panel1;
+            //panelcontrol.Controls.Clear();
+            //Form_home open = new Form_home();
+            //open.TopLevel = false;
+            //panelcontrol.Controls.Add(open);
+            //open.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)

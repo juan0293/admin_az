@@ -50,6 +50,29 @@ namespace admin_az
             catch { MessageBox.Show("Algo salio Mal"); }
 
         }
+        public void addcxp()
+        {
+            try
+            {
+                using (softcitaEntities db = new softcitaEntities())
+
+                {
+                    Cuentacxp ocxc = new Cuentacxp();
+
+                    ocxc.cliente = txtnombre.Text;
+                    ocxc.monto = Convert.ToDouble(txt_monto.Text);
+                    ocxc.fecha = DateTime.Now;     
+                    db.Cuentacxps.Add(ocxc);
+                    db.SaveChanges();
+
+
+
+                }
+
+            }
+            catch { MessageBox.Show("Algo salio Mal"); }
+
+        }
         public void guardar()
         {
             if (txtnombre.Text == "")
@@ -61,8 +84,14 @@ namespace admin_az
 
             else
             {
-
-                addcxc();
+                if(lb_cliente.Text =="Cliente")
+                {
+                    addcxp();
+                }
+                else
+                {
+                    addcxc();
+                }
                 pasado(" ");
                 Close();
                

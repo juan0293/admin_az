@@ -34,5 +34,6 @@ namespace admin_az
         public Nullable<bool> condicion { get; set; }
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<double> montopagado { get; set; }
+        public Nullable<int> cantidad_sesion { get; set; }
     }
 }

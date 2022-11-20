@@ -5,25 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="137f8b7f1a22421db93a28fb312112e8" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="softcitaModel.artista" Width="1.5" PointX="0.75" PointY="8.625" />
-        <EntityTypeShape EntityType="softcitaModel.cierre" Width="1.5" PointX="3" PointY="16.75" />
+        <EntityTypeShape EntityType="softcitaModel.artista" Width="1.5" PointX="0.75" PointY="8.875" />
+        <EntityTypeShape EntityType="softcitaModel.cierre" Width="1.5" PointX="3" PointY="17.625" />
         <EntityTypeShape EntityType="softcitaModel.cita" Width="1.5" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="softcitaModel.cliente" Width="1.5" PointX="0.75" PointY="11.375" />
-        <EntityTypeShape EntityType="softcitaModel.configuracion" Width="1.5" PointX="3" PointY="14.375" />
-        <EntityTypeShape EntityType="softcitaModel.estadocita" Width="1.5" PointX="0.75" PointY="6.25" />
-        <EntityTypeShape EntityType="softcitaModel.factura" Width="1.5" PointX="5.25" PointY="2.5" />
-        <EntityTypeShape EntityType="softcitaModel.metodoppago" Width="1.5" PointX="0.75" PointY="3" />
-        <EntityTypeShape EntityType="softcitaModel.oferta" Width="1.5" PointX="0.75" PointY="23.125" />
-        <EntityTypeShape EntityType="softcitaModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="softcitaModel.tipoUsuario" Width="1.5" PointX="1.5" PointY="20" />
-        <EntityTypeShape EntityType="softcitaModel.trabajo" Width="1.5" PointX="5.25" PointY="6.375" />
-        <EntityTypeShape EntityType="softcitaModel.usuario" Width="1.5" PointX="0.75" PointY="15.25" />
-        <EntityTypeShape EntityType="softcitaModel.View_1_usuario" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="softcitaModel.View_Cliente" Width="1.5" PointX="7.75" PointY="7.75" />
-        <EntityTypeShape EntityType="softcitaModel.View_cliente_h" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="softcitaModel.View_cuadre" Width="1.5" PointX="2.75" PointY="9.75" />
-        <EntityTypeShape EntityType="softcitaModel.View_historial" Width="1.5" PointX="9.75" PointY="4.75" />
-        <EntityTypeShape EntityType="softcitaModel.View_reimprimir" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="softcitaModel.cliente" Width="1.5" PointX="0.75" PointY="14.625" />
+        <EntityTypeShape EntityType="softcitaModel.configuracion" Width="1.5" PointX="3" PointY="21" />
+        <EntityTypeShape EntityType="softcitaModel.cuentaCXC" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="softcitaModel.Cuentacxp" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="softcitaModel.estadocita" Width="1.5" PointX="0.75" PointY="6.5" />
+        <EntityTypeShape EntityType="softcitaModel.factura" Width="1.5" PointX="8.25" PointY="2.75" />
+        <EntityTypeShape EntityType="softcitaModel.metodoppago" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="softcitaModel.oferta" Width="1.5" PointX="0.75" PointY="11.5" />
+        <EntityTypeShape EntityType="softcitaModel.sysdiagram" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="softcitaModel.tipoUsuario" Width="1.5" PointX="1.5" PointY="23.375" />
+        <EntityTypeShape EntityType="softcitaModel.trabajo" Width="1.5" PointX="5.25" PointY="3.125" />
+        <EntityTypeShape EntityType="softcitaModel.usuario" Width="1.5" PointX="0.75" PointY="18.5" />
+        <EntityTypeShape EntityType="softcitaModel.View_1_usuario" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="softcitaModel.View_Cliente" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="softcitaModel.View_cliente_h" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="softcitaModel.View_cuadre" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="softcitaModel.View_historial" Width="1.5" PointX="8.75" PointY="10.75" />
+        <EntityTypeShape EntityType="softcitaModel.View_reimprimir" Width="1.5" PointX="10.75" PointY="10.75" />
         <AssociationConnector Association="softcitaModel.FK_cita_artista" />
         <AssociationConnector Association="softcitaModel.FK_cierre_usuario" />
         <AssociationConnector Association="softcitaModel.FK_cita_cliente" />
@@ -37,7 +39,9 @@
         <AssociationConnector Association="softcitaModel.FK_factura_metodoppago" />
         <AssociationConnector Association="softcitaModel.FK_factura_usuario" />
         <AssociationConnector Association="softcitaModel.FK_usuario_tipoUsuario" />
-        <EntityTypeShape EntityType="softcitaModel.cuentaCXC" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="softcitaModel.pago_cxc" Width="1.5" PointX="12.375" PointY="6.75" />
+        <EntityTypeShape EntityType="softcitaModel.pago_cxp" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="softcitaModel.sesion" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

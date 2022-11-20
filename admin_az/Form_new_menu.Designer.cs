@@ -36,17 +36,21 @@
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.panelSideMenu = new System.Windows.Forms.Panel();
             this.panel_ajustes = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnajustes = new System.Windows.Forms.Button();
             this.panelToolsSubMenu = new System.Windows.Forms.Panel();
+            this.button11 = new System.Windows.Forms.Button();
+            this.btn_cxc = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.btn_reporte = new System.Windows.Forms.Button();
             this.btn_finanza = new System.Windows.Forms.Button();
             this.btnreport = new System.Windows.Forms.Button();
             this.panelPlaylistSubMenu = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
@@ -56,9 +60,6 @@
             this.panelMediaSubMenu = new System.Windows.Forms.Panel();
             this.btn_nuevo_cliente = new System.Windows.Forms.Button();
             this.btncliente = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.btn_cxc = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.piclogo)).BeginInit();
             this.panelChildForm.SuspendLayout();
@@ -161,11 +162,30 @@
             this.panel_ajustes.Controls.Add(this.button4);
             this.panel_ajustes.Controls.Add(this.button5);
             this.panel_ajustes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_ajustes.Location = new System.Drawing.Point(0, 931);
+            this.panel_ajustes.Location = new System.Drawing.Point(0, 980);
             this.panel_ajustes.Margin = new System.Windows.Forms.Padding(4);
             this.panel_ajustes.Name = "panel_ajustes";
             this.panel_ajustes.Size = new System.Drawing.Size(178, 239);
             this.panel_ajustes.TabIndex = 11;
+            // 
+            // button10
+            // 
+            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.ForeColor = System.Drawing.Color.Silver;
+            this.button10.Location = new System.Drawing.Point(0, 147);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Name = "button10";
+            this.button10.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
+            this.button10.Size = new System.Drawing.Size(178, 49);
+            this.button10.TabIndex = 3;
+            this.button10.Text = "Artista";
+            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button3
             // 
@@ -234,7 +254,7 @@
             this.btnExit.ForeColor = System.Drawing.Color.Silver;
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.Location = new System.Drawing.Point(0, 1170);
+            this.btnExit.Location = new System.Drawing.Point(0, 1219);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnExit.Name = "btnExit";
             this.btnExit.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
@@ -244,6 +264,7 @@
             this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // btnajustes
             // 
@@ -255,7 +276,7 @@
             this.btnajustes.ForeColor = System.Drawing.Color.Silver;
             this.btnajustes.Image = ((System.Drawing.Image)(resources.GetObject("btnajustes.Image")));
             this.btnajustes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnajustes.Location = new System.Drawing.Point(0, 876);
+            this.btnajustes.Location = new System.Drawing.Point(0, 925);
             this.btnajustes.Margin = new System.Windows.Forms.Padding(4);
             this.btnajustes.Name = "btnajustes";
             this.btnajustes.Padding = new System.Windows.Forms.Padding(7, 0, 0, 0);
@@ -270,6 +291,7 @@
             // panelToolsSubMenu
             // 
             this.panelToolsSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.panelToolsSubMenu.Controls.Add(this.button11);
             this.panelToolsSubMenu.Controls.Add(this.btn_cxc);
             this.panelToolsSubMenu.Controls.Add(this.button9);
             this.panelToolsSubMenu.Controls.Add(this.btn_reporte);
@@ -278,8 +300,46 @@
             this.panelToolsSubMenu.Location = new System.Drawing.Point(0, 675);
             this.panelToolsSubMenu.Margin = new System.Windows.Forms.Padding(4);
             this.panelToolsSubMenu.Name = "panelToolsSubMenu";
-            this.panelToolsSubMenu.Size = new System.Drawing.Size(178, 201);
+            this.panelToolsSubMenu.Size = new System.Drawing.Size(178, 250);
             this.panelToolsSubMenu.TabIndex = 7;
+            // 
+            // button11
+            // 
+            this.button11.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.button11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.ForeColor = System.Drawing.Color.Silver;
+            this.button11.Location = new System.Drawing.Point(0, 196);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
+            this.button11.Name = "button11";
+            this.button11.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
+            this.button11.Size = new System.Drawing.Size(178, 49);
+            this.button11.TabIndex = 5;
+            this.button11.Text = "Cuenta por Cobrar";
+            this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // btn_cxc
+            // 
+            this.btn_cxc.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_cxc.FlatAppearance.BorderSize = 0;
+            this.btn_cxc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.btn_cxc.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.btn_cxc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_cxc.ForeColor = System.Drawing.Color.Silver;
+            this.btn_cxc.Location = new System.Drawing.Point(0, 147);
+            this.btn_cxc.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_cxc.Name = "btn_cxc";
+            this.btn_cxc.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
+            this.btn_cxc.Size = new System.Drawing.Size(178, 49);
+            this.btn_cxc.TabIndex = 4;
+            this.btn_cxc.Text = "Cuenta por Pagar";
+            this.btn_cxc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_cxc.UseVisualStyleBackColor = true;
+            this.btn_cxc.Click += new System.EventHandler(this.btn_cxc_Click);
             // 
             // button9
             // 
@@ -376,6 +436,25 @@
             this.panelPlaylistSubMenu.Size = new System.Drawing.Size(178, 298);
             this.panelPlaylistSubMenu.TabIndex = 4;
             // 
+            // button8
+            // 
+            this.button8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.ForeColor = System.Drawing.Color.Silver;
+            this.button8.Location = new System.Drawing.Point(0, 245);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
+            this.button8.Name = "button8";
+            this.button8.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
+            this.button8.Size = new System.Drawing.Size(178, 49);
+            this.button8.TabIndex = 5;
+            this.button8.Text = "Cuadrar";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click_1);
+            // 
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -428,7 +507,7 @@
             this.button6.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
             this.button6.Size = new System.Drawing.Size(178, 49);
             this.button6.TabIndex = 2;
-            this.button6.Text = "Lista de citas";
+            this.button6.Text = "Gestor de citas";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -546,63 +625,6 @@
             this.btncliente.UseVisualStyleBackColor = true;
             this.btncliente.Click += new System.EventHandler(this.btnMedia_Click);
             // 
-            // button10
-            // 
-            this.button10.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button10.FlatAppearance.BorderSize = 0;
-            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.ForeColor = System.Drawing.Color.Silver;
-            this.button10.Location = new System.Drawing.Point(0, 147);
-            this.button10.Margin = new System.Windows.Forms.Padding(4);
-            this.button10.Name = "button10";
-            this.button10.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
-            this.button10.Size = new System.Drawing.Size(178, 49);
-            this.button10.TabIndex = 3;
-            this.button10.Text = "Artista";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
-            // 
-            // btn_cxc
-            // 
-            this.btn_cxc.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_cxc.FlatAppearance.BorderSize = 0;
-            this.btn_cxc.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.btn_cxc.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.btn_cxc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cxc.ForeColor = System.Drawing.Color.Silver;
-            this.btn_cxc.Location = new System.Drawing.Point(0, 147);
-            this.btn_cxc.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_cxc.Name = "btn_cxc";
-            this.btn_cxc.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
-            this.btn_cxc.Size = new System.Drawing.Size(178, 49);
-            this.btn_cxc.TabIndex = 4;
-            this.btn_cxc.Text = "Cuenta por Pagar";
-            this.btn_cxc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_cxc.UseVisualStyleBackColor = true;
-            this.btn_cxc.Click += new System.EventHandler(this.btn_cxc_Click);
-            // 
-            // button8
-            // 
-            this.button8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button8.FlatAppearance.BorderSize = 0;
-            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.ForeColor = System.Drawing.Color.Silver;
-            this.button8.Location = new System.Drawing.Point(0, 245);
-            this.button8.Margin = new System.Windows.Forms.Padding(4);
-            this.button8.Name = "button8";
-            this.button8.Padding = new System.Windows.Forms.Padding(47, 0, 0, 0);
-            this.button8.Size = new System.Drawing.Size(178, 49);
-            this.button8.TabIndex = 5;
-            this.button8.Text = "Cuadrar";
-            this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click_1);
-            // 
             // Form_new_menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -664,5 +686,6 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btn_cxc;
         private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button11;
     }
 }

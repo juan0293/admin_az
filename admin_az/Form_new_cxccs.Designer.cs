@@ -33,7 +33,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.dtpfecha_nacimiento = new System.Windows.Forms.DateTimePicker();
             this.detalle = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lb_cliente = new System.Windows.Forms.Label();
             this.txtnombre = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btn_grande = new System.Windows.Forms.Button();
@@ -82,16 +82,16 @@
             this.detalle.TabIndex = 158;
             this.detalle.Text = "Monto*";
             // 
-            // label1
+            // lb_cliente
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Silver;
-            this.label1.Location = new System.Drawing.Point(8, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 19);
-            this.label1.TabIndex = 157;
-            this.label1.Text = "Proveedor*";
+            this.lb_cliente.AutoSize = true;
+            this.lb_cliente.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_cliente.ForeColor = System.Drawing.Color.Silver;
+            this.lb_cliente.Location = new System.Drawing.Point(8, 19);
+            this.lb_cliente.Name = "lb_cliente";
+            this.lb_cliente.Size = new System.Drawing.Size(92, 19);
+            this.lb_cliente.TabIndex = 157;
+            this.lb_cliente.Text = "Proveedor*";
             // 
             // txtnombre
             // 
@@ -147,12 +147,12 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.dtpfecha_nacimiento);
             this.Controls.Add(this.detalle);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lb_cliente);
             this.Controls.Add(this.txtnombre);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Form_new_cxccs";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Agregar Cuentas por Pagar";
+            this.Text = "Agregar Cuentas ";
             this.Load += new System.EventHandler(this.Form_new_cxccs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -164,9 +164,9 @@
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.DateTimePicker dtpfecha_nacimiento;
         private System.Windows.Forms.Label detalle;
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txtnombre;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_grande;
+        public System.Windows.Forms.Label lb_cliente;
     }
 }

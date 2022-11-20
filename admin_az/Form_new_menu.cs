@@ -55,7 +55,7 @@ namespace admin_az
             Global.Panel1 = panelChildForm;
 
             panelChildForm.Controls.Clear();
-            Form_home open = new Form_home();
+            form_vista_cita open = new form_vista_cita();
             open.TopLevel = false;
             panelChildForm.Controls.Add(open);
             open.Show();
@@ -126,7 +126,7 @@ namespace admin_az
         private void button6_Click(object sender, EventArgs e)
         {
             panelChildForm.Controls.Clear();
-            Form_vista_cita open = new Form_vista_cita();
+            form_vista_cita open = new form_vista_cita();
             open.TopLevel = false;
             panelChildForm.Controls.Add(open);
             open.Show();
@@ -228,6 +228,12 @@ namespace admin_az
                btnajustes.Enabled = false;
                 btnreport.Enabled = false;
             }
+
+            if (Global.tipoUsuario == "3")
+            {
+                btnajustes.Enabled = false;
+                btn_finanza.Enabled = false;
+            }
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -255,6 +261,30 @@ namespace admin_az
             open.TopLevel = false;
             panelChildForm.Controls.Add(open);
             open.Show();
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            panelChildForm.Controls.Clear();
+            Form_cuenta__cobrar open = new Form_cuenta__cobrar();
+            open.TopLevel = false;
+            panelChildForm.Controls.Add(open);
+            open.Show();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Por favor confirme antes de continuar" + "\n" + "Quieres continuar ?", "            SEGURO QUE DESEA ANULAR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            {
+                Application.Exit();
+            }
+
+            else
+
+            {
+                //do something if NO
+            }
         }
     }
 }

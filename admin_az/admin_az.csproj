@@ -189,6 +189,9 @@
     <Compile Include="cuentaCXC.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cuentacxp.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos.cs" />
     <Compile Include="estadocita.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -274,6 +277,12 @@
     <Compile Include="Formterminar.Designer.cs">
       <DependentUpon>Formterminar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_add_pago_cxc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_add_pago_cxc.Designer.cs">
+      <DependentUpon>Form_add_pago_cxc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Agenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,6 +301,12 @@
     <Compile Include="Form_cuadre.Designer.cs">
       <DependentUpon>Form_cuadre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_cuenta _cobrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_cuenta _cobrar.Designer.cs">
+      <DependentUpon>Form_cuenta _cobrar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_cxc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +318,12 @@
     </Compile>
     <Compile Include="Form_historial.Designer.cs">
       <DependentUpon>Form_historial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_historial_pago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_historial_pago.Designer.cs">
+      <DependentUpon>Form_historial_pago.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_home.cs">
       <SubType>Form</SubType>
@@ -401,12 +422,21 @@
     <Compile Include="oferta.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="pago_cxc.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pago_cxp.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="sesion.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -490,6 +520,9 @@
     <EmbeddedResource Include="Formterminar.resx">
       <DependentUpon>Formterminar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_add_pago_cxc.resx">
+      <DependentUpon>Form_add_pago_cxc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Agenda.resx">
       <DependentUpon>Form_Agenda.cs</DependentUpon>
     </EmbeddedResource>
@@ -499,11 +532,17 @@
     <EmbeddedResource Include="Form_cuadre.resx">
       <DependentUpon>Form_cuadre.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_cuenta _cobrar.resx">
+      <DependentUpon>Form_cuenta _cobrar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_cxc.resx">
       <DependentUpon>Form_cxc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_historial.resx">
       <DependentUpon>Form_historial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_historial_pago.resx">
+      <DependentUpon>Form_historial_pago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_home.resx">
       <DependentUpon>Form_home.cs</DependentUpon>
@@ -566,6 +605,7 @@
     <None Include="artista.datasource" />
     <None Include="cliente.datasource" />
     <None Include="cuentaCXC.datasource" />
+    <None Include="Cuentacxp.datasource" />
     <None Include="Datos.datasource" />
     <None Include="factura.datasource" />
     <None Include="juan881_60%40live.com.pfx" />
@@ -581,6 +621,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Include="oferta.datasource" />
+    <None Include="pago_cxp.datasource" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -32,6 +32,8 @@ namespace admin_az
         public virtual DbSet<cita> citas { get; set; }
         public virtual DbSet<cliente> clientes { get; set; }
         public virtual DbSet<configuracion> configuracions { get; set; }
+        public virtual DbSet<cuentaCXC> cuentaCXCs { get; set; }
+        public virtual DbSet<Cuentacxp> Cuentacxps { get; set; }
         public virtual DbSet<estadocita> estadocitas { get; set; }
         public virtual DbSet<factura> facturas { get; set; }
         public virtual DbSet<metodoppago> metodoppagoes { get; set; }
@@ -46,7 +48,9 @@ namespace admin_az
         public virtual DbSet<View_cuadre> View_cuadre { get; set; }
         public virtual DbSet<View_historial> View_historial { get; set; }
         public virtual DbSet<View_reimprimir> View_reimprimir { get; set; }
-        public virtual DbSet<cuentaCXC> cuentaCXCs { get; set; }
+        public virtual DbSet<pago_cxc> pago_cxc { get; set; }
+        public virtual DbSet<pago_cxp> pago_cxp { get; set; }
+        public virtual DbSet<sesion> sesions { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

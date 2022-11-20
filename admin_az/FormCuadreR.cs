@@ -12,6 +12,7 @@ namespace admin_az
 {
     public partial class FormCuadreR : Form
     {
+        public int idusuarios = Convert.ToInt32(Global.idusuario);
         public int idsuario;
         public double efectivo, deposito, tarjeta, anulada, resultado, total, defectivo, ddeposito, dtarjeta, dtotal =0;
         public FormCuadreR()

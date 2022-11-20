@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace admin_az
 {
-    public partial class Form_vista_cita : Form
+    public partial class form_vista_cita : Form
     {
         Panel panelcontrol = Global.Panel1;
-        public Form_vista_cita()
+        public form_vista_cita()
         {
             InitializeComponent();
         }
@@ -44,15 +44,15 @@ namespace admin_az
                 {
                     DateTime fecha = Convert.ToDateTime(dtp_fecha.Text);
                     int lst = db.View_Cliente.Count(o => o.fechaCita == fecha);
-                    agendada = lst;
-                    lb_cantidad.Text = lst.ToString();
+                    //agendada = lst;
+                   lb_agendada.Text = lst.ToString();
                 }
 
             }
 
             catch { }
         }
-        public void listaranuladas()
+        public void listarfinalizada()
         {
 
             try
@@ -61,8 +61,8 @@ namespace admin_az
 
                 {
                     DateTime fecha = Convert.ToDateTime(dtp_fecha.Text);
-                    int lst = db.View_Cliente.Count(o => o.idestado ==3 && o.fecha ==fecha);
-                    lb_nuevas.Text = lst.ToString();
+                    int lst = db.View_Cliente.Count(o => o.idestado ==1 && o.fecha ==fecha || o.fechaCita == fecha);
+                    lb_finalizada.Text = lst.ToString();
                 
                    
                 }
@@ -81,10 +81,10 @@ namespace admin_az
                 {
                     dgv_citas.Rows.Clear();
                     DateTime fecha = Convert.ToDateTime(dtp_fecha.Text);
-                    var lst = db.View_Cliente.ToList().Where(f=> f.fecha == fecha);
+                    var lst = db.View_Cliente.ToList().Where(f=> f.fecha == fecha || f.fechaCita ==fecha);
                     foreach (var ocita in lst)
                     {
-                        dgv_citas.Rows.Add(dgv_citas.RowCount +1, ocita.nombre + " " + ocita.apellido, ocita.telefono, ocita.codigo, ocita.estado, ocita.metodo, ocita.montopagado, ocita.resta, ocita.fecha, ocita.idcita, ocita.idcliente);
+                        dgv_citas.Rows.Add(dgv_citas.RowCount +1, ocita.nombre + " " + ocita.apellido, ocita.telefono, ocita.codigo, ocita.estado, ocita.metodo, ocita.montopagado, ocita.resta, ocita.fecha, ocita.idcita, ocita.idcliente, ocita.fechaCita, ocita.cantidad_sesion);
 
 
                     }
@@ -95,7 +95,7 @@ namespace admin_az
 
             catch { }
         }
-        public void Listarpendiente()
+        public void Listarhoy()
         {
 
             try
@@ -104,15 +104,15 @@ namespace admin_az
 
                 {
                     DateTime fecha = Convert.ToDateTime(dtp_fecha.Text);
-                    int lst = db.View_Cliente.Count(o => o.estado == "Pendiente" && o.fecha ==fecha);
-                    lb_pendientes.Text = lst.ToString();
+                    int lst = db.View_Cliente.Count(o => o.fecha ==fecha);
+                    lb_hoy.Text = lst.ToString();
                 }
 
             }
 
             catch { }
         }
-        public void Listarfinaaliza()
+        public void Listarcantidad()
         {
 
             try
@@ -121,8 +121,8 @@ namespace admin_az
 
                 {
                     DateTime fecha = Convert.ToDateTime(dtp_fecha.Text);
-                    int lst = db.View_Cliente.Count(o => o.estado == "Finalizada" && o.fecha == fecha);
-                    lb_finalizada.Text = lst.ToString();
+                    int lst = db.View_Cliente.Count(o => o.fechaCita == fecha || o.fecha == fecha);
+                    lb_cantidad.Text = lst.ToString();
                 }
 
             }
@@ -138,7 +138,7 @@ namespace admin_az
 
                 {
                     DateTime fecha = Convert.ToDateTime(dtp_fecha.Text);
-                    var  lst = db.View_Cliente.Where(o => o.fecha == fecha && o.condicion ==true).Sum(s=> s.montopagado);
+                    var  lst = db.facturas.Where(o => o.fecha == fecha).Sum(s=> s.monto);
 
                     lb_total.Text = Convert.ToDecimal(lst).ToString("#,##0.00");
                 }
@@ -151,11 +151,11 @@ namespace admin_az
         public void cargarDatoss()
         {
             Listaragendada();
-            Listarpendiente();
-            Listarfinaaliza();
+            Listarhoy();
+            Listarcantidad();
             ListarTotal();
-            ListarCita();
-            listaranuladas();
+         
+            listarfinalizada();
         }
         public void eventoestado()
         {
@@ -163,38 +163,23 @@ namespace admin_az
             {
                 foreach (DataGridViewRow row in dgv_citas.Rows)
                 {
+                    DateTime hoy = Convert.ToDateTime(dtp_fecha_hoy.Text);
+                    DateTime Fecha =Convert.ToDateTime(row.Cells[8].Value);
 
-                    string estado =Convert.ToString(row.Cells[4].Value);
 
 
-
-                    if (estado == "Pendiente")
+                    if (Fecha ==hoy)
                     {
                         //row.Cells[1].Value = "Pendiente";
 
 
-                        row.DefaultCellStyle.ForeColor = Color.Goldenrod;
-
-
-
-                    }
-                    if (estado == "Finalizada")
-                    {
-                        //row.Cells[1].Value = "Pagada";
                         row.DefaultCellStyle.ForeColor = Color.Green;
 
 
 
                     }
-
-                    if (estado == "Anulada")
-                    {
-                        //row.Cells[1].Value = "Pagada";
-                        row.DefaultCellStyle.ForeColor = Color.Red;
-
-
-
-                    }
+                   
+                   
                 }
 
             }
@@ -287,6 +272,7 @@ namespace admin_az
         private void dtp_fecha_ValueChanged(object sender, EventArgs e)
         {
             cargarDatoss();
+            ListarCita();
         }
 
         private void btn_estado_Click(object sender, EventArgs e)
@@ -343,9 +329,60 @@ namespace admin_az
 
         }
 
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void Formadd_pasado(string dato)
+        {
+            ListarCita();
+            cargarDatoss();
+        }
+        private void btn_Finalizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dgv_citas.SelectedRows)
+                {
+                    Form_add_pago_cxc open = new Form_add_pago_cxc();
+
+                    if(Convert.ToDouble(row.Cells[7].Value) <0)
+                    {
+                        MessageBox.Show("El cliente no presenta monto pendiente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        open.txtTotal.Text = Convert.ToDecimal(row.Cells[7].Value).ToString("#,##0.00");
+                        open.txt_pagado.Text = Convert.ToDecimal(row.Cells[7].Value).ToString("#,##0.00");
+                        open.opcion = "3";
+                        open.telefono = row.Cells[9].Value.ToString();
+                        open.cantidad_sesion = Convert.ToInt32(row.Cells[12].Value);
+                        open.idcita = Convert.ToInt32(row.Cells[9].Value);
+                        open.idcliente = Convert.ToInt32(row.Cells[10].Value);
+
+                        open.cliente = row.Cells[1].Value.ToString();
+                        open.pasado += Formadd_pasado;
+                        open.ShowDialog();
+                    }
+                   
+
+                }
+
+            }
+            catch { }
+        }
+
         private void Form_vista_cita_Load(object sender, EventArgs e)
         {
-      
+           if(Global.tipoUsuario =="1")
+            {
+                btn_anular.Visible = true;
+            }
+
+            else
+            {
+                btn_anular.Visible = false;
+            }
             ListarCita();
             cargarDatoss();
         }

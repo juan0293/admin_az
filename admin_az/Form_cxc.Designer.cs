@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_cxc));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_cxc));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,9 +42,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.dtp_fecha_fin = new System.Windows.Forms.DateTimePicker();
-            this.btn_estado = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btn_facturar = new System.Windows.Forms.Button();
             this.txt_rnc = new System.Windows.Forms.Panel();
             this.lb_finalizada = new System.Windows.Forms.Label();
             this.lb_pendientes = new System.Windows.Forms.Label();
@@ -53,6 +50,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgv_citas = new System.Windows.Forms.DataGridView();
+            this.btn_historial = new System.Windows.Forms.Button();
+            this.btn_estado = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_facturar = new System.Windows.Forms.Button();
             this.idcxcDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proveedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,28 +73,30 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Silver;
-            this.label5.Location = new System.Drawing.Point(311, 3);
+            this.label5.Location = new System.Drawing.Point(799, 215);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(155, 29);
             this.label5.TabIndex = 154;
             this.label5.Text = "Fecha Inicio";
+            this.label5.Visible = false;
             // 
             // dtp_fecha_inicio
             // 
             this.dtp_fecha_inicio.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtp_fecha_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_inicio.Location = new System.Drawing.Point(316, 35);
+            this.dtp_fecha_inicio.Location = new System.Drawing.Point(766, 270);
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
             this.dtp_fecha_inicio.Size = new System.Drawing.Size(236, 49);
             this.dtp_fecha_inicio.TabIndex = 153;
+            this.dtp_fecha_inicio.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(0, -2);
+            this.label2.Location = new System.Drawing.Point(0, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(232, 29);
             this.label2.TabIndex = 152;
@@ -101,10 +104,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.dtp_fecha_fin);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.dtp_fecha_inicio);
+            this.panel1.Controls.Add(this.btn_historial);
             this.panel1.Controls.Add(this.btn_estado);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btn_facturar);
@@ -120,70 +120,24 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(553, 3);
+            this.label7.Location = new System.Drawing.Point(799, 333);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(155, 29);
             this.label7.TabIndex = 156;
             this.label7.Text = "Fecha Inicio";
+            this.label7.Visible = false;
             // 
             // dtp_fecha_fin
             // 
             this.dtp_fecha_fin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtp_fecha_fin.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_fin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_fin.Location = new System.Drawing.Point(558, 35);
+            this.dtp_fecha_fin.Location = new System.Drawing.Point(766, 365);
             this.dtp_fecha_fin.Name = "dtp_fecha_fin";
             this.dtp_fecha_fin.Size = new System.Drawing.Size(219, 49);
             this.dtp_fecha_fin.TabIndex = 155;
+            this.dtp_fecha_fin.Visible = false;
             this.dtp_fecha_fin.ValueChanged += new System.EventHandler(this.dtp_fecha_fin_ValueChanged);
-            // 
-            // btn_estado
-            // 
-            this.btn_estado.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.btn_estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_estado.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_estado.ForeColor = System.Drawing.Color.Silver;
-            this.btn_estado.Image = ((System.Drawing.Image)(resources.GetObject("btn_estado.Image")));
-            this.btn_estado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_estado.Location = new System.Drawing.Point(461, 90);
-            this.btn_estado.Name = "btn_estado";
-            this.btn_estado.Size = new System.Drawing.Size(138, 51);
-            this.btn_estado.TabIndex = 151;
-            this.btn_estado.Text = "       Pagar";
-            this.btn_estado.UseVisualStyleBackColor = true;
-            this.btn_estado.Click += new System.EventHandler(this.btn_estado_Click);
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Silver;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(605, 90);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 51);
-            this.button1.TabIndex = 149;
-            this.button1.Text = "   Anular";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btn_facturar
-            // 
-            this.btn_facturar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
-            this.btn_facturar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_facturar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_facturar.ForeColor = System.Drawing.Color.Silver;
-            this.btn_facturar.Image = ((System.Drawing.Image)(resources.GetObject("btn_facturar.Image")));
-            this.btn_facturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_facturar.Location = new System.Drawing.Point(317, 90);
-            this.btn_facturar.Name = "btn_facturar";
-            this.btn_facturar.Size = new System.Drawing.Size(138, 51);
-            this.btn_facturar.TabIndex = 148;
-            this.btn_facturar.Text = "   Nueva";
-            this.btn_facturar.UseVisualStyleBackColor = true;
-            this.btn_facturar.Click += new System.EventHandler(this.btn_facturar_Click);
             // 
             // txt_rnc
             // 
@@ -207,18 +161,19 @@
             this.lb_finalizada.AutoSize = true;
             this.lb_finalizada.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_finalizada.ForeColor = System.Drawing.Color.Blue;
-            this.lb_finalizada.Location = new System.Drawing.Point(176, 93);
+            this.lb_finalizada.Location = new System.Drawing.Point(200, 126);
             this.lb_finalizada.Name = "lb_finalizada";
             this.lb_finalizada.Size = new System.Drawing.Size(47, 22);
             this.lb_finalizada.TabIndex = 140;
             this.lb_finalizada.Text = "0.00";
+            this.lb_finalizada.Visible = false;
             // 
             // lb_pendientes
             // 
             this.lb_pendientes.AutoSize = true;
             this.lb_pendientes.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_pendientes.ForeColor = System.Drawing.Color.Red;
-            this.lb_pendientes.Location = new System.Drawing.Point(176, 58);
+            this.lb_pendientes.Location = new System.Drawing.Point(201, 101);
             this.lb_pendientes.Name = "lb_pendientes";
             this.lb_pendientes.Size = new System.Drawing.Size(47, 22);
             this.lb_pendientes.TabIndex = 139;
@@ -229,7 +184,7 @@
             this.lb_cantidad.AutoSize = true;
             this.lb_cantidad.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lb_cantidad.ForeColor = System.Drawing.Color.Black;
-            this.lb_cantidad.Location = new System.Drawing.Point(202, 34);
+            this.lb_cantidad.Location = new System.Drawing.Point(202, 57);
             this.lb_cantidad.Name = "lb_cantidad";
             this.lb_cantidad.Size = new System.Drawing.Size(21, 22);
             this.lb_cantidad.TabIndex = 138;
@@ -240,18 +195,19 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(3, 93);
+            this.label4.Location = new System.Drawing.Point(3, 126);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(143, 22);
             this.label4.TabIndex = 137;
             this.label4.Text = "Monto Pagado.:";
+            this.label4.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(3, 58);
+            this.label3.Location = new System.Drawing.Point(3, 101);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(167, 22);
             this.label3.TabIndex = 136;
@@ -262,7 +218,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(1, 33);
+            this.label1.Location = new System.Drawing.Point(1, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(195, 22);
             this.label1.TabIndex = 135;
@@ -322,6 +278,70 @@
             this.dgv_citas.Size = new System.Drawing.Size(751, 355);
             this.dgv_citas.TabIndex = 149;
             this.dgv_citas.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_citas_CellFormatting);
+            // 
+            // btn_historial
+            // 
+            this.btn_historial.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_historial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_historial.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_historial.ForeColor = System.Drawing.Color.Silver;
+            this.btn_historial.Image = ((System.Drawing.Image)(resources.GetObject("btn_historial.Image")));
+            this.btn_historial.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_historial.Location = new System.Drawing.Point(299, 74);
+            this.btn_historial.Name = "btn_historial";
+            this.btn_historial.Size = new System.Drawing.Size(138, 51);
+            this.btn_historial.TabIndex = 157;
+            this.btn_historial.Text = "   Historial";
+            this.btn_historial.UseVisualStyleBackColor = true;
+            this.btn_historial.Click += new System.EventHandler(this.btn_historial_Click);
+            // 
+            // btn_estado
+            // 
+            this.btn_estado.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_estado.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_estado.ForeColor = System.Drawing.Color.Silver;
+            this.btn_estado.Image = ((System.Drawing.Image)(resources.GetObject("btn_estado.Image")));
+            this.btn_estado.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_estado.Location = new System.Drawing.Point(299, 12);
+            this.btn_estado.Name = "btn_estado";
+            this.btn_estado.Size = new System.Drawing.Size(138, 51);
+            this.btn_estado.TabIndex = 151;
+            this.btn_estado.Text = "       Pagar";
+            this.btn_estado.UseVisualStyleBackColor = true;
+            this.btn_estado.Click += new System.EventHandler(this.btn_estado_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Silver;
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(443, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(138, 51);
+            this.button1.TabIndex = 149;
+            this.button1.Text = "   Anular";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_facturar
+            // 
+            this.btn_facturar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(59)))), ((int)(((byte)(90)))));
+            this.btn_facturar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_facturar.Font = new System.Drawing.Font("Cambria", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_facturar.ForeColor = System.Drawing.Color.Silver;
+            this.btn_facturar.Image = ((System.Drawing.Image)(resources.GetObject("btn_facturar.Image")));
+            this.btn_facturar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_facturar.Location = new System.Drawing.Point(443, 12);
+            this.btn_facturar.Name = "btn_facturar";
+            this.btn_facturar.Size = new System.Drawing.Size(138, 51);
+            this.btn_facturar.TabIndex = 148;
+            this.btn_facturar.Text = "   Nueva";
+            this.btn_facturar.UseVisualStyleBackColor = true;
+            this.btn_facturar.Click += new System.EventHandler(this.btn_facturar_Click);
             // 
             // idcxcDataGridViewTextBoxColumn
             // 
@@ -396,18 +416,22 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(1024, 700);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.dgv_citas);
+            this.Controls.Add(this.dtp_fecha_fin);
+            this.Controls.Add(this.dtp_fecha_inicio);
+            this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form_cxc";
             this.Text = "Form_cxc";
             this.Load += new System.EventHandler(this.Form_cxc_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.txt_rnc.ResumeLayout(false);
             this.txt_rnc.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_citas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cuentaCXCBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -438,5 +462,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usuarioDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource cuentaCXCBindingSource;
+        private System.Windows.Forms.Button btn_historial;
     }
 }

@@ -66,6 +66,8 @@
             this.picatras = new System.Windows.Forms.PictureBox();
             this.dtpfecha = new System.Windows.Forms.DateTimePicker();
             this.btn_grande = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.piclogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -78,6 +80,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picatras)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.piclogo)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -460,13 +463,26 @@
             this.btn_grande.ForeColor = System.Drawing.Color.Silver;
             this.btn_grande.Image = ((System.Drawing.Image)(resources.GetObject("btn_grande.Image")));
             this.btn_grande.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_grande.Location = new System.Drawing.Point(452, 326);
+            this.btn_grande.Location = new System.Drawing.Point(253, 340);
             this.btn_grande.Name = "btn_grande";
-            this.btn_grande.Size = new System.Drawing.Size(131, 40);
+            this.btn_grande.Size = new System.Drawing.Size(180, 58);
             this.btn_grande.TabIndex = 152;
             this.btn_grande.Text = "   Guardar";
             this.btn_grande.UseVisualStyleBackColor = true;
-            //this.btn_grande.Click += new System.EventHandler(this.btn_grande_Click);
+            this.btn_grande.Click += new System.EventHandler(this.btn_grande_Click);
+            // 
+            // piclogo
+            // 
+            this.piclogo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.piclogo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.piclogo.Image = ((System.Drawing.Image)(resources.GetObject("piclogo.Image")));
+            this.piclogo.Location = new System.Drawing.Point(667, 265);
+            this.piclogo.Name = "piclogo";
+            this.piclogo.Size = new System.Drawing.Size(122, 133);
+            this.piclogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.piclogo.TabIndex = 157;
+            this.piclogo.TabStop = false;
+            this.piclogo.Visible = false;
             // 
             // Form_cuadre
             // 
@@ -474,6 +490,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(1062, 433);
+            this.Controls.Add(this.piclogo);
             this.Controls.Add(this.btn_grande);
             this.Controls.Add(this.dtpfecha);
             this.Controls.Add(this.picatras);
@@ -527,6 +544,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picatras)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.piclogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -571,5 +589,7 @@
         private System.Windows.Forms.PictureBox picatras;
         private System.Windows.Forms.DateTimePicker dtpfecha;
         private System.Windows.Forms.Button btn_grande;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PictureBox piclogo;
     }
 }

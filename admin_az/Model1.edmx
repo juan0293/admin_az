@@ -46,6 +46,9 @@
           <Property Name="artista" Type="int" />
           <Property Name="oferta" Type="int" />
           <Property Name="tiempo_estimado" Type="varchar" MaxLength="6" />
+          <Property Name="nombreArtista" Type="varchar" MaxLength="100" />
+          <Property Name="descuento" Type="float" />
+          <Property Name="cantidad_sesion" Type="int" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -80,6 +83,18 @@
           <Property Name="monto" Type="float" />
           <Property Name="estado" Type="bit" />
           <Property Name="usuario" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Cuentacxp">
+          <Key>
+            <PropertyRef Name="idcuentacxp" />
+          </Key>
+          <Property Name="idcuentacxp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cliente" Type="varchar" MaxLength="100" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="monto" Type="float" Nullable="false" />
+          <Property Name="idiente" Type="int" />
+          <Property Name="estado" Type="bit" />
+          <Property Name="idcita" Type="int" />
         </EntityType>
         <EntityType Name="estadocita">
           <Key>
@@ -116,6 +131,34 @@
           <Property Name="porcentaje" Type="float" />
           <Property Name="titulo" Type="varchar" MaxLength="50" />
           <Property Name="estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="pago_cxc">
+          <Key>
+            <PropertyRef Name="idpago" />
+          </Key>
+          <Property Name="idpago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcliente" Type="int" />
+          <Property Name="cliente" Type="varchar" MaxLength="100" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="monto" Type="float" />
+        </EntityType>
+        <EntityType Name="pago_cxp">
+          <Key>
+            <PropertyRef Name="idpagocxp" />
+          </Key>
+          <Property Name="idpagocxp" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecha" Type="date" />
+          <Property Name="monto" Type="float" />
+          <Property Name="proveedor" Type="varchar" MaxLength="100" />
+          <Property Name="idcxc" Type="int" />
+        </EntityType>
+        <EntityType Name="sesion">
+          <Key>
+            <PropertyRef Name="idsesion" />
+          </Key>
+          <Property Name="idsesion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idcita" Type="int" />
+          <Property Name="cantidad" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -185,7 +228,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_Cliente' no tiene definida
           <Property Name="telefono" Type="varchar" MaxLength="11" />
           <Property Name="idcita" Type="int" Nullable="false" />
           <Property Name="idestado" Type="int" />
-          <Property Name="fechaCita" Type="datetime" />
+          <Property Name="fechaCita" Type="date" />
           <Property Name="iduser" Type="int" />
           <Property Name="idmetodo" Type="int" />
           <Property Name="monto" Type="float" Nullable="false" />
@@ -197,8 +240,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_Cliente' no tiene definida
           <Property Name="Expr1" Type="int" Nullable="false" />
           <Property Name="metodo" Type="varchar" MaxLength="30" />
           <Property Name="condicion" Type="bit" />
-          <Property Name="fecha" Type="datetime" />
+          <Property Name="fecha" Type="date" />
           <Property Name="montopagado" Type="float" />
+          <Property Name="cantidad_sesion" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'softcita.dbo.View_cliente_h' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -278,6 +322,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="tiempo_estimado" Type="varchar" MaxLength="6" />
           <Property Name="apellido" Type="varchar" MaxLength="30" />
           <Property Name="telefono" Type="varchar" MaxLength="11" />
+          <Property Name="nombreArtista" Type="varchar" MaxLength="100" />
+          <Property Name="descuento" Type="float" />
         </EntityType>
         <Association Name="FK_cierre_usuario">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
@@ -473,10 +519,14 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="configuracion" EntityType="Self.configuracion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cuentaCXC" EntityType="Self.cuentaCXC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuentacxp" EntityType="Self.Cuentacxp" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="estadocita" EntityType="Self.estadocita" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="factura" EntityType="Self.factura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="metodoppago" EntityType="Self.metodoppago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="oferta" EntityType="Self.oferta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pago_cxc" EntityType="Self.pago_cxc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pago_cxp" EntityType="Self.pago_cxp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sesion" EntityType="Self.sesion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tipoUsuario" EntityType="Self.tipoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="trabajo" EntityType="Self.trabajo" Schema="dbo" store:Type="Tables" />
@@ -513,7 +563,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
     [View_Cliente].[metodo] AS [metodo], 
     [View_Cliente].[condicion] AS [condicion], 
     [View_Cliente].[fecha] AS [fecha], 
-    [View_Cliente].[montopagado] AS [montopagado]
+    [View_Cliente].[montopagado] AS [montopagado], 
+    [View_Cliente].[cantidad_sesion] AS [cantidad_sesion]
     FROM [dbo].[View_Cliente] AS [View_Cliente]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="View_cliente_h" EntityType="Self.View_cliente_h" store:Type="Views" store:Schema="dbo">
@@ -570,7 +621,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
     [View_reimprimir].[montopagado] AS [montopagado], 
     [View_reimprimir].[tiempo_estimado] AS [tiempo_estimado], 
     [View_reimprimir].[apellido] AS [apellido], 
-    [View_reimprimir].[telefono] AS [telefono]
+    [View_reimprimir].[telefono] AS [telefono], 
+    [View_reimprimir].[nombreArtista] AS [nombreArtista], 
+    [View_reimprimir].[descuento] AS [descuento]
     FROM [dbo].[View_reimprimir] AS [View_reimprimir]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_cierre_usuario" Association="Self.FK_cierre_usuario">
@@ -666,6 +719,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySet Name="citas" EntityType="softcitaModel.cita" />
           <EntitySet Name="clientes" EntityType="softcitaModel.cliente" />
           <EntitySet Name="configuracions" EntityType="softcitaModel.configuracion" />
+          <EntitySet Name="cuentaCXCs" EntityType="softcitaModel.cuentaCXC" />
+          <EntitySet Name="Cuentacxps" EntityType="softcitaModel.Cuentacxp" />
           <EntitySet Name="estadocitas" EntityType="softcitaModel.estadocita" />
           <EntitySet Name="facturas" EntityType="softcitaModel.factura" />
           <EntitySet Name="metodoppagoes" EntityType="softcitaModel.metodoppago" />
@@ -732,7 +787,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
             <End Role="tipoUsuario" EntitySet="tipoUsuarios" />
             <End Role="usuario" EntitySet="usuarios" />
           </AssociationSet>
-          <EntitySet Name="cuentaCXCs" EntityType="softcitaModel.cuentaCXC" />
+          <EntitySet Name="pago_cxc" EntityType="softcitaModel.pago_cxc" />
+          <EntitySet Name="pago_cxp" EntityType="softcitaModel.pago_cxp" />
+          <EntitySet Name="sesions" EntityType="softcitaModel.sesion" />
           </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -788,6 +845,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="artista" Type="Int32" />
           <Property Name="oferta" Type="Int32" />
           <Property Name="tiempo_estimado" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="nombreArtista" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descuento" Type="Double" />
           <NavigationProperty Name="artista1" Relationship="softcitaModel.FK_cita_artista" FromRole="cita" ToRole="artista" />
           <NavigationProperty Name="cliente" Relationship="softcitaModel.FK_cita_cliente" FromRole="cita" ToRole="cliente" />
           <NavigationProperty Name="estadocita" Relationship="softcitaModel.FK_cita_estadocita" FromRole="cita" ToRole="estadocita" />
@@ -796,6 +855,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <NavigationProperty Name="usuario" Relationship="softcitaModel.FK_cita_usuario" FromRole="cita" ToRole="usuario" />
           <NavigationProperty Name="facturas" Relationship="softcitaModel.FK_factura_cita" FromRole="cita" ToRole="factura" />
           <NavigationProperty Name="trabajoes" Relationship="softcitaModel.FK_trabajo_cita" FromRole="cita" ToRole="trabajo" />
+          <Property Name="cantidad_sesion" Type="Int32" />
         </EntityType>
         <EntityType Name="cliente">
           <Key>
@@ -820,6 +880,30 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="idconfi" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="iduser" Type="Int32" />
           <NavigationProperty Name="usuario" Relationship="softcitaModel.FK_configuracion_usuario" FromRole="configuracion" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="cuentaCXC">
+          <Key>
+            <PropertyRef Name="idcxc" />
+          </Key>
+          <Property Name="idcxc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fechaPago" Type="DateTime" Precision="0" />
+          <Property Name="monto" Type="Double" />
+          <Property Name="estado" Type="Boolean" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Cuentacxp">
+          <Key>
+            <PropertyRef Name="idcuentacxp" />
+          </Key>
+          <Property Name="idcuentacxp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="monto" Type="Double" Nullable="false" />
+          <Property Name="idiente" Type="Int32" />
+          <Property Name="estado" Type="Boolean" />
+          <Property Name="idcita" Type="Int32" />
         </EntityType>
         <EntityType Name="estadocita">
           <Key>
@@ -935,7 +1019,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="idcita" Type="Int32" Nullable="false" />
           <Property Name="idestado" Type="Int32" />
-          <Property Name="fechaCita" Type="DateTime" Precision="3" />
+          <Property Name="fechaCita" Type="DateTime" Precision="0" />
           <Property Name="iduser" Type="Int32" />
           <Property Name="idmetodo" Type="Int32" />
           <Property Name="monto" Type="Double" Nullable="false" />
@@ -947,8 +1031,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="Expr1" Type="Int32" Nullable="false" />
           <Property Name="metodo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="condicion" Type="Boolean" />
-          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
           <Property Name="montopagado" Type="Double" />
+          <Property Name="cantidad_sesion" Type="Int32" />
         </EntityType>
         <EntityType Name="View_cliente_h">
           <Key>
@@ -1020,6 +1105,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <Property Name="tiempo_estimado" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="apellido" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="nombreArtista" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descuento" Type="Double" />
         </EntityType>
         <Association Name="FK_cita_artista">
           <End Type="softcitaModel.artista" Role="artista" Multiplicity="0..1" />
@@ -1177,17 +1264,33 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="cuentaCXC">
+        <EntityType Name="pago_cxc">
           <Key>
-            <PropertyRef Name="idcxc" />
+            <PropertyRef Name="idpago" />
           </Key>
-          <Property Name="idcxc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idpago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcliente" Type="Int32" />
+          <Property Name="cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="fecha" Type="DateTime" Precision="0" />
-          <Property Name="proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fechaPago" Type="DateTime" Precision="0" />
           <Property Name="monto" Type="Double" />
-          <Property Name="estado" Type="Boolean" />
-          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="pago_cxp">
+          <Key>
+            <PropertyRef Name="idpagocxp" />
+          </Key>
+          <Property Name="idpagocxp" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha" Type="DateTime" Precision="0" />
+          <Property Name="monto" Type="Double" />
+          <Property Name="proveedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="idcxc" Type="Int32" />
+        </EntityType>
+        <EntityType Name="sesion">
+          <Key>
+            <PropertyRef Name="idsesion" />
+          </Key>
+          <Property Name="idsesion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcita" Type="Int32" />
+          <Property Name="cantidad" Type="Int32" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1245,6 +1348,9 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySetMapping Name="citas">
             <EntityTypeMapping TypeName="softcitaModel.cita">
               <MappingFragment StoreEntitySet="cita">
+                <ScalarProperty Name="cantidad_sesion" ColumnName="cantidad_sesion" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="nombreArtista" ColumnName="nombreArtista" />
                 <ScalarProperty Name="tiempo_estimado" ColumnName="tiempo_estimado" />
                 <ScalarProperty Name="oferta" ColumnName="oferta" />
                 <ScalarProperty Name="artista" ColumnName="artista" />
@@ -1285,6 +1391,32 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
               <MappingFragment StoreEntitySet="configuracion">
                 <ScalarProperty Name="iduser" ColumnName="iduser" />
                 <ScalarProperty Name="idconfi" ColumnName="idconfi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentaCXCs">
+            <EntityTypeMapping TypeName="softcitaModel.cuentaCXC">
+              <MappingFragment StoreEntitySet="cuentaCXC">
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
+                <ScalarProperty Name="proveedor" ColumnName="proveedor" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idcxc" ColumnName="idcxc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuentacxps">
+            <EntityTypeMapping TypeName="softcitaModel.Cuentacxp">
+              <MappingFragment StoreEntitySet="Cuentacxp">
+                <ScalarProperty Name="idcita" ColumnName="idcita" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="idiente" ColumnName="idiente" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="idcuentacxp" ColumnName="idcuentacxp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1385,6 +1517,7 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySetMapping Name="View_Cliente">
             <EntityTypeMapping TypeName="softcitaModel.View_Cliente">
               <MappingFragment StoreEntitySet="View_Cliente">
+                <ScalarProperty Name="cantidad_sesion" ColumnName="cantidad_sesion" />
                 <ScalarProperty Name="montopagado" ColumnName="montopagado" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
                 <ScalarProperty Name="condicion" ColumnName="condicion" />
@@ -1454,6 +1587,8 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
           <EntitySetMapping Name="View_reimprimir">
             <EntityTypeMapping TypeName="softcitaModel.View_reimprimir">
               <MappingFragment StoreEntitySet="View_reimprimir">
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
+                <ScalarProperty Name="nombreArtista" ColumnName="nombreArtista" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="tiempo_estimado" ColumnName="tiempo_estimado" />
@@ -1473,16 +1608,34 @@ advertencia 6002: La tabla o vista 'softcita.dbo.View_reimprimir' no tiene defin
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="cuentaCXCs">
-            <EntityTypeMapping TypeName="softcitaModel.cuentaCXC">
-              <MappingFragment StoreEntitySet="cuentaCXC">
-                <ScalarProperty Name="usuario" ColumnName="usuario" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
+          <EntitySetMapping Name="pago_cxc">
+            <EntityTypeMapping TypeName="softcitaModel.pago_cxc">
+              <MappingFragment StoreEntitySet="pago_cxc">
                 <ScalarProperty Name="monto" ColumnName="monto" />
-                <ScalarProperty Name="fechaPago" ColumnName="fechaPago" />
-                <ScalarProperty Name="proveedor" ColumnName="proveedor" />
                 <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="cliente" ColumnName="cliente" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="idpago" ColumnName="idpago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pago_cxp">
+            <EntityTypeMapping TypeName="softcitaModel.pago_cxp">
+              <MappingFragment StoreEntitySet="pago_cxp">
                 <ScalarProperty Name="idcxc" ColumnName="idcxc" />
+                <ScalarProperty Name="proveedor" ColumnName="proveedor" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="idpagocxp" ColumnName="idpagocxp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sesions">
+            <EntityTypeMapping TypeName="softcitaModel.sesion">
+              <MappingFragment StoreEntitySet="sesion">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="idcita" ColumnName="idcita" />
+                <ScalarProperty Name="idsesion" ColumnName="idsesion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
